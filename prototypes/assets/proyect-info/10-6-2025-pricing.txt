@@ -1,0 +1,55 @@
+Modificaciones y observaciones para el "Esquema de precios".
+
+En la sección "Adicionales por Servicios Extra":
+El Texto o Diseño Adicional no se refleja en un valor adicional si el texto que el cliente pide es lo suficientemente breve para incluirlo alrededor del QR. Si el diseño del QR debe integrarse en un diseño más grande (pero que el cliente me proporcione) el trabajo extra es poco (puede reflejarse en un valor adicional pero muy bajo). Si el cliente necesita que yo haga el diseño grande que contendrá al QR se cobrará un valor adicional predefinido que será relativamente proporcional al trabajo que este diseño lleve.
+
+En la sección "Paquetes Opcionales":
+No habia pensado en proponer paquetes, posiblemente no haga falta. Una vez terminemos nuestro largo y detallado proceso para tazar mi trabajo, podremos analizar la posibilidad de agregar algunas opciones de packs.
+
+En la sección "Ajustes por Complejidad":
+No ofrezco niveles diferenciados, todos mis diseños incluyen el ícono del cliente en el centro del QR y un diseño que se ajusta a su marca. Mi método me permite demorar lo mismo haciendo un diseño minimalista que un diseño cargado de detalle. Enlistame cualquier requerimiento técnico especial que aún creas que pueda significarme una diferencia en tiempo de trabajo, yo especificaré cuales de estos me significarán efectivamente tiempo extra de trabajo.
+
+En la sección "Moneda de Cobro":
+Analisa la conveniencia de cobrar (y calcular el valor de mi trabajo) en cripto yuanes en lugar de en dolares. Dadas las novedades geopoliticas y de los mercados puede que el dolar no sea la moneda más prometedora para los próximos años.
+
+Considera estas modificaciones y reescribe tu solicitud de "Información que necesitas que investigue". Si se me ocurren más observaciones o modificaciones repetiremos el proceso.
+
+----------------------------------------------------------
+
+Requerimientos técnicos especiales a descartar (se aprueban los no mencionados):
+• Condiciones de escaneo extremas: Esto se le pregunta al cliente en el formulario para aumentar el contraste en su diseño pero no conlleva trabajo extra suficiente para que implique una diferencia en el precio.
+• Integración con tecnologías específicas: No conlleva trabajo extra suficiente para que implique una diferencia en el precio (el cliente debería proporcionar la dirección que genere dicha interacción).
+
+Solicitud de Información que Necesitas Investigar:
+El documento adjunto contiene los resultados de una investigación detallada. Si necesitas que investigue algo más dimelo y te proporcionaré esa información en otro documento adjunto en mi próxima respuesta. Cuando terminemos de recabar toda la información que necesites o consideres útil para nuestro cometido reescribirás el esquema de precios para el servicio que ofrezco en su versión definitiva.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

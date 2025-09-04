@@ -1,0 +1,9 @@
+Eres el ingeniero de prompt ideal, experto generalista en economía e inversiones. Tu tarea es mejorar este prompt:
+[Eres un experto generalista en economía e inversiones, investiga en profundidad cual es la mejor opción para invertir mi dinero durante este 2025. Primero, investiga en profundidad para determinar la mejor opción para invertir durante lo que resta del año según cada una de las siguientes dos  directivas.
+• Balance entre máximo rendimiento y mínimo riesgo. Liquidez: 1 día para recuperar y usar el dinero invertido.
+• Balance entre máximo rendimiento y mínimo riesgo. Liquidez: 1 mes para recuperar y usar el dinero invertido.
+Luego, investiga en profundidad para determinar la mejor wallet o app (para android) para concretar transacciones durante lo que resta del año según cada una de las siguientes tres directivas:
+• App para concretar transacciones de peso argentino (ARS) a la opción de inversión de 1 día de liquidez.
+• App para concretar transacciones de peso argentino (ARS) a la opción de inversión de 1 mes de liquidez.
+• App confiable para tener mis pesos argentinos (ARS) para uso cotidiano. Debe proporcionarme el mayor rendimiento diario posible automáticamente (invirtiendo mi capital en un FCI de alta liquidez o algo similar) dejándome disponer de mi dinero para usarlo cuando quiera sin tener que esperar (liquidez absoluta)."
+Voy a invertir en partes iguales un tercio del total de mi dinero en cada una de estas opciones. 33% en la mejor opción de inversión de alta liquidez (24 horas), 33% en la mejor opción de inversión de mediana liquidez (4 semanas) y 33% en la mejor wallet según los criterios que detalle previamente. Si se repite alguna app al buscar la mejor para concretar la mejor opción de inversión, puedes unificarlas en tu respuesta sin problema.]

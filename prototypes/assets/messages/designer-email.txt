@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Pedido Recibido - D3LTA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --c-white: #ffffff;
+            --c-yellow: #f7df4e;
+            --c-blue: #26aefb;
+            --c-dark: #0a0a0f;
+            --c-dark-light: #101018;
+            --gradient-primary: linear-gradient(135deg, var(--c-blue) 0%, var(--c-white) 100%);
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #0a0a0f;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        td, th {
+            border-collapse: collapse;
+        }
+
+        a {
+            color: #a0e9ff;
+            text-decoration: none;
+        }
+
+        img {
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .gradient-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            background: linear-gradient(135deg, #26aefb 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        
+        .card {
+            background-color: #101018;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .info-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .info-table td.label {
+            color: rgba(160, 233, 255, 0.8);
+            width: 40%;
+            font-weight: 500;
+        }
+
+        .info-table td.value {
+            color: #ffffff;
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        .info-table td.full-width-value {
+            padding-top: 8px;
+            font-size: 13px;
+            font-weight: 400;
+            color: #dddddd;
+            line-height: 1.6;
+        }
+        
+        .info-table td.value .bool-yes {
+            color: #a0e9ff;
+        }
+
+        .info-table td.value .bool-no {
+            color: #6b7280;
+        }
+        
+        .commission-card {
+             background: linear-gradient(135deg, rgba(247, 223, 78, 0.1) 0%, rgba(197, 171, 58, 0.1) 100%);
+             border: 1px solid #c5ab3a;
+             border-radius: 16px;
+             padding: 24px;
+        }
+        
+        .commission-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #f7df4e;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .commission-total {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f7df4e;
+            text-align: center;
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+        
+        .destination-detail-table {
+            font-size: 12px;
+            color: #ccc;
+            padding-top: 8px;
+            width: 100%;
+        }
+        .destination-detail-table td {
+            padding: 2px 4px;
+            border: none;
+        }
+        .destination-detail-table .label {
+            color: #888;
+            width: 80px;
+        }
+        .destination-detail-table .value {
+            color: #ddd;
+            text-align: left;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                width: 100% !important;
+                padding: 0 16px;
+            }
+            .gradient-title {
+                font-size: 28px;
+            }
+            .section-title, .commission-title {
+                font-size: 20px;
+            }
+            .card, .commission-card {
+                padding: 16px;
+            }
+            .info-table td.label {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+            <td align="center" style="padding: 40px 0;">
+                <table class="container" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding-bottom: 24px;">
+                            <img src="https://i.ibb.co/4wKMJyyk/D3-LTA-Logo.png" alt="Logo de D3LTA" style="height: 80px; width: auto;">
+                        </td>
+                    </tr>
+                    <!-- Main Title -->
+                    <tr>
+                        <td align="center" style="padding-bottom: 24px;">
+                            <h1 class="gradient-title">Recibimos un Nuevo Pedido</h1>
+                        </td>
+                    </tr>
+
+                    <!-- Order Details -->
+                    <tr>
+                        <td class="card">
+                            <h2 class="section-title">Datos del Pedido</h2>
+                            <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td class="label">ID del Pedido</td>
+                                    <td class="value">{{PedidoID}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Fecha de Envío</td>
+                                    <td class="value">{{FechaEnvio}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Nombre y Apellido</td>
+                                    <td class="value">{{NombreContacto}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Mail de Contacto</td>
+                                    <td class="value" style="text-transform: lowercase;"><a href="mailto:{{EmailContacto}}">{{EmailContacto}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Teléfono de Contacto</td>
+                                    <td class="value">{{TelefonoContacto}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Contacto Preferido</td>
+                                    <td class="value" style="text-transform: capitalize;">{{MetodoContactoPref}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <tr><td style="height: 24px;"></td></tr>
+
+                    <!-- Commission Details -->
+                    <tr>
+                        <td class="commission-card">
+                            <h2 class="commission-title">Comisión del Vendedor</h2>
+                            <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td class="label">Palabra Clave</td>
+                                    <td class="value">{{PalabraClaveVendedor}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Valor Bruto del Pedido</td>
+                                    <td class="value">{{CostoTotalBruto_CHF}} CHF</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Precio Final (Cliente)</td>
+                                    <td class="value">{{CostoTotalFinal_Local}} {{Moneda}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Nivel de Comisión</td>
+                                    <td class="value">{{TramoComision}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Porcentaje Comisión</td>
+                                    <td class="value">{{PorcentajeComision}}%</td>
+                                </tr>
+                                <tr style="border: none !important;">
+                                    <td class="label" style="font-size: 18px; color: #f7df4e;">Monto de la Comisión</td>
+                                    <td class="value commission-total">{{MontoComision_CHF}} CHF</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td style="height: 24px;"></td></tr>
+
+                    <!-- Service Details -->
+                    <tr>
+                        <td class="card">
+                            <h2 class="section-title">Detalles del Servicio</h2>
+                            <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td class="label">Complejidad del Diseño</td>
+                                    <td class="value" style="text-transform: capitalize;">{{ComplejidadDiseño}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Plan de URL Dinámica</td>
+                                    <td class="value" style="text-transform: capitalize;">{{PlanURLDinamica}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Servicio de Diseño Extendido</td>
+                                    <td class="value" style="text-transform: capitalize;">{{ServicioDiseñoExt}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="2">Instrucciones para Diseño Extendido</td>
+                                </tr>
+                                <tr>
+                                    <td class="full-width-value" colspan="2">{{InstruccionesDiseñoExt}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="2">Descripción de Estilo/Marca</td>
+                                </tr>
+                                <tr>
+                                    <td class="full-width-value" colspan="2">{{DescripcionEstiloMarca}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td style="height: 24px;"></td></tr>
+
+                    <!-- Creative Assets -->
+                    <tr>
+                        <td class="card">
+                            <h2 class="section-title">Recursos Creativos</h2>
+                            <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td class="label">Logo</td>
+                                    <td class="value"><a href="{{LinkToLogoFile}}">{{NombreArchivoLogo}}</a></td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Imagen de Referencia (Color)</td>
+                                    <td class="value"><a href="{{LinkToColorRefFile}}">{{NombreArchivoColorRef}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Tipografías Sugeridas</td>
+                                    <td class="value" style="text-align: left;">
+                                        <!-- Script should generate <li> items -->
+                                        <ul style="margin:0; padding-left: 20px; font-weight: normal;">{{ListaTipografiasHTML}}</ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Colores de la Marca</td>
+                                    <td class="value">
+                                        <!-- Script should generate spans with background-color -->
+                                        {{ColorSwatchesHTML}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <tr><td style="height: 24px;"></td></tr>
+
+                    <!-- Destinations -->
+                    <tr>
+                        <td class="card">
+                            <h2 class="section-title">Versiones de Destino ({{TotalVersiones}})</h2>
+                            <!-- This will be a loop in Google Apps Script -->
+                            <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <!-- START REPEATING BLOCK FOR DESTINATIONS -->
+                                <tr>
+                                    <td colspan="2" style="padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                                        <div style="font-weight: 700; color: #a0e9ff;">#{{NumVersion}}: {{TituloDestino}} <span style="font-weight: normal; color: #ccc;">({{TipoDestino}})</span></div>
+                                        
+                                        <!-- This table will be populated by the script based on destination type -->
+                                        <table class="destination-detail-table" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                            {{DetalleDestinoHTML}}
+                                        </table>
+
+                                        <div style="font-size: 12px; color: #aaa; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1); margin-top: 8px;">
+                                            <i>Notas: {{NotasEspecificas}}</i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- END REPEATING BLOCK -->
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td style="height: 24px;"></td></tr>
+
+                    <!-- Addons & Printing -->
+                    <tr>
+                        <td class="card">
+                             <h2 class="section-title">Adicionales e Impresión</h2>
+                             <table class="info-table" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td class="label">Entrega Express</td>
+                                    <td class="value"><span class="{{ClassTieneEntregaExpress}}">{{TieneEntregaExpress}}</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Certificado para Gigantografía</td>
+                                    <td class="value"><span class="{{ClassTieneCertGigantografia}}">{{TieneCertGigantografia}}</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Servicio de Impresión</td>
+                                    <td class="value"><span class="{{ClassTieneServicioImpresion}}">{{TieneServicioImpresion}}</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Cantidad de Stickers</td>
+                                    <td class="value">{{CantStickersPorVersion}} por versión</td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Tamaño de los Stickers</td>
+                                    <td class="value">{{TamañoSticker}} cm</td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Corte Individual</td>
+                                    <td class="value"><span class="{{ClassTieneCorteIndividual}}">{{TieneCorteIndividual}}</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="label">Forma del Corte</td>
+                                    <td class="value" style="text-transform: capitalize;">{{FormaCorteSticker}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="padding: 40px 0 20px 0; color: #6b7280; font-size: 12px;">
+                            <p>Mail generado automáticamente por el Sistema de Gestión de Pedidos D3LTA.</p>
+                            <p>&copy; 2025 D3LTA. Todos los derechos reservados.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

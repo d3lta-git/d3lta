@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --c-white: #ffffff;
+            --c-yellow: #f7df4e;
+            --c-lightblue: #a0e9ff; 
+            --c-blue: #26aefb;
+            --c-dark: #0a0a0f;
+            --c-dark-light: #101018;
+            --gradient-primary: linear-gradient(135deg, var(--c-blue) 0%, var(--c-white) 100%);
+            --font-display: 'Barlow Condensed', sans-serif; 
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        body::before {
+            content: ''; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background-image: url('https://i.ibb.co/tMkP7rHz/D3-LTA-Fondo.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        body::after {
+            content: ''; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            backdrop-filter: blur(6px); 
+            z-index: -1; 
+            background-color: rgba(10, 10, 15, 0.9);
+        }
+
+        body { 
+            font-family: var(--font-body); 
+            color: var(--c-white); 
+            background-color: transparent; 
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 2rem;
+        }
+
+        .gradient-title {
+            font-family: var(--font-display); 
+            font-weight: 700; 
+            font-size: 3.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+            letter-spacing: 0.08em; 
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .update-date {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--c-lightblue);
+            font-weight: 500;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--c-lightblue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--c-yellow);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--c-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: var(--c-lightblue);
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        ul li::before {
+            content: "•";
+            color: var(--c-blue);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.2em;
+            margin-left: -1.2em;
+        }
+        
+        ol {
+            list-style: none;
+            counter-reset: custom-counter;
+            padding-left: 0;
+        }
+        ol li {
+            counter-increment: custom-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        ol li::before {
+            content: counter(custom-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: rgba(38, 174, 251, 0.2);
+            border: 1px solid var(--c-blue);
+            border-radius: 50%;
+            color: var(--c-white);
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.7rem;
+            font-size: 0.9rem;
+        }
+
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background-color: rgba(38, 174, 251, 0.15);
+            font-weight: 700;
+            color: var(--c-lightblue);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .gradient-title { font-size: 2.5rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.25rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="gradient-title">Política de Privacidad</h1>
+            <p class="update-date">Fecha de Última Actualización: 24 de junio de 2025</p>
+        </header>
+
+        <main>
+            <section id="seccion1">
+                <h2>Sección 1: Introducción e Identidad del Responsable del Tratamiento</h2>
+                <p>La presente Política de Privacidad describe cómo se recopilan, utilizan, almacenan y protegen los datos personales de los usuarios (en adelante, "El Cliente" o "Usted") que contratan los servicios de diseño ofrecidos a través de este sitio web.</p>
+                <p>El compromiso con la protección de su privacidad y sus datos personales es una prioridad fundamental. Todo tratamiento de datos se realiza en estricto cumplimiento de los principios y disposiciones de la Ley de Protección de Datos Personales N° 25.326 de la República Argentina y sus normativas complementarias.</p>
+                <div class="content-card">
+                    <p>A los efectos de la ley, el <strong>Responsable de la Base de Datos</strong> (en adelante, "El Responsable") es el proveedor de los servicios de diseño (en adelante, "El Diseñador"), un profesional independiente que opera bajo el régimen de Monotributo en la República Argentina, con capacidad para emitir facturas por los servicios prestados. Se deja constancia de que El Diseñador actúa como persona física y no en representación de una sociedad comercial formalmente constituida. Como tal, es la persona titular del archivo, registro, base o banco de datos donde se almacenará su información personal.</p>
+                </div>
+                <p>Esta política se aplica a toda la información personal que Usted proporcione a través de los formularios de este sitio web, así como a aquella que se genere durante la totalidad del ciclo de vida de la relación contractual, desde la solicitud inicial hasta la entrega final del proyecto y las obligaciones post-contractuales.</p>
+                <p>Para cualquier consulta, solicitud o reclamo relacionado con la protección de sus datos personales, puede contactar a El Responsable a través de la siguiente dirección de correo electrónico designada exclusivamente para estos fines: <a href="mailto:vicentebarbagelata@gmail.com">vicentebarbagelata@gmail.com</a>.</p>
+            </section>
+
+            <section id="seccion2">
+                <h2>Sección 2: Consentimiento del Titular de los Datos</h2>
+                <p>De conformidad con el artículo 5 de la Ley N° 25.326, el tratamiento de sus datos personales requiere su consentimiento libre, expreso e informado. Al utilizar este sitio web para solicitar un servicio, se le solicitará que manifieste su aceptación de manera inequívoca.</p>
+                <p>El mecanismo para otorgar dicho consentimiento se materializa en el formulario de confirmación final. Antes de poder enviar su solicitud, Usted deberá marcar obligatoriamente una casilla de verificación (id="accept_policies") que indica: "He leído y acepto los Términos y Condiciones y la Política de Privacidad". Este acto de marcar la casilla y proceder con el envío del formulario constituye una manifestación de voluntad clara y afirmativa, equiparable a una firma, a través de la cual Usted otorga su consentimiento explícito para que El Diseñador recopile y trate sus datos personales de acuerdo con los términos, finalidades y condiciones establecidos en la presente política.</p>
+                <p>Es fundamental comprender que el suministro de sus datos personales y la concesión de este consentimiento son condiciones indispensables para el perfeccionamiento del contrato de servicios. Sin esta información y su correspondiente autorización, El Diseñador se vería imposibilitado de contactarlo, comprender sus necesidades, ejecutar el proyecto de diseño solicitado, procesar los pagos y cumplir con las obligaciones legales y contractuales asociadas.</p>
+            </section>
+
+            <section id="seccion3">
+                <h2>Sección 3: Datos Personales Recopilados y Finalidades del Tratamiento</h2>
+                <p>El Diseñador recopila únicamente los datos personales que son estrictamente necesarios, adecuados y pertinentes para las finalidades legítimas que se detallan a continuación. La recolección no se realiza por medios desleales o fraudulentos, y los datos no serán utilizados para fines distintos o incompatibles con aquellos que motivaron su obtención.</p>
+                <p>A continuación, se detalla de forma exhaustiva qué datos se recopilan y para qué propósito específico, en correspondencia directa con la estructura de datos del sistema de gestión de pedidos y los campos del formulario de contratación.</p>
+
+                <h3>3.1. Datos de Identificación y Contacto</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> NombreContacto (Nombre y Apellido), EmailContacto (Correo electrónico), TelefonoContacto (Número de teléfono) y MetodoContactoPref (Vía de contacto preferida, ej. WhatsApp, Telegram).</li>
+                    <li><strong>Finalidad:</strong> La finalidad principal de estos datos es establecer y mantener una comunicación fluida y eficaz con Usted durante todo el ciclo de vida del proyecto. Esto incluye, sin limitarse a: enviar la Propuesta de Servicio formal, notificar la recepción de pagos, presentar los Entregables para su revisión y aprobación, solicitar feedback, responder consultas, coordinar la entrega de los archivos finales y realizar cualquier otra comunicación necesaria para la correcta ejecución del contrato, conforme a lo estipulado en los Térmicos y Condiciones.</li>
+                </ul>
+                
+                <h3>3.2. Datos para la Prestación del Servicio y Gestión del Proyecto (Material del Cliente)</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> Esta categoría abarca toda la información creativa y de especificaciones que Usted proporciona y que constituye el "Material del Cliente". Incluye:
+                        <ul style="padding-left: 2rem; margin-top: 1rem;">
+                            <li style="list-style-type: circle;"><strong>Especificaciones del Servicio:</strong> ComplejidadDiseño (Nivel de diseño elegido), PlanURLDinamica (Plan de funcionalidad), ServicioDiseñoExt (Servicio de diseño gráfico adicional) e InstruccionesDiseñoExt (Instrucciones para diseño complejo).</li>
+                            <li style="list-style-type: circle;"><strong>Identidad de Marca:</strong> DescripcionEstiloMarca (Descripción del concepto e identidad de marca).</li>
+                            <li style="list-style-type: circle;"><strong>Activos Creativos:</strong> Archivos subidos por el cliente como logo_upload (registrado como NombreArchivoOriginal), sugerencias de tipografías (NombreFuente), y la paleta de colores, ya sea mediante códigos hexadecimales (ValorHex) o una imagen de referencia (color_ref_image).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Finalidad:</strong> Estos datos son el núcleo del servicio contratado. Su finalidad exclusiva es permitir a El Diseñador ejecutar el trabajo de diseño personalizado de acuerdo con sus requerimientos, directrices y especificaciones explícitas, tal como se define en el objeto del contrato.</li>
+                </ul>
+
+                <h3>3.3. Datos de Destino para la Configuración del Código QR</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> Se recopila la información específica que Usted introduce para cada "Versión de Destino" del código QR. Dada la naturaleza polimórfica del formulario, esto puede incluir una amplia variedad de campos según el TipoDestino seleccionado:
+                        <ul style="padding-left: 2rem; margin-top: 1rem;">
+                            <li style="list-style-type: circle;"><strong>Generales:</strong> TituloDestino, TipoDestino, NotasEspecificas, ContenidoTextoExtra.</li>
+                            <li style="list-style-type: circle;"><strong>Tipos Específicos:</strong> Valor_URL (para URLs), Valor_Texto (para texto simple), Valor_LinkPago (para enlaces de pago), un conjunto completo de campos para vCard (vCard_Nombre, vCard_Puesto, vCard_Email, etc.), datos de conexión Wi-Fi (WiFi_SSID, WiFi_Contraseña) y coordenadas geográficas (Geo_Latitud, Geo_Longitud).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Finalidad:</strong> La única finalidad de estos datos es configurar el producto final (el código QR) para que realice la función técnica que Usted ha solicitado.</li>
+                    <li><strong>Nota sobre Datos Sensibles:</strong> La Ley N° 25.326 prohíbe la recolección y tratamiento de "datos sensibles" (aquellos que revelan origen racial y étnico, opiniones políticas, convicciones religiosas, filosóficas o morales, afiliación sindical e información referente a la salud o a la vida sexual), salvo excepciones como el consentimiento expreso del titular. El Diseñador no solicita proactivamente datos de esta naturaleza. Sin embargo, Usted podría, de forma voluntaria, introducir información que podría ser considerada sensible en los campos de destino del QR (por ejemplo, el enlace a un sitio web de una organización política, información de salud en una vCard, o convicciones religiosas en un campo de texto). En tales casos, se entiende que Usted proporciona dichos datos con el conocimiento y la intención exclusiva de que sean utilizados para la configuración técnica del QR solicitado. Su acción de introducir voluntariamente esta información y confirmar el pedido constituye su <strong>consentimiento expreso</strong> para este tratamiento específico y limitado, eximiendo a El Diseñador de cualquier responsabilidad por la naturaleza de la información que Usted decide hacer pública a través de su código QR.</li>
+                </ul>
+                
+                <h3>3.4. Datos de Facturación y Transacciones Económicas</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> Para cumplir con las obligaciones fiscales vigentes en Argentina, se recopilará la información necesaria para la emisión de facturas electrónicas tipo "C" o "E", según corresponda. Esto incluye, pero no se limita a: Razón Social o Nombre Completo, Clave Única de Identificación Tributaria (CUIT) o Laboral (CUIL), y Domicilio Fiscal. Asimismo, se procesan los datos de las transacciones de pago, como la moneda (ARS o USD) y los montos correspondientes a cada hito del proyecto.</li>
+                    <li><strong>Finalidad:</strong> Cumplir con las obligaciones legales y fiscales ante la Administración Federal de Ingresos Públicos (AFIP) y gestionar correctamente el proceso de cobro de los honorarios pactados en el contrato de servicios.</li>
+                </ul>
+
+                <h3>3.5. Datos Vinculados a Programas de Venta por Comisión</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> PalabraClaveVendedor (Código o palabra clave del vendedor).</li>
+                    <li><strong>Finalidad:</strong> Si Usted utiliza una palabra clave de un vendedor, este dato se utiliza con la única finalidad de atribuir correctamente la venta al comisionista correspondiente, aplicar el descuento promocional en su factura y calcular la remuneración del vendedor, de acuerdo con la estructura del programa de comisiones.</li>
+                </ul>
+                
+                <h3>3.6. Uso de la Obra Final en Portafolio</h3>
+                <ul>
+                    <li><strong>Datos Recopilados:</strong> El "Entregable Final" del proyecto, que puede contener elementos de su propiedad intelectual como logotipos, nombres de marca u otra información identificable.</li>
+                    <li><strong>Finalidad:</strong> Conforme a lo aceptado en los Términos y Condiciones, El Diseñador se reserva el derecho a utilizar la imagen del trabajo final en su portafolio, sitio web y otros materiales de autopromoción. Esta finalidad es exclusivamente para la exhibición del trabajo realizado. Se reitera el compromiso de respetar la confidencialidad de cualquier información sensible y de otorgar el crédito correspondiente al Cliente como titular de la marca.</li>
+                </ul>
+            </section>
+
+            <section id="seccion4">
+                <h2>Sección 4: Base Legal para el Tratamiento de Datos</h2>
+                <p>El tratamiento de sus datos personales por parte de El Diseñador se fundamenta en las siguientes bases legales, reconocidas por la Ley N° 25.326:</p>
+                <ol>
+                    <li><strong>Consentimiento del Titular (Art. 5, Ley 25.326):</strong> Su consentimiento libre, expreso e informado, otorgado mediante la acción positiva de marcar la casilla de aceptación en el formulario del sitio web, legitima la recolección y el tratamiento de sus datos para todas las finalidades descritas en esta política.</li>
+                    <li><strong>Ejecución de una Relación Contractual (Art. 5, inc. 2.b, Ley 25.326):</strong> El tratamiento de la mayoría de los datos recopilados (contacto, especificaciones del proyecto, facturación) es estrictamente necesario para el desarrollo y cumplimiento del contrato de prestación de servicios de diseño que se establece entre Usted y El Diseñador al aceptar la Propuesta de Servicio.</li>
+                    <li><strong>Cumplimiento de una Obligación Legal:</strong> La recopilación y conservación de datos de facturación responde a la obligación legal de El Diseñador de emitir comprobantes válidos ante la AFIP y conservar la documentación comercial por los plazos que exige la ley.</li>
+                </ol>
+                <p>Para mayor claridad y transparencia, la siguiente tabla resume las principales actividades de tratamiento, sus finalidades y la base legal que las justifica.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría de Datos Personales</th>
+                            <th>Finalidad Específica del Tratamiento</th>
+                            <th>Base Legal (Ley 25.326)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Datos de Contacto</td>
+                            <td>Comunicación y gestión del proyecto</td>
+                            <td>Consentimiento y Ejecución de Contrato</td>
+                        </tr>
+                        <tr>
+                            <td>Material del Cliente y Datos del Proyecto</td>
+                            <td>Creación del diseño personalizado</td>
+                            <td>Consentimiento y Ejecución de Contrato</td>
+                        </tr>
+                        <tr>
+                            <td>Datos de Destino del QR</td>
+                            <td>Configuración del producto final</td>
+                            <td>Consentimiento y Ejecución de Contrato</td>
+                        </tr>
+                        <tr>
+                            <td>Datos de Facturación</td>
+                            <td>Cumplimiento de obligaciones fiscales y legales</td>
+                            <td>Ejecución de Contrato y Obligación Legal</td>
+                        </tr>
+                        <tr>
+                            <td>Palabra Clave Vendedor</td>
+                            <td>Atribución de ventas y descuentos</td>
+                            <td>Consentimiento e Interés Legítimo</td>
+                        </tr>
+                        <tr>
+                            <td>Obra Final (Portafolio)</td>
+                            <td>Autopromoción del Diseñador</td>
+                            <td>Consentimiento (otorgado en T&C)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="seccion5">
+                <h2>Sección 5: Cesión de Datos y Transferencias Internacionales</h2>
+                <p>El Diseñador se compromete a no vender, alquilar ni ceder sus datos personales a terceros con fines comerciales. No obstante, para poder prestar los servicios de manera eficiente y segura, es necesario compartir cierta información con proveedores de servicios que actúan como "Encargados de Tratamiento" en nombre de El Responsable. Estos encargados están contractualmente obligados a mantener la confidencialidad y seguridad de la información y no pueden utilizarla para fines distintos a los aquí estipulados.</p>
+                <p>Los principales encargados de tratamiento son:</p>
+                <ul>
+                    <li><strong>Servicios de Alojamiento y Almacenamiento en la Nube:</strong> Toda la información del proyecto, incluyendo los datos personales y el material del cliente, se gestiona y almacena utilizando la plataforma Google Sheets, provista por <strong>Google LLC</strong>, una empresa con sede en los Estados Unidos de América.</li>
+                    <li><strong>Pasarelas de Pago:</strong> Para procesar los pagos de los honorarios, se utilizan los servicios de pasarelas de pago (como Mercado Pago para transacciones en ARS, o plataformas internacionales equivalentes para transacciones en USD). Estas entidades reciben los datos necesarios para verificar y completar la transacción financiera.</li>
+                    <li><strong>Plataformas de Gestión de Afiliados (Uso Futuro):</strong> En el caso de que se implemente un sistema automatizado para el programa de comisiones, datos transaccionales como la confirmación y el valor de la venta (sin detalles personales sensibles del Cliente) podrían ser compartidos con plataformas de gestión de afiliados (ej. Referral Rock, PartnerStack) para la correcta atribución y cálculo de comisiones.</li>
+                </ul>
+                <h3>Consentimiento Expreso para la Transferencia Internacional de Datos</h3>
+                <p>La Ley N° 25.326 prohíbe la transferencia de datos personales a países u organismos que no proporcionen niveles de protección adecuados, según los estándares argentinos. La República Argentina no considera que los Estados Unidos de América, donde se encuentran los principales servidores de Google LLC, ofrezca un nivel de protección de datos adecuado.</p>
+                <p>Sin embargo, la ley permite dicha transferencia cuando el titular de los datos ha otorgado su consentimiento expreso para la misma.</p>
+                <div class="content-card">
+                    <p>Por lo tanto, se le informa de manera clara e inequívoca que:</p>
+                    <ol>
+                        <li>Sus datos personales, recopilados a través de este sitio web y durante la prestación de los servicios, serán almacenados y procesados en servidores operados por Google LLC.</li>
+                        <li>Dichos servidores pueden estar ubicados físicamente en los Estados Unidos de América o en otras jurisdicciones fuera de la República Argentina que no garantizan un nivel de protección de datos personales equivalente al que ofrece la legislación argentina.</li>
+                        <li>Al aceptar la presente Política de Privacidad mediante el mecanismo de consentimiento descrito en la Sección 2, Usted está prestando su <strong>consentimiento expreso, informado e inequívoco para la transferencia internacional de sus datos personales</strong> a dichas jurisdicciones, con la única y exclusiva finalidad de permitir el almacenamiento y la gestión de la información necesaria para la prestación de los servicios contratados.</li>
+                    </ol>
+                </div>
+                <p>Esta transferencia es un requisito técnico indispensable para el modelo operativo de El Diseñador. Si Usted no está de acuerdo con esta transferencia internacional de sus datos, le rogamos que no utilice nuestros servicios.</p>
+            </section>
+
+            <section id="seccion6">
+                <h2>Sección 6: Plazo de Conservación de los Datos</h2>
+                <p>Sus datos personales serán conservados únicamente durante el tiempo que sea estrictamente necesario para cumplir con las finalidades para las cuales fueron recopilados, así como para cumplir con las obligaciones legales aplicables.</p>
+                <ul>
+                    <li><strong>Datos del Proyecto y del Cliente:</strong> La información relacionada con la ejecución del proyecto y sus datos de contacto se conservará mientras dure la relación contractual. Una vez finalizado el servicio, los datos serán conservados, debidamente bloqueados, durante los plazos legales que establecen las normativas comerciales y fiscales de la República Argentina (actualmente, un plazo de 10 años) para la atención de posibles responsabilidades derivadas de la relación contractual.</li>
+                    <li><strong>Datos para Portafolio:</strong> El Entregable Final, que puede contener datos identificativos de su marca, podrá ser conservado de forma indefinida por El Diseñador con la única y exclusiva finalidad de ser utilizado en su portafolio profesional, según lo consentido en los Términos y Condiciones.</li>
+                    <li><strong>Supresión de Datos:</strong> Transcurridos los plazos de conservación legales y contractuales, y cuando los datos ya no sean necesarios para ninguna de las finalidades informadas, se procederá a su supresión segura de nuestras bases de datos.</li>
+                </ul>
+            </section>
+
+            <section id="seccion7">
+                <h2>Sección 7: Medidas de Seguridad</h2>
+                <p>El Diseñador, en su calidad de Responsable, ha adoptado y se compromete a mantener las medidas técnicas y organizativas necesarias para garantizar la seguridad, integridad y confidencialidad de sus datos personales. Estas medidas están diseñadas para proteger su información contra la alteración, pérdida, acceso no autorizado o tratamiento indebido.</p>
+                <p>Las medidas incluyen, entre otras:</p>
+                <ul>
+                    <li>El uso de plataformas de software y servicios en la nube de proveedores de reconocida trayectoria y que cuentan con sus propios y robustos protocolos de seguridad (como Google Workspace), incluyendo la encriptación de datos en tránsito y en reposo.</li>
+                    <li>La implementación de controles de acceso para asegurar que únicamente El Diseñador, quien está sujeto a un estricto deber de secreto y confidencialidad profesional, pueda acceder a su información personal. Este deber de confidencialidad subsiste aun después de finalizada la relación contractual.</li>
+                </ul>
+            </section>
+
+            <section id="seccion8">
+                <h2>Sección 8: Derechos del Titular de los Datos</h2>
+                <p>Usted, como titular de sus datos personales, goza de los derechos que le confiere la Ley N° 25.326. El Diseñador se compromete a facilitar el ejercicio de estos derechos de manera sencilla y gratuita. Sus derechos son:</p>
+                <ul>
+                    <li><strong>Derecho de Acceso (Art. 14, Ley 25.326):</strong> Tiene derecho a solicitar y obtener información sobre los datos personales suyos que se encuentran en nuestra base de datos, la finalidad de su tratamiento y el origen de los mismos. Este derecho puede ejercerse gratuitamente en intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto.</li>
+                    <li><strong>Derecho de Rectificación y Actualización (Art. 16, Ley 25.326):</strong> Si sus datos son incorrectos, están desactualizados o incompletos, tiene derecho a solicitar su corrección o actualización sin costo alguno.</li>
+                    <li><strong>Derecho de Supresión (Art. 16, Ley 25.326):</strong> Tiene derecho a solicitar que sus datos personales sean eliminados de nuestra base de datos cuando ya no sean necesarios para los fines para los que fueron recopilados, cuando haya vencido el plazo de conservación legal, o cuando haya revocado su consentimiento. La supresión no procederá cuando pudiese causar perjuicios a derechos o intereses legítimos de terceros, o cuando existiera una obligación legal de conservar los datos.</li>
+                </ul>
+                <h3>Procedimiento para Ejercer sus Derechos:</h3>
+                <p>Para ejercer cualquiera de estos derechos, deberá enviar una solicitud por escrito a la dirección de correo electrónico <a href="mailto:vicentebarbagelata@gmail.com">vicentebarbagelata@gmail.com</a>, acreditando debidamente su identidad (adjuntando una copia de su Documento Nacional de Identidad).</p>
+                <h3>Plazos de Respuesta:</h3>
+                <p>El Responsable dará respuesta a su solicitud en los plazos legalmente establecidos:</p>
+                <ul>
+                    <li><strong>Solicitudes de Acceso:</strong> Dentro de los <strong>10 (diez) días corridos</strong> desde la recepción de la solicitud.</li>
+                    <li><strong>Solicitudes de Rectificación, Actualización o Supresión:</strong> Dentro de los <strong>5 (cinco) días hábiles</strong> desde la recepción de la solicitud.</li>
+                </ul>
+            </section>
+            
+            <section id="seccion9">
+                <h2>Sección 9: Autoridad de Aplicación</h2>
+                <p>Se le informa que la <strong>AGENCIA DE ACCESO A LA INFORMACIÓN PÚBLICA (AAIP)</strong>, en su carácter de Órgano de Control de la Ley N° 25.326, es la autoridad encargada de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales.</p>
+                <p>Si considera que sus derechos han sido vulnerados o que El Responsable no ha atendido debidamente su solicitud, puede contactar a la AAIP.</p>
+                <div class="content-card">
+                    <h3>Datos de Contacto de la AAIP:</h3>
+                    <ul>
+                        <li><strong>Dirección:</strong> Av. Pte. Gral. Julio A. Roca 710, piso 2 - Ciudad Autónoma de Buenos Aires (C1067ABP), Argentina.</li>
+                        <li><strong>Teléfono:</strong> (54-11) 3988-3969.</li>
+                        <li><strong>Correo electrónico:</strong> <a href="mailto:info@aaip.gob.ar">info@aaip.gob.ar</a>.</li>
+                        <li><strong>Sitio Web:</strong> <a href="https://www.argentina.gob.ar/aaip" target="_blank" rel="noopener noreferrer">www.argentina.gob.ar/aaip</a>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="seccion10">
+                <h2>Sección 10: Modificaciones a la Política de Privacidad</h2>
+                <p>El Diseñador se reserva el derecho de modificar, enmendar o actualizar la presente Política de Privacidad en cualquier momento para adaptarla a novedades legislativas, jurisprudenciales o a nuevas prácticas del servicio.</p>
+                <p>Cualquier modificación será comunicada a los usuarios a través de su publicación en este mismo sitio web. Se actualizará la "Fecha de Última Actualización" al inicio del documento. El uso continuado de los servicios tras la publicación de dichas modificaciones constituirá su aceptación de los nuevos términos. Se le recomienda revisar periódicamente esta política para mantenerse informado sobre cómo se protege su información.</p>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

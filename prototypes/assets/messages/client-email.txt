@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirmación de Pedido D3LTA</title>
+    <style>
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Poppins:wght@400;500;700&display=swap');
+
+        /* Basic Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #000000;
+        }
+        table, td, div, h1, p {
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        table {
+            border-spacing: 0;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .main {
+            background-color: #0a0a0f;
+            border: 1px solid #101018;
+        }
+        .content {
+            padding: 0 40px;
+        }
+        .header {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .gradient-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #26aefb 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            border-bottom: 2px solid #f7df4e;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .body-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+        .order-id-box {
+            background-color: #101018;
+            border: 1px solid rgba(160, 233, 255, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .order-id-label {
+            font-size: 14px;
+            color: #a0e9ff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .order-id-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .order-summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        .order-summary-table th, .order-summary-table td {
+            padding: 12px 0;
+            text-align: left;
+            border-bottom: 1px solid #222228;
+        }
+        .order-summary-table th {
+            color: #a0e9ff;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .order-summary-table td {
+            color: #ffffff;
+            font-size: 15px;
+        }
+        .order-summary-table .total-row td {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f7df4e;
+            padding-top: 16px;
+            border-top: 2px solid #f7df4e;
+            border-bottom: 0;
+        }
+        .milestone-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 16px;
+        }
+        .milestone-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #26aefb;
+            padding-right: 20px;
+            width: 40px;
+            vertical-align: top;
+            line-height: 1;
+        }
+        .milestone-content {
+            background-color: #101018;
+            padding: 16px;
+            border-left: 4px solid #26aefb;
+        }
+        .milestone-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+        }
+        .milestone-text {
+            font-size: 15px;
+            color: #cccccc;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .notes-box {
+            background-color: rgba(247, 223, 78, 0.05);
+            border: 1px dashed #c5ab3a;
+            padding: 20px;
+            margin-top: 24px;
+            border-radius: 8px;
+        }
+        .contact-info-box {
+            font-size: 16px; 
+            color: #ffffff; 
+            text-align: center; 
+            background-color: #101018; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-top: 15px;
+            line-height: 1.7;
+        }
+        .footer {
+            padding: 40px;
+            text-align: center;
+        }
+        .footer p, .footer a {
+            color: #a0e9ff;
+            font-size: 12px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="background-color: #000000;">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+                <div class="container" align="center">
+                    
+                    <table role="presentation" class="main" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        
+                        <!-- Header -->
+                        <tr>
+                            <td class="header">
+                                <img src="https://i.ibb.co/4wKMJyyk/D3-LTA-Logo.png" alt="Logo de D3LTA" width="120">
+                            </td>
+                        </tr>
+
+                        <!-- Body -->
+                        <tr>
+                            <td class="content">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <!-- Salutation -->
+                                    <tr>
+                                        <td>
+                                            <h1 class="gradient-title">PEDIDO CONFIRMADO</h1>
+                                            <p class="body-text" style="margin-top: 24px;">Hola, {{NombreCliente}}:</p>
+                                            <p class="body-text">¡Gracias por tu pedido! Ya lo recibimos y estamos muy entusiasmados por empezar a trabajar en tu proyecto.</p>
+
+                                            <!-- Order ID Box -->
+                                            <div class="order-id-box">
+                                                <span class="order-id-label">ID de tu Pedido</span>
+                                                <span class="order-id-value">{{PedidoID}}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr><td style="height: 20px;"></td></tr>
+
+                                    <!-- Order Breakdown -->
+                                    <tr>
+                                        <td>
+                                            <h2 class="section-title">DETALLE DE TU PEDIDO</h2>
+                                            <table class="order-summary-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Concepto</th>
+                                                        <th align="right">Costo ({{Moneda}})</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{PedidoItems}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <!-- Discount Row (Optional) -->
+                                                    <tr>
+                                                        <td style="color: #f7df4e; font-size: 15px; padding-top: 15px;">Descuento de Vendedor</td>
+                                                        <td style="color: #f7df4e; font-size: 15px; padding-top: 15px;" align="right">- {{MontoDescuento}}</td>
+                                                    </tr>
+                                                    <!-- Total Row -->
+                                                    <tr class="total-row">
+                                                        <td>TOTAL (Pago Único)</td>
+                                                        <td align="right">{{CostoTotalFinal}}</td>
+                                                    </tr>
+                                                    <!-- Renewal Row (Optional) -->
+                                                    <tr>
+                                                        <td style="color: #a0e9ff; font-size: 14px; padding-top: 8px;">Renovación Anual</td>
+                                                        <td style="color: #a0e9ff; font-size: 14px; padding-top: 8px;" align="right">{{CostoRenovacionAnual}}</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr><td style="height: 40px;"></td></tr>
+
+                                    <!-- Payment Milestones -->
+                                    <tr>
+                                        <td>
+                                            <h2 class="section-title">ETAPAS DE PAGO</h2>
+                                            <table class="milestone-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td class="milestone-number">1</td>
+                                                    <td class="milestone-content">
+                                                        <h3 class="milestone-title">Inicio del Proyecto: 30%</h3>
+                                                        <p class="milestone-text">Para arrancar con el diseño y reservar tu lugar en nuestra agenda.</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="milestone-number">2</td>
+                                                    <td class="milestone-content">
+                                                        <h3 class="milestone-title">Entrega para Revisión: 40%</h3>
+                                                        <p class="milestone-text">Lo abonás cuando te entregamos la versión final para que le des el último visto bueno.</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="milestone-number">3</td>
+                                                    <td class="milestone-content">
+                                                        <h3 class="milestone-title">Finalización y Entrega: 30%</h3>
+                                                        <p class="milestone-text">Cuando está todo listo, para que te enviemos el archivo final de tu QR en alta resolución.</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr><td style="height: 40px;"></td></tr>
+
+                                    <!-- Next Steps -->
+                                    <tr>
+                                        <td>
+                                            <h2 class="section-title">PRÓXIMOS PASOS</h2>
+                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <!-- Step 1: Payment -->
+                                                <tr>
+                                                    <td style="padding-bottom: 15px;">
+                                                        <p class="body-text" style="margin:0;"><strong>1. Solicitud de Pago:</strong> En las próximas 24 hs hábiles, te va a llegar a tu mail la solicitud para abonar el anticipo del 30%.</p>
+                                                    </td>
+                                                </tr>
+                                                <!-- Step 2: Contact -->
+                                                <tr>
+                                                    <td style="padding-bottom: 25px;">
+                                                        <p class="body-text" style="margin:0;"><strong>2. Contacto del diseñador:</strong> Apenas se acredite el pago, alguien de nuestro equipo se va a poner en contacto con vos por <strong>{{MetodoContactoPreferido}}</strong> para arrancar con el diseño.</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <p class="body-text">Por favor, chequeá que tus datos de contacto estén bien:</p>
+                                            <div class="contact-info-box">
+                                                <strong>Email:</strong> {{EmailCliente}}<br>
+                                                <strong>Teléfono:</strong> {{TelefonoCliente}}
+                                            </div>
+
+                                            <!-- Seller Notes (Optional) -->
+                                            <div class="notes-box">
+                                                <p style="font-size: 16px; line-height: 1.6; color: #f7df4e; margin: 0;">
+                                                    <strong>Un mensaje de tu vendedor, {{NombreVendedor}}:</strong><br>
+                                                    <span style="color: #ffffff;"><em>"{{NotasDelVendedor}}"</em></span>
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr><td style="height: 40px;"></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Footer -->
+                        <tr>
+                            <td class="footer">
+                                <p>© 2025 D3LTA. Todos los derechos reservados.</p>
+                                <p>
+                                    <a href="https://sites.google.com/view/d3lta-app/contratar-el-servicio/terminos-y-condiciones" style="color: #a0e9ff;">Términos y Condiciones</a> &nbsp;&bull;&nbsp;
+                                    <a href="https://sites.google.com/view/d3lta-app/contratar-el-servicio/politica-de-privacidad" style="color: #a0e9ff;">Política de Privacidad</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

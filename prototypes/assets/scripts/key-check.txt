@@ -1,0 +1,108 @@
+/**
+ * SCRIPT PARA VALIDAR PALABRAS CLAVE DE VENDEDORES (VERSIÓN FINAL CORREGIDA)
+ *
+ * Versión: 2.2 - Corrección de Sintaxis en Bloque try-catch
+ *
+ * Descripción:
+ * Este script actúa como una API web para validar si una "Palabra Clave" de vendedor existe.
+ * Se conecta a la hoja de cálculo especificada por su ID, lee la primera columna
+ * de la solapa "Vendedores" y devuelve una respuesta en formato JSON.
+ */
+
+// --- CONFIGURACIÓN ---
+// ID de la hoja de cálculo "Gestión de Pedidos QR".
+const SPREADSHEET_ID = "1oJuDg4_wpHxQx4eXaQCDclUdAGCObmIczV4bd0jyo3Q";
+const SHEET_NAME = "Vendedores";
+// --------------------
+
+
+/**
+ * Maneja las solicitudes GET al Web App.
+ * @param {object} e El objeto de evento que contiene los parámetros de la solicitud.
+ * @returns {ContentService.TextOutput} Una respuesta JSON.
+ */
+function doGet(e) {
+  const response = { isValid: false, status: "Error desconocido." };
+  
+  try {
+    Logger.log("--- INICIO DE EJECUCIÓN ---");
+    
+    // 1. Validar el parámetro de entrada.
+    const keywordParam = e.parameter.keyword;
+    Logger.log(`Parámetro recibido: keyword = "${keywordParam}"`);
+
+    if (!keywordParam || keywordParam.trim() === "") {
+      response.status = "No se proporcionó ninguna palabra clave.";
+      Logger.log("Finalizando: No se recibió palabra clave.");
+      return createJsonResponse(response);
+    }
+    const keywordToTest = keywordParam.trim().toUpperCase();
+
+    // 2. Acceder a la hoja de cálculo.
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    Logger.log(`Accediendo a la hoja de cálculo: "${spreadsheet.getName()}"`);
+
+    const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      response.status = `No se pudo encontrar la solapa '${SHEET_NAME}'. Revisa el nombre.`;
+      Logger.log(`Error Crítico: No se encontró la solapa '${SHEET_NAME}'.`);
+      return createJsonResponse(response);
+    }
+    Logger.log(`Solapa '${SHEET_NAME}' encontrada correctamente.`);
+
+    // 3. Obtener todas las claves de la primera columna.
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) { // Si solo hay una fila (o ninguna), se asume que solo es la cabecera.
+      response.status = `La hoja '${SHEET_NAME}' no contiene datos de vendedores.`;
+      Logger.log(`Advertencia: No hay datos en la pestaña '${SHEET_NAME}'.`);
+      return createJsonResponse(response);
+    }
+    
+    // Lee desde la segunda fila (para saltar la cabecera) hasta la última.
+    const range = sheet.getRange(2, 1, lastRow - 1, 1);
+    const values = range.getValues();
+    Logger.log(`Se encontraron ${values.length} filas con datos de vendedores.`);
+
+    // 4. Procesar y buscar la clave utilizando un Set para máxima eficiencia.
+    const validKeywordsSet = new Set(
+      values
+        .flat() // Convierte el array de arrays [['a'], ['b']] en ['a', 'b']
+        .map(key => String(key).trim().toUpperCase()) // Normaliza cada clave
+        .filter(key => key !== "") // Ignora las celdas que estén vacías.
+    );
+    
+    if (validKeywordsSet.has(keywordToTest)) {
+      response.isValid = true;
+      response.status = "Clave válida.";
+      Logger.log(`¡ÉXITO! La clave "${keywordToTest}" fue encontrada.`);
+    } else {
+      // --- INICIO DE LA CORRECCIÓN ---
+      response.isValid = false; // Se completa la declaración de asignación.
+      // --- FIN DE LA CORRECCIÓN ---
+      response.status = "La clave proporcionada no es válida.";
+      Logger.log(`Fallo: La clave "${keywordToTest}" NO fue encontrada en la lista.`);
+    }
+
+  } catch (error) {
+    Logger.log(`--- ERROR INESPERADO ---`);
+    Logger.log(error.toString());
+    response.status = "Ocurrió un error en el servidor al procesar la solicitud.";
+    response.error = error.toString();
+  }
+  
+  Logger.log("Respuesta final: " + JSON.stringify(response));
+  Logger.log("--- FIN DE EJECUCIÓN ---");
+  
+  // 5. Devolver la respuesta en formato JSON.
+  return createJsonResponse(response);
+}
+
+/**
+ * Crea una respuesta JSON estándar para el servicio web.
+ * @param {object} responseObject El objeto a convertir en JSON.
+ * @returns {ContentService.TextOutput} El objeto de respuesta para Google Apps Script.
+ */
+function createJsonResponse(responseObject) {
+  return ContentService.createTextOutput(JSON.stringify(responseObject))
+    .setMimeType(ContentService.MimeType.JSON);
+}

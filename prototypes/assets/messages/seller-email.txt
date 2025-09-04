@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notificación de Nuevo Pedido - D3LTA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body {
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #0a0a0f;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+        }
+        table {
+            border-spacing: 0;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #0a0a0f;
+            padding-bottom: 60px;
+        }
+        .main {
+            width: 100%;
+            max-width: 600px;
+            background-color: #101018;
+            margin: 0 auto;
+            border-spacing: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(160, 233, 255, 0.1);
+        }
+        .header-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #a0e9ff;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #26aefb;
+        }
+        .text-default {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #a0e9ff;
+        }
+        .list ul {
+            padding-left: 5px;
+            margin: 0;
+            list-style-type: none;
+        }
+        .list li {
+            margin-bottom: 10px;
+            color: #ffffff;
+            padding-left: 20px;
+            position: relative;
+        }
+        .list li::before {
+            content: '✓';
+            color: #26aefb;
+            font-weight: bold;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .financial-summary-table td{
+            padding: 12px 5px;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(160, 233, 255, 0.2);
+        }
+        .financial-summary-table tr:last-child td {
+            border-bottom: none;
+        }
+        .total-row td {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: rgba(247, 223, 78, 0.05);
+        }
+        .commission-box {
+            background-color: rgba(247, 223, 78, 0.1);
+            border-left: 4px solid #f7df4e;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .commission-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f7df4e;
+            line-height: 1;
+        }
+        .notes-box {
+            background-color: rgba(160, 233, 255, 0.05);
+            border: 1px solid rgba(160, 233, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .notes-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .notes-box li {
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .notes-box li:last-child {
+            margin-bottom: 0;
+        }
+        .notes-box li .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            fill: #a0e9ff;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #101018;
+            background-color: #a0e9ff;
+            text-decoration: none;
+            border-radius: 50px;
+            text-align: center;
+        }
+        .preheader {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            font-size: 1px;
+            line-height: 1px;
+            color: #0a0a0f;
+        }
+    </style>
+</head>
+<body>
+    <span class="preheader">¡Conseguiste una nueva venta! Mirá los detalles y tu comisión.</span>
+
+    <center class="wrapper">
+        <table class="main" width="100%">
+            <tr>
+                <td style="padding: 32px 0; text-align: center;">
+                    <a href="#"><img src="https://i.ibb.co/4wKMJyyk/D3-LTA-Logo.png" alt="Logo de D3LTA" width="100" style="max-width: 100px;"></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 0 30px 20px; text-align: center;">
+                    <h1 class="header-title">Nuevo Pedido Asignado</h1>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 0 30px 30px;">
+                    <p class="text-default" style="font-size: 18px; line-height: 1.6;">
+                        ¡Felicitaciones, {{NOMBRE_VENDEDOR}}! Se generó un nuevo pedido con tu palabra clave.
+                    </p>
+                    <p class="text-default">
+                        A continuación, te dejamos los detalles del pedido y tu comisión correspondiente.
+                    </p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 0 30px 40px;">
+                    <table width="100%">
+                        <tr>
+                             <td style="padding-bottom: 15px;">
+                                <p style="margin: 0 0 8px 0; font-size: 14px; color: #a0e9ff; text-transform: uppercase; letter-spacing: 1px;">ID de Pedido:</p>
+                                <p style="margin: 0; font-size: 18px; font-weight: 600; color: #ffffff;">{{ID_PEDIDO}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 15px;">
+                                <p style="margin: 0 0 8px 0; font-size: 14px; color: #a0e9ff; text-transform: uppercase; letter-spacing: 1px;">Nombre del Cliente:</p>
+                                <p style="margin: 0; font-size: 20px; font-weight: 600; color: #ffffff;">{{NOMBRE_CLIENTE}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 30px;">
+                                <p style="margin: 0 0 8px 0; font-size: 14px; color: #a0e9ff; text-transform: uppercase; letter-spacing: 1px;">Fecha del Pedido:</p>
+                                <p style="margin: 0; font-size: 18px; font-weight: 600; color: #ffffff;">{{FECHA_HORA_PEDIDO}}</p>
+                            </td>
+                        </tr>
+                        
+                        <tr><td style="padding: 10px 0;"><hr style="border: none; border-top: 1px solid rgba(160, 233, 255, 0.2);"></td></tr>
+
+                        <tr>
+                            <td style="padding: 30px 0 40px;">
+                                <h2 class="section-title">Resumen de Servicios</h2>
+                                <table width="100%" style="padding-top: 16px;">
+                                    <tr>
+                                        <td>
+                                            <div class="list">
+                                                {{RESUMEN_SERVICIOS}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr><td style="padding-bottom: 10px;"><hr style="border: none; border-top: 1px solid rgba(160, 233, 255, 0.2);"></td></tr>
+
+                        <tr>
+                            <td style="padding: 30px 0 40px;">
+                                <h2 class="section-title">Resumen Financiero (CHF)</h2>
+                                <table width="100%" class="financial-summary-table" style="margin-top: 16px;">
+                                    {{DESGLOSE_COSTOS}}
+                                    <tr style="font-weight: 600;">
+                                        <td style="padding-top: 20px; color: #a0e9ff;">Subtotal Bruto</td>
+                                        <td style="padding-top: 20px; text-align: right; color: #ffffff;">{{SUBTOTAL_BRUTO}} CHF</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #a0e9ff;">Descuento para el cliente (10%)</td>
+                                        <td style="text-align: right; color: #ffffff;">-{{MONTO_DESCUENTO}} CHF</td>
+                                    </tr>
+                                    <tr class="total-row" style="font-size: 18px; font-weight: 600; color: #f7df4e;">
+                                        <td style="padding-left: 5px;">Total que abona el cliente</td>
+                                        <td style="text-align: right; padding-right: 5px;">{{TOTAL_FINAL_CLIENTE}} CHF</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="commission-box">
+                                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">Tu Comisión ({{PORCENTAJE_COMISION}} del Bruto)</p>
+                                    <p class="commission-amount">{{MONTO_COMISION_VENDEDOR}} CHF</p>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <div class="notes-box">
+                                    <ul>
+                                        <li>
+                                            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+                                            <strong>Modelo de Pagos:</strong> El cliente abona el proyecto en tres etapas: 30% al inicio, 40% al aprobar la propuesta visual y el 30% restante contra entrega final.
+                                        </li>
+                                        <li>
+                                            <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"></path></svg>
+                                            <strong>Pago de tu Comisión:</strong> Vas a recibir tu comisión una vez que el diseñador cobre las dos primeras etapas del proyecto (es decir, el 70% del total).
+                                        </li>
+                                        <li>
+                                            <svg class="icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+                                            <strong>Panel de Ventas:</strong> Actualmente, no hay un panel de consulta. Si necesitás más información, podés contactarte directamente con el diseñador.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding-top: 40px; text-align: center;">
+                                <a href="mailto:{{EMAIL_DISEÑADOR}}?subject=Consulta sobre pedido {{ID_PEDIDO}}" class="cta-button">Contactar al diseñador</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 30px 30px 30px; text-align: center; border-top: 1px solid rgba(160, 233, 255, 0.2); margin-top: 30px;">
+                    <p style="margin: 0 0 10px 0; font-size: 12px; color: #a0e9ff;">
+                        &copy; 2025 D3LTA. Todos los derechos reservados.
+                    </p>
+                     <p style="margin: 0; font-size: 12px;">
+                        <a href="#" style="color: #a0e9ff; text-decoration: none;">Visitá nuestra web</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>

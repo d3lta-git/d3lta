@@ -1,0 +1,11 @@
+¡Excelente noticia, `{{NOMBRE_VENDEDOR}}`! 🚀
+
+Acaba de entrar un nuevo pedido con tu palabra clave y ya se generó tu comisión.
+
+*Cliente:* `{{NOMBRE_CLIENTE}}`
+*Monto Total del Proyecto:* `{{TOTAL_FINAL_CLIENTE}}` ARS
+*Tu Comisión:* *`{{MONTO_COMISION_VENDEDOR}}` ARS*
+
+Acabamos de enviarte un mail a tu casilla con el resumen financiero completo y todos los detalles importantes del proyecto.
+
+¡Felicitaciones por la venta!

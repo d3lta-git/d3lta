@@ -1,0 +1,3 @@
+Pintura
+Cerámica
+Escultura

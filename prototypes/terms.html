@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones Generales de Servicios de Diseño</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --c-white: #ffffff;
+            --c-yellow: #f7df4e;
+            --c-lightblue: #a0e9ff; 
+            --c-blue: #26aefb;
+            --c-dark: #0a0a0f;
+            --c-dark-light: #101018;
+            --gradient-primary: linear-gradient(135deg, var(--c-blue) 0%, var(--c-white) 100%);
+            --font-display: 'Barlow Condensed', sans-serif; 
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        body::before {
+            content: ''; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background-image: url('https://i.ibb.co/tMkP7rHz/D3-LTA-Fondo.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        body::after {
+            content: ''; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            backdrop-filter: blur(6px); 
+            z-index: -1; 
+            background-color: rgba(10, 10, 15, 0.9);
+        }
+
+        body { 
+            font-family: var(--font-body); 
+            color: var(--c-white); 
+            background-color: transparent; 
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 2rem;
+        }
+
+        .gradient-title {
+            font-family: var(--font-display); 
+            font-weight: 700; 
+            font-size: 3.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+            letter-spacing: 0.08em; 
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .update-date {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--c-lightblue);
+            font-weight: 500;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--c-lightblue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--c-yellow);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--c-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: var(--c-lightblue);
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        ul li::before {
+            content: "•";
+            color: var(--c-blue);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.2em;
+            margin-left: -1.2em;
+        }
+        
+        ol {
+            list-style: none;
+            counter-reset: custom-counter;
+            padding-left: 0;
+        }
+        ol li {
+            counter-increment: custom-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        ol li::before {
+            content: counter(custom-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: rgba(38, 174, 251, 0.2);
+            border: 1px solid var(--c-blue);
+            border-radius: 50%;
+            color: var(--c-white);
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.7rem;
+            font-size: 0.9rem;
+        }
+
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background-color: rgba(38, 174, 251, 0.15);
+            font-weight: 700;
+            color: var(--c-lightblue);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .gradient-title { font-size: 2.5rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.25rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="gradient-title">Términos y Condiciones Generales de Servicios de Diseño</h1>
+            <p class="update-date">Fecha de Última Actualización: 24 de Junio del 2025.</p>
+        </header>
+
+        <main>
+            <section id="preambulo">
+                <h2>Preámbulo</h2>
+                <p>Este documento establece los términos y condiciones (en adelante, los "Términos y Condiciones") que rigen la relación contractual entre el proveedor de los servicios de diseño (en adelante, "El Diseñador") y cualquier persona física o jurídica que contrate dichos servicios a través del sitio web (en adelante, "El Cliente"). La solicitud de un servicio a través de los canales dispuestos por El Diseñador, seguida de la confirmación de una Propuesta de Servicio, implica la aceptación plena y sin reservas de todos y cada uno de los términos aquí expuestos, constituyendo un contrato legalmente vinculante para ambas partes.</p>
+            </section>
+            
+            <section id="seccion1">
+                <h2>Sección 1: Aceptación y Partes Contratantes</h2>
+                <h3>1.1. Las Partes</h3>
+                <p>El presente contrato se celebra entre:</p>
+                <ul>
+                    <li><strong>El Diseñador:</strong> Un profesional independiente que opera bajo el régimen de Monotributo en la República Argentina, con capacidad para emitir las facturas correspondientes por los servicios prestados. Se deja constancia de que El Diseñador actúa a título personal y no como una sociedad comercial formalmente registrada o constituida [User Query].</li>
+                    <li><strong>El Cliente:</strong> La persona física o jurídica que solicita y contrata los servicios de diseño ofrecidos por El Diseñador.</li>
+                </ul>
+                <h3>1.2. Aceptación</h3>
+                <p>El proceso de contratación se inicia cuando El Cliente completa y envía el formulario de pedido disponible en el sitio web del Diseñador. El contrato se considerará perfeccionado y legalmente vinculante en el momento en que El Cliente acepte expresamente por escrito (por ejemplo, vía correo electrónico) la Propuesta de Servicio final enviada por El Diseñador y se verifique la acreditación del pago inicial correspondiente. Dicha aceptación constituye una manifestación de voluntad inequívoca y la adhesión total a estos Términos y Condiciones.<sup>1</sup></p>
+                <h3>1.3. Capacidad Legal</h3>
+                <p>El Cliente declara, bajo juramento, que posee la plena capacidad legal para contratar, obligarse y cumplir con los términos del presente acuerdo, de conformidad con la legislación vigente en la República Argentina. En caso de actuar en representación de una persona jurídica, declara contar con las facultades suficientes para representarla y obligarla contractualmente.<sup>3</sup></p>
+            </section>
+            
+            <section id="seccion2">
+                <h2>Sección 2: Definiciones Clave</h2>
+                <p>A los efectos del presente contrato, los siguientes términos tendrán el significado que se les atribuye a continuación:</p>
+                <ul>
+                    <li><strong>2.1. Propuesta de Servicio:</strong> El documento o comunicación formal, típicamente un correo electrónico, enviado por El Diseñador al Cliente tras la recepción y análisis del formulario de pedido. Este documento detallará el alcance final de los trabajos, las especificaciones técnicas, el cronograma estimado de entregas y el presupuesto total del Proyecto. La aceptación de esta propuesta por parte del Cliente es un requisito indispensable para el inicio de cualquier trabajo.</li>
+                    <li><strong>2.2. Proyecto:</strong> La totalidad de los trabajos de creación, diseño y desarrollo a ser realizados por El Diseñador, conforme a lo especificado y acordado en la Propuesta de Servicio aceptada por El Cliente.</li>
+                    <li><strong>2.3. Entregable:</strong> Cada uno de los archivos, diseños, bocetos, maquetas o piezas de trabajo producidos por El Diseñador en las distintas fases del Proyecto y presentados al Cliente para su revisión, feedback o aprobación.</li>
+                    <li><strong>2.4. Entregable Final:</strong> El conjunto de archivos digitales en alta resolución, libres de marcas de agua y en los formatos especificados, que constituyen el resultado definitivo y completo del Proyecto, los cuales son entregados al Cliente únicamente tras la cancelación total de los honorarios pactados.</li>
+                    <li><strong>2.5. Material del Cliente:</strong> Toda la información, textos, imágenes, logotipos, directrices de marca, archivos de diseño preexistentes y cualquier otro material o activo proporcionado por El Cliente a El Diseñador con el fin de ser utilizado en la ejecución del Proyecto.<sup>4</sup></li>
+                    <li><strong>2.6. Día Hábil:</strong> Se entenderá por Día Hábil cualquier día de lunes a viernes que no sea feriado nacional o día no laborable decretado por la autoridad competente en la República Argentina. El horario de trabajo para el cómputo de plazos será de 9:00 a 18:00 horas (hora local de Argentina).</li>
+                    <li><strong>2.7. Revisión:</strong> Cada una de las instancias en las que El Cliente proporciona a El Diseñador un conjunto de comentarios, feedback o solicitudes de modificación sobre un Entregable presentado. Cada ronda de revisión se computa como una unidad, independientemente del número de cambios solicitados dentro de esa misma comunicación.</li>
+                </ul>
+            </section>
+            
+            <section id="seccion3">
+                <h2>Sección 3: Objeto y Alcance de los Servicios</h2>
+                <h3>3.1. Objeto</h3>
+                <p>El objeto del presente contrato es la prestación de servicios profesionales de diseño gráfico por parte de El Diseñador, los cuales pueden incluir, de manera no taxativa, la creación de códigos QR artísticos, diseño de identidad visual, desarrollo de piezas gráficas para medios digitales o impresos, y otros servicios asociados que se detallan en el sitio web y se especifican para cada caso particular en la Propuesta de Servicio.<sup>5</sup></p>
+                <h3>3.2. Niveles de Diseño y Revisiones</h3>
+                <p>El alcance del trabajo creativo, así como el número de rondas de revisión incluidas en el precio base del Proyecto, están directamente determinados por el "Nivel de Diseño" que El Cliente seleccione al momento de la contratación. La formalización de estos niveles previene la ampliación descontrolada del alcance del proyecto, gestionando las expectativas del cliente y eliminando ambigüedades sobre el proceso de feedback. La siguiente tabla detalla la correspondencia entre el nivel de servicio y las revisiones incluidas <sup>4</sup>:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nivel de Diseño</th>
+                            <th>Revisiones Incluidas</th>
+                            <th>Descripción Breve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Básico</td>
+                            <td>1 (una)</td>
+                            <td>Integración de logo, patrón estándar y hasta 3 colores de marca.</td>
+                        </tr>
+                        <tr>
+                            <td>Estándar</td>
+                            <td>2 (dos)</td>
+                            <td>Diseño creativo que integra el logo y hasta 5 colores de marca.</td>
+                        </tr>
+                        <tr>
+                            <td>Premium</td>
+                            <td>4 (cuatro)</td>
+                            <td>Concepto artístico a medida, ilustraciones y hasta 7 colores de marca.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>3.3. Revisiones Adicionales</h3>
+                <p>Cualquier solicitud de revisión que exceda el número estipulado en la tabla anterior para el Nivel de Diseño contratado será considerada una modificación al alcance original del Proyecto. Dicha revisión adicional estará sujeta a una cotización y facturación por separado. El Diseñador no procederá con la ejecución de revisiones adicionales hasta no contar con la aprobación expresa y por escrito de la cotización correspondiente por parte del Cliente.<sup>11</sup></p>
+            </section>
+            
+            <section id="seccion4">
+                <h2>Sección 4: Proceso de Contratación y Desarrollo del Proyecto</h2>
+                <h3>4.1. Solicitud y Confirmación</h3>
+                <p>El proceso contractual se inicia con el envío del formulario de pedido por parte del Cliente a través del sitio web. Posteriormente, El Diseñador contactará al Cliente para definir los detalles y enviará una Propuesta de Servicio formal. El contrato se considerará perfeccionado y las obligaciones de las partes nacerán con la aceptación por escrito (vía correo electrónico) de dicha Propuesta por parte del Cliente y la efectiva acreditación del pago inicial.<sup>10</sup></p>
+                <h3>4.2. Obligaciones del Cliente</h3>
+                <p>Para la correcta y oportuna ejecución del Proyecto, El Cliente se compromete a:</p>
+                <ul>
+                    <li>a. Proporcionar de manera completa, precisa y oportuna todo el Material del Cliente (textos, logos, imágenes, directrices, etc.) que sea necesario para el desarrollo del Proyecto, conforme a los requerimientos de El Diseñador.<sup>4</sup></li>
+                    <li>b. Proporcionar feedback, comentarios y aprobaciones sobre los Entregables presentados dentro de los plazos estipulados en la cláusula 4.3, a fin de no generar demoras en el cronograma del Proyecto.</li>
+                    <li>c. Designar un único interlocutor o representante válido con la autoridad necesaria para tomar decisiones, proporcionar feedback consolidado y otorgar aprobaciones en nombre del Cliente.</li>
+                </ul>
+                <h3>4.3. Aceptación de Entregables y Aceptación Tácita</h3>
+                <p>Tras la presentación de cada Entregable por parte de El Diseñador, El Cliente dispondrá de un plazo de cinco (5) Días Hábiles para comunicar por escrito su aprobación o para solicitar las revisiones correspondientes, dentro del límite establecido en su Nivel de Diseño.</p>
+                <p>La implementación de un mecanismo de aceptación tácita es una protección fundamental para el flujo de trabajo del diseñador, evitando que los proyectos queden en un estado de indefinición por falta de respuesta del cliente. Este mecanismo traslada la responsabilidad de la comunicación oportuna al Cliente. Si este no actúa dentro del plazo definido, su silencio se interpreta contractualmente como una aceptación, permitiendo que el proyecto avance al siguiente hito y que el pago correspondiente se devengue.</p>
+                <p>En consecuencia, si transcurrido el plazo de cinco (5) Días Hábiles El Cliente no ha comunicado su aprobación expresa ni ha solicitado revisiones por escrito, el Entregable se considerará <strong>tácitamente aceptado</strong> ("Deemed Acceptance"). A partir de ese momento, El Diseñador estará facultado para proceder con la siguiente fase del Proyecto y el pago del hito correspondiente se considerará devengado y exigible.<sup>13</sup></p>
+            </section>
+
+            <section id="seccion5">
+                <h2>Sección 5: Honorarios, Moneda y Condiciones de Pago</h2>
+                <h3>5.1. Honorarios</h3>
+                <p>Los honorarios totales por los servicios objeto de este contrato serán los especificados en la Propuesta de Servicio final aceptada por El Cliente. Cualquier servicio, tarea o entregable no incluido explícitamente en dicha propuesta será considerado trabajo adicional y requerirá una cotización y aprobación por separado antes de su ejecución.<sup>11</sup></p>
+                <h3>5.2. Moneda de Pago y Tipo de Cambio</h3>
+                <p>Los precios de los servicios se expresan y cotizan preferentemente en Pesos Argentinos (ARS). De forma alternativa, y a discreción de El Diseñador, los precios podrán ser expresados en Dólares Estadounidenses (USD) [User Query].</p>
+                <p>En el contexto económico argentino, es crucial establecer un mecanismo de cambio que proteja el valor real de los honorarios del diseñador. Conforme a la legislación vigente, incluyendo las modificaciones introducidas por el Decreto de Necesidad y Urgencia 70/2023, las obligaciones pactadas en moneda extranjera deben ser canceladas en la especie designada.<sup>16</sup> Por lo tanto, se establece que:</p>
+                <ul>
+                    <li>Las obligaciones de pago pactadas en Dólares Estadounidenses (USD) deberán ser canceladas por El Cliente en dicha moneda.</li>
+                    <li>En el caso excepcional de que se acuerde la cancelación en Pesos Argentinos (ARS) de una obligación denominada en Dólares Estadounidenses, el monto a abonar será el equivalente en pesos necesario para adquirir la cantidad total de dólares adeudada en el mercado de cambios, tomando como única referencia la cotización del Dólar "MEP" (Mercado Electrónico de Pagos) en su punta vendedora, informada por una fuente de mercado reconocida (ej. portal de noticias financieras o broker de mercado) al cierre del día hábil inmediato anterior a la fecha del efectivo pago. Esta cláusula busca asegurar que El Diseñador reciba el valor íntegro de sus honorarios, mitigando el riesgo asociado a la volatilidad cambiaria.<sup>17</sup></li>
+                </ul>
+                <h3>5.3. Modelo de Pago por Hitos</h3>
+                <p>El pago total de los honorarios se estructurará en tres hitos, conforme al siguiente esquema <sup>4</sup>:</p>
+                <ul>
+                    <li><strong>a. Pago Inicial (Hito 1):</strong> Un adelanto del 30% del presupuesto total. El Proyecto no se considerará iniciado hasta que este pago se encuentre efectivamente acreditado en la cuenta de El Diseñador. Este pago inicial no será reembolsable en caso de cancelación del Proyecto por parte del Cliente, considerándose como compensación por la reserva de tiempo, gastos administrativos y trabajos preliminares.</li>
+                    <li><strong>b. Segundo Pago (Hito 2):</strong> Un pago del 40% del presupuesto total, que se devengará y será exigible contra la entrega del Entregable listo para la revisión final del Cliente.</li>
+                    <li><strong>c. Pago Final (Hito 3):</strong> El 30% restante del presupuesto total. Este pago deberá ser abonado por El Cliente tras la aprobación del Entregable de validación (en baja resolución o con marca de agua) y es condición indispensable y previa a la entrega de los Entregables Finales en alta resolución.</li>
+                </ul>
+                <h3>5.4. Facturación</h3>
+                <p>El Diseñador, en su condición de Monotributista registrado ante la Administración Federal de Ingresos Públicos (AFIP), emitirá las correspondientes facturas electrónicas por los servicios prestados. Para operaciones con Clientes domiciliados en la República Argentina, se emitirá una factura tipo "C". Para operaciones con Clientes domiciliados en el exterior (exportación de servicios), se emitirá una factura tipo "E", cumpliendo con toda la normativa fiscal y cambiaria aplicable.<sup>20</sup></p>
+                <h3>5.5. Mora en el Pago</h3>
+                <p>La falta de pago de cualquiera de los hitos en los plazos acordados constituirá a El Cliente en mora de forma automática, sin necesidad de interpelación judicial o extrajudicial alguna. A partir del día siguiente al vencimiento, la suma adeudada devengará un interés punitorio diario equivalente a la tasa activa que fije el Banco de la Nación Argentina para sus operaciones de descuento de documentos comerciales. Adicionalmente, la mora en el pago facultará a El Diseñador a suspender la ejecución del Proyecto y la entrega de cualquier Entregable hasta tanto la deuda sea regularizada en su totalidad, sin que ello genere responsabilidad alguna para El Diseñador.<sup>5</sup></p>
+            </section>
+            
+            <section id="seccion6">
+                <h2>Sección 6: Entrega de Archivos Finales</h2>
+                <h3>6.1. Procedimiento de Entrega Final</h3>
+                <p>Una vez que el diseño del Proyecto esté completo y aprobado, El Diseñador enviará al Cliente una versión de validación del trabajo en un formato de baja resolución y/o con marcas de agua. El propósito de este envío es obtener la aprobación final sobre el diseño. La entrega de los Entregables Finales, en alta resolución y sin marcas de agua, se efectuará por medios digitales (ej. correo electrónico, enlace de descarga) dentro de los dos (2) Días Hábiles posteriores a la confirmación de la acreditación del pago final del 30% [User Query].</p>
+                <h3>6.2. Formatos de Archivo</h3>
+                <p>Es fundamental para la claridad contractual y la gestión de expectativas del Cliente diferenciar entre los "Entregables Finales" (archivos de uso) y los "Archivos Fuente" (archivos de trabajo editables). La entrega de estos últimos no forma parte del servicio estándar y representa la transferencia de herramientas de producción, lo cual debe ser un acuerdo aparte.</p>
+                <ul>
+                    <li><strong>a. Entregables Finales:</strong> Salvo que se especifique de manera diferente y explícita en la Propuesta de Servicio, los Entregables Finales se proporcionarán en una selección de formatos estándar de la industria, listos para su uso. Estos formatos incluyen, de manera no taxativa:<sup>25</sup>
+                        <ul style="padding-left: 2rem; margin-top: 1rem;">
+                            <li><strong>Archivos Vectoriales (para escalabilidad infinita, ideal para impresión):</strong>.AI (versión expandida/contorneada), .EPS, .PDF.</li>
+                            <li><strong>Archivos Raster (para uso digital y web):</strong>.JPG (en alta y baja resolución), .PNG (con fondo transparente).</li>
+                        </ul>
+                    </li>
+                    <li><strong>b. Archivos Fuente:</strong> La entrega de archivos fuente o de trabajo (tales como archivos.PSD con capas intactas, archivos.AI con textos editables y trazos no expandidos, u otros formatos nativos que contengan el proceso de trabajo y las herramientas creativas del Diseñador) <strong>no está incluida</strong> en el alcance estándar de los servicios. La cesión de dichos archivos es un servicio adicional que requiere un acuerdo específico y una cotización por separado, que deberá ser aceptada por El Cliente.<sup>29</sup> Esta distinción protege la propiedad intelectual del proceso creativo del Diseñador y evita malentendidos sobre el alcance de los entregables.</li>
+                </ul>
+            </section>
+
+            <section id="seccion7">
+                <h2>Sección 7: Propiedad Intelectual</h2>
+                <h3>7.1. Derechos de Autor</h3>
+                <p>De plena conformidad con la Ley de Propiedad Intelectual N° 11.723 de la República Argentina, El Diseñador, como autor de la obra, es el titular originario y exclusivo de todos los derechos morales y patrimoniales sobre todas las creaciones, bocetos, conceptos y diseños realizados en el marco del Proyecto.<sup>32</sup></p>
+                <h3>7.2. Cesión de Derechos de Explotación</h3>
+                <p>La cesión de los derechos de explotación sobre la obra es el núcleo del valor que el Cliente adquiere. Para proteger al Diseñador contra el impago del último hito, esta cesión se estructura como un acto condicionado al cumplimiento total de las obligaciones del Cliente.</p>
+                <ul>
+                    <li>a. Una vez que El Cliente haya abonado la totalidad (100%) de los honorarios pactados y aprobados para el Proyecto, y no antes, El Diseñador cederá al Cliente, de forma exclusiva y sin limitaciones territoriales, los derechos de explotación patrimonial sobre el Entregable Final aprobado.</li>
+                    <li>b. Esta cesión comprende específicamente los derechos de reproducción, distribución, comunicación pública y transformación, permitiendo al Cliente utilizar el diseño para los fines comerciales previstos.</li>
+                    <li>c. Se establece expresamente que la cesión de derechos no surtirá efecto alguno hasta que el pago final se encuentre íntegramente satisfecho. Hasta ese momento, El Cliente no poseerá los derechos para utilizar los diseños con fines comerciales, y cualquier uso será considerado una infracción a los derechos de propiedad intelectual de El Diseñador.<sup>5</sup></li>
+                </ul>
+                <h3>7.3. Derecho de Uso para Portafolio</h3>
+                <p>El Diseñador se reserva expresamente el derecho a incluir el Entregable Final en su portafolio personal, sitio web, redes sociales y otros materiales de autopromoción, con el único fin de exhibir su trabajo y experiencia. En todo uso, se respetará la confidencialidad de la información sensible del Cliente y se le otorgará el crédito correspondiente como titular de la marca o producto asociado.<sup>15</sup></p>
+                <h3>7.4. Garantía e Indemnidad sobre Material del Cliente</h3>
+                <p>El Cliente declara y garantiza que es el legítimo titular de todos los derechos de propiedad intelectual sobre el Material del Cliente (logotipos, imágenes, textos, etc.) que proporcione a El Diseñador, o que, en su defecto, cuenta con todas las licencias y autorizaciones necesarias para su uso en el Proyecto. En consecuencia, El Cliente se compromete a defender, indemnizar y mantener indemne a El Diseñador frente a cualquier reclamación, acción, daño, pérdida o gasto (incluyendo honorarios legales razonables) que surja de o esté relacionado con una presunta infracción de derechos de propiedad intelectual de terceros derivada del uso del Material del Cliente.<sup>36</sup></p>
+            </section>
+
+            <section id="seccion8">
+                <h2>Sección 8: Modificaciones, Cancelación y Abandono del Proyecto</h2>
+                <h3>8.1. Modificaciones al Alcance (Scope Creep)</h3>
+                <p>Cualquier solicitud por parte del Cliente que implique un trabajo que exceda el alcance, los entregables o las especificaciones definidas en la Propuesta de Servicio original (incluyendo, pero no limitado a, rondas de revisión adicionales, creación de nuevas versiones no contempladas, o cambios conceptuales significativos) será considerada una modificación del alcance. Dichas modificaciones serán formalizadas a través de una adenda o una nueva propuesta de servicio, que detallará los nuevos honorarios, costos y plazos. El Diseñador no comenzará a trabajar en dichas modificaciones hasta que la adenda o propuesta sea aprobada por escrito por El Cliente.<sup>15</sup></p>
+                <h3>8.2. Cancelación por el Cliente (Kill Fee)</h3>
+                <p>Si El Cliente decide cancelar el Proyecto de forma unilateral una vez iniciado, se aplicará una tarifa de cancelación ("Kill Fee") para compensar a El Diseñador por el trabajo realizado y el tiempo de producción reservado, de acuerdo con las siguientes condiciones <sup>11</sup>:</p>
+                <ul>
+                    <li>a. El pago inicial del 30% no será reembolsado en ningún caso, sirviendo como compensación por los gastos administrativos, de gestión y la reserva de agenda.</li>
+                    <li>b. Si la cancelación se produce después de la entrega del Entregable para revisión final (Hito 2) pero antes de su pago, El Cliente deberá abonar el 40% correspondiente a dicho hito para cubrir el trabajo completado.</li>
+                    <li>c. Si la cancelación se produce después de que El Cliente haya abonado el 70% del total del proyecto, no se realizarán reembolsos adicionales. El Diseñador entregará al Cliente todo el trabajo realizado hasta la fecha de cancelación, pero no tendrá obligación de continuar el proyecto ni de entregar los archivos finales.</li>
+                </ul>
+                <h3>8.3. Abandono del Proyecto</h3>
+                <p>La falta de comunicación por parte del Cliente puede paralizar indefinidamente un proyecto. Esta cláusula establece un procedimiento claro para resolver dicha situación, protegiendo al Diseñador de quedar vinculado a un proyecto inactivo.</p>
+                <ul>
+                    <li>a. Se considerará que El Cliente ha abandonado el Proyecto si, tras ser requerido de forma fehaciente (vía correo electrónico) por El Diseñador para proporcionar feedback, aprobación o información esencial para la continuación del trabajo, no se obtiene respuesta por un período continuo de treinta (30) días calendario.</li>
+                    <li>b. Cumplido dicho plazo, El Diseñador enviará una notificación final al Cliente informando la suspensión del Proyecto por abandono. Si transcurren quince (15) días calendario adicionales desde esta notificación final sin obtener respuesta, el Proyecto se considerará cancelado de forma definitiva por causa imputable al Cliente.</li>
+                    <li>c. En caso de abandono, El Diseñador retendrá todos los pagos realizados hasta la fecha como compensación por el trabajo efectuado y quedará liberado de toda obligación de continuar o entregar el Proyecto. Los derechos de propiedad intelectual sobre el trabajo realizado no serán cedidos.<sup>11</sup></li>
+                </ul>
+            </section>
+
+            <section id="seccion9">
+                <h2>Sección 9: Responsabilidad y Garantías</h2>
+                <h3>9.1. Limitación de Responsabilidad</h3>
+                <p>La responsabilidad total y acumulada de El Diseñador, derivada de cualquier causa relacionada con este contrato (incluyendo incumplimiento, negligencia o cualquier otra teoría legal), estará limitada, como máximo, al monto total de los honorarios efectivamente abonados por El Cliente por el Proyecto específico que dio origen a la reclamación. En ningún caso El Diseñador será responsable por daños indirectos, lucro cesante, pérdida de oportunidades de negocio, o daños a la reputación del Cliente. Esta cláusula se establece en cumplimiento de la normativa argentina, que prohíbe la exención total de responsabilidad por dolo o culpa grave.<sup>42</sup></p>
+                <h3>9.2. Ausencia de Garantía de Resultados Comerciales</h3>
+                <p>El Diseñador se compromete a ejecutar los servicios contratados con el más alto grado de diligencia y profesionalidad, aplicando sus conocimientos y experiencia para lograr un resultado de alta calidad estética y técnica. Sin embargo, El Diseñador no ofrece ni puede ofrecer ninguna garantía, expresa o implícita, de que los Entregables Finales generarán un resultado comercial específico para El Cliente, tales como un aumento en las ventas, una mejora en el posicionamiento de marca (SEO), un mayor número de interacciones o cualquier otra métrica de negocio. Dichos resultados dependen de múltiples factores de mercado, estrategia y ejecución que son ajenos al control de El Diseñador.<sup>46</sup></p>
+                <h3>9.3. Uso de Licencias de Terceros</h3>
+                <p>En el caso de que para la ejecución del Proyecto sea necesario el uso de elementos de terceros sujetos a licencias de pago (tales como tipografías comerciales, fotografías de stock, iconos premium, etc.), El Diseñador informará previamente al Cliente sobre su necesidad y costo. El costo de adquisición de dichas licencias será asumido íntegramente por El Cliente y facturado por separado. El Diseñador informará al Cliente sobre los términos y condiciones de uso de dichas licencias, y será responsabilidad exclusiva del Cliente cumplir con los mismos en el uso futuro del Entregable Final.<sup>5</sup></p>
+            </section>
+
+            <section id="seccion10">
+                <h2>Sección 10: Confidencialidad</h2>
+                <p>Ambas partes, El Diseñador y El Cliente, se comprometen a tratar como estrictamente confidencial toda la información de la otra parte a la que tengan acceso con motivo de la ejecución de este contrato, incluyendo, pero no limitado a, estrategias de negocio, datos financieros, listas de clientes, know-how y cualquier otra información no pública. Esta obligación de confidencialidad subsistirá por un plazo de dos (2) años después de la finalización del Proyecto, y las partes se abstendrán de usar dicha información para cualquier fin distinto al objeto de este contrato.<sup>51</sup></p>
+            </section>
+
+            <section id="seccion11">
+                <h2>Sección 11: Disposiciones Generales</h2>
+                <h3>11.1. Comunicaciones</h3>
+                <p>Todas las notificaciones y comunicaciones entre las partes relativas al Proyecto deberán realizarse por escrito y serán consideradas fehacientes si se envían a las direcciones de correo electrónico designadas por cada parte al inicio de la relación contractual. Será responsabilidad de cada parte notificar a la otra cualquier cambio en su dirección de correo electrónico designada.<sup>54</sup></p>
+                <h3>11.2. Acuerdo Completo e Integridad</h3>
+                <p>Estos Términos y Condiciones, junto con la Propuesta de Servicio final aceptada por El Cliente, constituyen el acuerdo único, completo e íntegro entre las partes. Reemplazan y anulan cualquier otro acuerdo, comunicación, negociación o entendimiento previo, ya sea oral o escrito, entre las partes con respecto al objeto del Proyecto.<sup>56</sup></p>
+                <h3>11.3. Modificaciones</h3>
+                <p>Ninguna modificación, enmienda o alteración de los términos de este contrato será válida o vinculante a menos que se realice por escrito y esté debidamente firmada por representantes autorizados de ambas partes.<sup>59</sup></p>
+                <h3>11.4. Divisibilidad</h3>
+                <p>Si alguna cláusula o disposición de este contrato fuera declarada nula, inválida o inaplicable por un tribunal competente, dicha nulidad no afectará la validez y aplicabilidad de las restantes cláusulas, las cuales permanecerán en plena vigencia y efecto. Las partes negociarán de buena fe para reemplazar la cláusula nula por una válida que refleje la intención original.<sup>62</sup></p>
+                <h3>11.5. No Renuncia de Derechos</h3>
+                <p>La omisión o demora por parte de cualquiera de las partes en el ejercicio de cualquier derecho o recurso conferido por este contrato no se interpretará como una renuncia a dicho derecho o recurso, ni a ningún otro derecho o recurso aquí contenido.<sup>64</sup></p>
+                <h3>11.6. Títulos</h3>
+                <p>Los títulos y encabezados de las secciones de este contrato se incluyen únicamente para fines de conveniencia y referencia, y no afectarán, limitarán ni modificarán la interpretación de las cláusulas que introducen.<sup>67</sup></p>
+                <h3>11.7. Fuerza Mayor</h3>
+                <p>Ninguna de las partes será considerada responsable por el incumplimiento o la demora en el cumplimiento de sus obligaciones bajo este contrato si dicho incumplimiento o demora es causado por un evento de caso fortuito o fuerza mayor, tal como se define en el artículo 1730 del Código Civil y Comercial de la Nación, que esté fuera de su control razonable.<sup>55</sup></p>
+            </section>
+
+            <section id="seccion12">
+                <h2>Sección 12: Ley Aplicable, Jurisdicción y Resolución de Disputas</h2>
+                <h3>12.1. Ley Aplicable</h3>
+                <p>El presente contrato, su interpretación, validez y ejecución se regirán e interpretarán en todos sus aspectos de conformidad con las leyes vigentes de la República Argentina.</p>
+                <h3>12.2. Mediación Prejudicial Obligatoria</h3>
+                <p>Para cualquier disputa, controversia o reclamación que surja de o esté relacionada con el presente contrato, su incumplimiento, resolución o nulidad, las partes acuerdan someterse en primer lugar a la instancia de Mediación Prejudicial Obligatoria, de conformidad con lo establecido por la Ley N° 26.589 y sus modificatorias, que se llevará a cabo en la Ciudad Autónoma de Buenos Aires.<sup>72</sup></p>
+                <h3>12.3. Jurisdicción</h3>
+                <p>En el caso de que la controversia no pueda ser resuelta en la etapa de mediación, las partes acuerdan someterse a la jurisdicción y competencia exclusiva de los Tribunales Ordinarios en lo Comercial con asiento en la Ciudad Autónoma de Buenos Aires, renunciando expresamente a cualquier otro fuero o jurisdicción que pudiera corresponderles por razón de sus domicilios presentes o futuros.</p>
+            </section>
+
+            <section id="seccion13">
+                <h2>Sección 13: Derecho de Arrepentimiento (Ley N° 24.240)</h2>
+                <h3>13.1. Inaplicabilidad por Naturaleza del Servicio</h3>
+                <p>El Cliente reconoce y acepta que los servicios de diseño contratados son, por su propia naturaleza, confeccionados conforme a las especificaciones, directrices y requerimientos personalizados proporcionados por él mismo. Cada Proyecto es una obra única desarrollada a medida para el Cliente.</p>
+                <h3>13.2. Excepción Legal</h3>
+                <p>En virtud de lo dispuesto expresamente por el artículo 1116, inciso b), del Código Civil y Comercial de la Nación, así como por la normativa concordante en materia de Defensa del Consumidor, el derecho de revocación de la aceptación (comúnmente conocido como "derecho de arrepentimiento" o "botón de arrepentimiento") no resulta aplicable a los contratos de suministro de bienes confeccionados según las especificaciones del consumidor o claramente personalizados. Al informar proactivamente al Cliente sobre esta excepción legal, se previenen reclamos infundados y se establecen expectativas claras desde el inicio de la relación contractual, reforzando la transparencia y profesionalidad del servicio.<sup>75</sup> Por lo tanto, una vez perfeccionado el contrato, El Cliente no podrá invocar el derecho de arrepentimiento para rescindir el mismo.</p>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

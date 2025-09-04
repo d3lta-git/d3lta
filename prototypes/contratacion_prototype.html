@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3LTA - Contratar el servicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Lista de fuentes ampliada a 123+ opciones -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Raleway:wght@400;700&family=Merriweather:wght@400;700&family=Poppins:wght@400;700&family=Nunito:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Inter:wght@400;700&family=Barlow+Condensed:wght@400;700&family=Alfa+Slab+One&family=Bebas+Neue&family=Caveat&family=Dancing+Script&family=Source+Sans+Pro:wght@400;700&family=Ubuntu:wght@400;700&family=PT+Sans:wght@400;700&family=Slabo+27px&family=Josefin+Sans:wght@400;700&family=Arimo:wght@400;700&family=Fjalla+One&family=Anton&family=Righteous&family=Pacifico&family=Vollkorn:wght@400;700&family=Abril+Fatface&family=Patua+One&family=Crimson+Text:wght@400;700&family=Quicksand:wght@400;700&family=Fira+Sans:wght@400;700&family=Domine:wght@400;700&family=Bitter:wght@400;700&family=Yanone+Kaffeesatz:wght@400;700&family=Lobster&family=Comfortaa:wght@400;700&family=Archivo+Narrow:wght@400;700&family=Bree+Serif&family=Cormorant+Garamond:wght@400;700&family=Great+Vibes&family=Amatic+SC:wght@400;700&family=Teko:wght@400;700&family=Exo+2:wght@400;700&family=Signika:wght@400;700&family=Acme&family=Jura:wght@400;700&family=Asap:wght@400;700&family=Questrial&family=Shadows+Into+Light&family=Permanent+Marker&family=Rokkitt:wght@400;700&family=Carter+One&family=Satisfy&family=Handlee&family=Philosopher:wght@400;700&family=Cinzel:wght@400;700&family=Courgette&family=Orbitron:wght@400;700&family=Sacramento&family=Unica+One&family=Advent+Pro:wght@400;700&family=Ruda:wght@400;700&family=Play:wght@400;700&family=Kanit:wght@400;700&family=Amiri:wght@400;700&family=Prata&family=Poiret+One&family=Economica:wght@400;700&family=Julius+Sans+One&family=Dosis:wght@400;700&family=Oxygen:wght@400;700&family=Cabin:wght@400;700&family=Varela+Round&family=Maven+Pro:wght@400;700&family=Electrolize&family=Didact+Gothic&family=Syncopate:wght@400;700&family=Gudea:wght@400;700&family=Share+Tech+Mono&family=Cutive+Mono&family=Inconsolata:wght@400;700&family=VT323&family=Press+Start+2P&family=Audiowide&family=Geo&family=Megrim&family=Monoton&family=Wallpoet&family=Special+Elite&family=Bungee&family=Ewert&family=Faster+One&family=Frijole&family=Nosifier&family=Trade+Winds&family=Emilys+Candy&family=Creepster&family=Butcherman&family=Metal+Mania&family=Sancreek&family=UnifrakturMaguntia&family=Knewave&family=Gravitas+One&family=Old+Standard+TT:wght@400;700&family=Cardo:wght@400;700&family=Quattrocento:wght@400;700&family=Gentium+Book+Basic:wght@400;700&family=Stardos+Stencil:wght@400;700&family=IM+Fell+English+SC&family=Allura&family=Alex+Brush&family=Pinyon+Script&family=Mr+De+Haviland&family=Mrs+Saint+Delafield&family=Rochester&family=Tangerine&family=Yellowtail&family=Italianno&family=Meddon&family=Aguafina+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --c-white: #ffffff;
+            --c-yellow: #f7df4e;
+            --c-yellow-dark: #c5ab3a;
+            --c-lightblue: #a0e9ff; 
+            --c-blue: #26aefb;
+            --c-dark: #0a0a0f;
+            --c-dark-light: #101018;
+            --gradient-primary: linear-gradient(135deg, var(--c-blue) 0%, var(--c-white) 100%);
+            --font-display: 'Barlow Condensed', sans-serif; 
+            --font-body: 'Poppins', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://i.ibb.co/tMkP7rHz/D3-LTA-Fondo.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            z-index: -2;
+        }
+        body::after {
+            content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            backdrop-filter: blur(6px); z-index: -1; background-color: rgba(10, 10, 15, 0.9);
+        }
+        body { 
+            font-family: var(--font-body); color: var(--c-white); 
+            background-color: transparent; @apply antialiased; 
+        }
+        .gradient-title {
+            font-family: var(--font-display); font-weight: 700; 
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+            letter-spacing: 0.08em; text-transform: uppercase; 
+        }
+        .btn-premium {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; 
+            font-family: var(--font-body); font-weight: 700; font-size: 1.25rem; 
+            letter-spacing: 0.05em; color: #111; background: var(--c-yellow);
+            border: none; border-radius: 100px; padding: 1.25rem 3rem; 
+            box-shadow: 0px 8px 0px 0px var(--c-yellow-dark); 
+            transition: all 0.15s ease-in-out;
+            position: relative; overflow: hidden; transform: translateY(0);
+        }
+        .btn-premium:hover:not(:disabled) {
+            transform: translateY(3px) scale(1.02);
+            box-shadow: 0px 5px 0px 0px var(--c-yellow-dark);
+        }
+        .btn-premium:active:not(:disabled) {
+            transform: translateY(8px); box-shadow: none;
+        }
+        .btn-disabled-visual {
+            background-color: #6b7280;
+            color: #1f2937;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: translateY(0);
+        }
+        .form-card { 
+            @apply bg-white/5 border-2 border-transparent rounded-2xl p-6 transition-all duration-300 backdrop-blur-lg;
+        }
+        .form-card label:has(input[type="radio"]:checked) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .form-card label:has(input[type="radio"]:checked) strong {
+            color: var(--c-yellow);
+        }
+        .form-input-dark, .form-textarea-dark, .form-select-dark {
+            width: 100%; border: 2px solid transparent;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(160, 233, 255, 0.05) 50%, rgba(38, 174, 251, 0.1) 100%);
+            border-radius: 12px; padding: 14px 20px; font-size: 16px;
+            font-family: var(--font-body); color: var(--c-white); font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .form-input-dark.invalid { border-color: #ef4444; }
+        .form-input-dark::placeholder, .form-textarea-dark::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .form-input-dark:focus, .form-textarea-dark:focus, .form-select-dark:focus, .form-input-dark:focus-within {
+            outline: none; border: 2px solid rgba(160, 233, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(38, 174, 251, 0.2);
+        }
+        .form-textarea-dark { min-height: 120px; resize: vertical; line-height: 1.6; }
+        .form-select-dark { 
+            -webkit-appearance: none; -moz-appearance: none; appearance: none; 
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+            background-position: right .5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
+            color: var(--c-white);
+        }
+        .form-select-dark option { background-color: var(--c-dark-light); color: var(--c-white); }
+        .form-select-dark:disabled { background-color: rgba(255, 255, 255, 0.1); color: #9ca3af; }
+
+        .font-selector option { color: #111; }
+        select.font-selector { color: white; }
+
+        .form-checkbox-dark, .form-radio-dark {
+            @apply h-7 w-7 rounded-lg shrink-0 cursor-pointer appearance-none;
+            margin-top: 8px;
+            background-color: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .form-checkbox-dark:checked, .form-radio-dark:checked {
+            background-color: var(--c-blue);
+            border-color: var(--c-lightblue);
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+        .form-checkbox-dark:disabled { @apply opacity-40 cursor-not-allowed; }
+        .form-radio-dark { @apply rounded-full; }
+        .form-radio-dark:checked { background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3.5'/%3e%3c/svg%3e"); }
+        .sticky-summary { position: -webkit-sticky; position: sticky; top: 1.5rem; z-index: 10; }
+        .form-label { display: block; font-size: 1.125rem; font-weight: 700; color: var(--c-white); margin-bottom: 0.75rem; }
+        .form-description { color: rgba(160, 233, 255, 0.8); font-size: 0.875rem; margin-bottom: 0.75rem; line-height: 1.5; }
+        .link-entry { @apply p-4 bg-black/20 rounded-xl border border-white/10 space-y-4; }
+        .modal-content {
+            background-color: var(--c-dark-light);
+            @apply rounded-2xl shadow-2xl transform transition-all border-2 border-white/10 flex flex-col;
+            max-height: 95vh;
+            width: 100%;
+            max-width: 1100px;
+        }
+        @media (min-width: 768px) { .modal-content { width: 50%; } }
+        .color-picker-input {
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            width: 3rem; height: 3rem; background-color: transparent; border-radius: 50%;
+            border: none; padding: 0; cursor: pointer;
+        }
+        .color-picker-input::-webkit-color-swatch { border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .color-picker-input::-moz-color-swatch { border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .contact-method-btn { @apply flex flex-1 items-center justify-center gap-2 p-3 h-20 rounded-2xl border-2 transition-all duration-300; }
+        .contact-method-btn.active {
+            background-color: rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transform: scale(1.05);
+        }
+        .contact-method-btn:not(.active) { @apply bg-black/20 border-transparent hover:bg-black/40 hover:border-white/20; }
+        .contact-method-btn svg { @apply w-7 h-7; }
+        .contact-method-btn span { @apply text-xs font-semibold; }
+        .btn-secondary {
+             @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-white/10 border-2 border-white/20 rounded-lg text-sm font-semibold text-white hover:bg-white/20 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+        }
+        .disabled-section { @apply opacity-50 pointer-events-none; }
+        .link-dynamic-url-toggle:disabled { @apply bg-black/60 border-gray-800 cursor-not-allowed; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+    <div class="flex-grow">
+        <form id="main_form" novalidate>
+            <header class="w-full max-w-4xl mx-auto mt-8 mb-12 text-center p-4">
+                <a href="#" class="inline-block mb-4">
+                    <img src="https://i.ibb.co/4wKMJyyk/D3-LTA-Logo.png" alt="Logo de D3LTA" class="h-32">
+                </a>
+                <h1 class="gradient-title text-5xl sm:text-6xl tracking-wider" style="letter-spacing: 0.12em;">
+                    Contratar el servicio
+                </h1>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+                    Construye tu pedido a medida y obtén una cotización al instante.
+                </p>
+            </header>
+        
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
+                <div class="flex justify-center mb-12">
+                    <div class="flex items-center gap-2 bg-black/20 rounded-full border border-white/10 shadow-lg p-2">
+                        <span class="font-semibold text-gray-400 pl-2 text-sm tracking-wider">MONEDA:</span>
+                        <div class="relative flex items-center gap-3 bg-black/25 rounded-full p-1">
+                            <div id="currency-marker" class="absolute top-1 bottom-1 w-24 h-auto rounded-full transition-transform duration-300 ease-in-out bg-gradient-to-r from-blue-400 to-white shadow-lg"></div>
+                            <input type="radio" name="currency" id="currency_ars" value="ARS" class="sr-only" checked>
+                            <label for="currency_ars" class="w-24 py-2 text-md font-semibold transition-colors duration-300 z-10 cursor-pointer flex items-center justify-center text-gray-800">ARS</label>
+                            <input type="radio" name="currency" id="currency_usd" value="USD" class="sr-only">
+                            <label for="currency_usd" class="w-24 py-2 text-md font-semibold transition-colors duration-300 z-10 cursor-pointer flex items-center justify-center text-gray-800">USD</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                    
+                    <main class="lg:col-span-2 space-y-12">
+                        
+                        <!-- PASO 1 -->
+                        <section id="base-service">
+                            <h2 class="text-3xl font-bold text-white/90 border-b-2 border-white/10 pb-4 mb-6 uppercase tracking-wider pl-6" style="font-family: var(--font-display);">Paso 1: Nivel de Diseño y Funcionalidad</h2>
+                            <div class="form-card p-8 space-y-6">
+                                 <div>
+                                    <h3 class="form-label text-xl">Nivel de Diseño del QR</h3>
+                                    <p class="form-description">Elige el nivel de detalle y creatividad. Esto definirá la cantidad de colores y opciones disponibles.</p>
+                                    <div class="space-y-4" id="design_complexity_container">
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="design_complexity" value="basic" class="form-radio-dark" data-price-chf="40">
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Diseño Básico (1 Revisión)</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="40"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Logo integrado, patrón estándar y hasta 3 colores de marca.</p>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="design_complexity" value="standard" class="form-radio-dark" data-price-chf="62" checked>
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Diseño Estándar (2 Revisiones)</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="62"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Diseño creativo que integra tu logo y hasta 5 colores de marca.</p>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="design_complexity" value="premium" class="form-radio-dark" data-price-chf="110">
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Diseño Premium (4 Revisiones)</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="110"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Concepto artístico a medida, ilustraciones y hasta 7 colores de marca.</p>
+                                            </span>
+                                        </label>
+                                    </div>
+                                 </div>
+    
+                                 <div class="pt-6 border-t border-white/10" id="dynamic_url_section">
+                                    <h3 class="form-label text-xl">Plan de Funcionalidad (URL Dinámica y Estadísticas)</h3>
+                                    <p class="form-description">Permite editar destinos a futuro y da acceso a estadísticas. <strong class="text-white">Se abona anualmente.</strong></p>
+                                    <div class="space-y-4">
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="dynamic_url_tier" value="none" class="form-radio-dark" checked>
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Ninguno (URL Estática)</strong>
+                                                <p class="text-sm text-gray-300 mt-1">El destino del QR será fijo. No incluye URLs dinámicas ni estadísticas.</p>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="dynamic_url_tier" value="starter" class="form-radio-dark" data-price-chf="35" data-renewal-chf="15">
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Plan Starter</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="35"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Hasta 3 URLs dinámicas. Sin reportes de estadísticas. <span class="renewal-display font-semibold text-white/70 block mt-1" data-renewal-chf="15"></span></p>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="dynamic_url_tier" value="business" class="form-radio-dark" data-price-chf="95" data-renewal-chf="45">
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Plan Business</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="95"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Hasta 12 URLs dinámicas. Incluye reportes cuatrimestrales. <span class="renewal-display font-semibold text-white/70 block mt-1" data-renewal-chf="45"></span></p>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                            <input type="radio" name="dynamic_url_tier" value="scale" class="form-radio-dark" data-price-chf="225" data-renewal-chf="95">
+                                            <span class="ml-4 flex-1">
+                                                <strong class="text-white">Plan Scale</strong>
+                                                <p class="price-display text-sm font-bold text-white/80" data-price-chf="225"></p>
+                                                <p class="text-sm text-gray-300 mt-1">Hasta 30 URLs dinámicas. Incluye reportes trimestrales. <span class="renewal-display font-semibold text-white/70 block mt-1" data-renewal-chf="95"></span></p>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-card p-8 space-y-4">
+                                <h3 class="form-label text-xl">Servicio de Diseño Gráfico Extendido</h3>
+                                <p class="form-description">¿Necesitas que el QR sea parte de un diseño más grande, como un afiche o un post para redes?</p>
+                                <div class="space-y-4" id="design_service_container">
+                                    <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                        <input type="radio" name="design_service" value="none" class="form-radio-dark" checked>
+                                        <span class="ml-4 flex-1">
+                                            <strong class="text-white">No, solo el archivo del QR</strong>
+                                            <p class="text-sm text-gray-300 mt-1">Ideal si ya tenés tu propio diseño y solo necesitás integrar el QR.</p>
+                                        </span>
+                                    </label>
+                                    <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                        <input type="radio" name="design_service" value="integration" class="form-radio-dark" data-price-chf="13">
+                                        <span class="ml-4 flex-1">
+                                            <strong class="text-white">Sí, integrar en un Diseño Externo</strong>
+                                            <p class="price-display text-sm font-bold text-white/80" data-price-chf="13"></p>
+                                            <p class="text-sm text-gray-300 mt-1">Nos enviás tu diseño (afiche, menú) y nosotros integramos el QR de forma armónica.</p>
+                                        </span>
+                                    </label>
+                                    <div id="design_integration_details" class="hidden mt-2 pl-12">
+                                            <input type="file" name="design_integration_file" class="form-input-dark !text-sm file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                    </div>
+                                        <label class="flex items-start cursor-pointer p-4 rounded-lg has-[:checked]:bg-white/5">
+                                        <input type="radio" name="design_service" value="complex" class="form-radio-dark" data-price-chf="98">
+                                        <span class="ml-4 flex-1">
+                                            <strong class="text-white">Sí, crear un Diseño Complejo (Afiche/Folleto)</strong>
+                                            <p class="price-display text-sm font-bold text-white/80" data-price-chf="98"></p>
+                                            <p class="text-sm text-gray-300 mt-1">Diseñamos una pieza gráfica elaborada y detallada que incluya tu QR.</p>
+                                        </span>
+                                    </label>
+                                        <div id="design_complex_details" class="hidden mt-2 pl-12">
+                                            <textarea name="design_complex_instructions" class="form-textarea-dark !text-sm" placeholder="Describe los detalles para tu afiche o folleto..." maxlength="1200"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PASO 2 -->
+                        <section id="project-info">
+                            <h2 class="text-3xl font-bold text-white/90 border-b-2 border-white/10 pb-4 mb-6 uppercase tracking-wider pl-8" style="font-family: var(--font-display);">Paso 2: Información Creativa</h2>
+                            <div class="form-card p-8 space-y-8">
+                                <div>
+                                    <label for="brand_info" class="form-label">Descripción General del Estilo</label>
+                                    <p class="form-description">Describe la visión, el concepto y la identidad de marca que debe reflejar el diseño del QR.</p>
+                                    <textarea id="brand_info" name="brand_info" class="form-textarea-dark" placeholder="Somos una empresa dedicada a..." maxlength="1200"></textarea>
+                                    <div class="text-right text-sm pr-2 text-white/50" id="brand_info_counter">0/1200</div>
+                                </div>
+    
+                                <div class="space-y-6 pt-6 border-t border-white/10">
+                                    <h3 class="form-label text-xl">Identidad Visual</h3>
+                                    
+                                    <!-- Logo -->
+                                    <div>
+                                        <label for="logo_upload_label" class="form-label text-base">Logo</label>
+                                        <p class="form-description !mb-4">Sube tu logo (PNG, JPG, SVG).</p>
+                                        <div class="form-input-dark flex items-center p-0">
+                                            <label for="logo_upload" id="logo_upload_label" class="cursor-pointer shrink-0">
+                                                <span class="bg-blue-500/20 text-blue-200 text-sm font-semibold px-4 py-3 rounded-l-lg whitespace-nowrap inline-block">
+                                                    Seleccionar archivo
+                                                </span>
+                                            </label>
+                                            <span id="logo_file_name" class="text-white/70 text-sm truncate px-4">
+                                                Ningún archivo seleccionado
+                                            </span>
+                                            <input type="file" id="logo_upload" name="logo_upload" accept="image/*" class="hidden">
+                                        </div>
+                                        <div id="logo_preview_container" class="mt-4 p-4 bg-black/30 rounded-lg h-32 flex items-center justify-center">
+                                            <div id="logo_placeholder" class="text-white/30 text-center flex flex-col items-center gap-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span class="text-xs font-semibold">PREVISUALIZACIÓN DEL LOGO</span>
+                                            </div>
+                                            <img id="logo_preview" src="" alt="Previsualización del logo" class="max-h-24 hidden">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Tipografias -->
+                                    <div>
+                                        <label class="form-label text-base">Sugerencia de Tipografías</label>
+                                        <p class="form-description !mb-4">El número de tipografías que puedes añadir depende del "Servicio de Diseño Extendido" que elijas.</p>
+                                        <div id="font_selectors_container" class="space-y-4">
+                                            <!-- Font selectors will be dynamically inserted here by JavaScript -->
+                                        </div>
+                                        <button type="button" id="add_font_button" class="btn-secondary mt-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                                            <span>Sugerir otra tipografía</span>
+                                        </button>
+                                    </div>
+    
+                                    <!-- Paleta de Colores -->
+                                    <div>
+                                        <label class="form-label text-base">Paleta de Colores</label>
+                                         <p class="form-description !mb-4">El número de colores que puedes seleccionar depende del Nivel de Diseño que elijas en el Paso 1.</p>
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <label class="flex items-center gap-2"><input type="radio" name="color_mode" value="picker" checked class="form-radio-dark !m-0"> Selector Manual</label>
+                                            <label class="flex items-center gap-2"><input type="radio" name="color_mode" value="image" class="form-radio-dark !m-0"> Extraer de Imagen</label>
+                                        </div>
+                                        
+                                        <div id="color_picker_section">
+                                            <div id="color_picker_container" class="flex flex-wrap gap-4 items-center">
+                                                <!-- Color pickers will be dynamically inserted here -->
+                                            </div>
+                                            <p id="color_picker_message" class="mt-3 text-sm text-yellow-300/80"></p>
+                                        </div>
+    
+                                        <div id="color_image_container" class="hidden">
+                                            <p class="form-description !mb-4">Sube una imagen de referencia y nosotros extraeremos la paleta de colores.</p>
+                                            <div class="form-input-dark flex items-center p-0">
+                                                <label for="color_ref_image" id="color_ref_image_label" class="cursor-pointer shrink-0">
+                                                    <span class="bg-blue-500/20 text-blue-200 text-sm font-semibold px-4 py-3 rounded-l-lg whitespace-nowrap inline-block">
+                                                        Seleccionar imagen
+                                                    </span>
+                                                </label>
+                                                <span id="color_ref_file_name" class="text-white/70 text-sm truncate px-4">
+                                                    Ningún archivo seleccionado
+                                                </span>
+                                                <input type="file" id="color_ref_image" name="color_ref_image" accept="image/*" class="hidden">
+                                            </div>
+                                            <div id="color_ref_preview_container" class="mt-4 p-4 bg-black/30 rounded-lg h-40 flex items-center justify-center">
+                                                <div id="color_ref_placeholder" class="text-white/30 text-center flex flex-col items-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                    <span class="text-xs font-semibold">PREVISUALIZACIÓN DE IMAGEN</span>
+                                                </div>
+                                                <img id="color_ref_preview" src="" alt="Previsualización del logo" class="max-h-32 hidden">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-6 border-t border-white/10">
+                                    <label for="seller_keyword" class="form-label">Palabra Clave del Vendedor</label>
+                                    <p class="form-description">Si tienes un código de vendedor, ingrésalo para aplicar un descuento especial.</p>
+                                    <input type="text" id="seller_keyword" name="seller_keyword" class="form-input-dark" placeholder="Ej: VENDEDOR01" maxlength="20">
+                                    <div id="keyword_status" class="mt-2 text-sm font-semibold h-5 pl-1 transition-colors duration-300"></div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- PASO 3 -->
+                        <section id="functionality-and-requirements">
+                            <h2 class="text-3xl font-bold text-white/90 border-b-2 border-white/10 pb-4 mb-6 uppercase tracking-wider pl-6" style="font-family: var(--font-display);">Paso 3: Configuración de Destinos</h2>
+                            <div class="form-card p-8" id="url_section_card">
+                                 <div class="flex justify-between items-center mb-4">
+                                    <label class="form-label !mb-0">Versiones de Destino</label>
+                                </div>
+                                <p class="form-description">Configura los destinos para cada versión de tu diseño. El diseño base incluye una versión. Añade más si necesitas que el mismo estilo de QR apunte a diferentes lugares.</p>
+                                <div id="links_container" class="space-y-4 mt-6">
+                                     <!-- Template for link entries (will be cloned by JS) -->
+                                </div>
+                                <div id="version_unlock_status" class="mt-4 p-3 bg-blue-500/10 border-l-4 border-blue-400 rounded-r-lg text-sm text-blue-200 hidden"></div>
+                                <div class="mt-6 flex items-center gap-4">
+                                    <button type="button" id="add_link_button" class="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-800 to-cyan-700 text-white font-semibold rounded-full shadow-lg hover:shadow-blue-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" />
+                                        </svg>
+                                        <span>Añadir otra versión</span>
+                                    </button>
+                                    <div id="corporate_quote_prompt" class="p-3 bg-yellow-500/10 border-l-4 border-yellow-400 rounded-r-lg text-sm text-yellow-200 hidden">
+                                        Para más de 30 versiones, por favor <a href="#contact" class="font-bold underline hover:text-yellow-100">contactanos</a> para un paquete corporativo a medida.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+    
+                         <!-- PASO 4 -->
+                        <section id="addons-section">
+                            <h2 class="text-3xl font-bold text-white/90 border-b-2 border-white/10 pb-4 mb-6 uppercase tracking-wider pl-6" style="font-family: var(--font-display);">Paso 4: Adicionales</h2>
+                            <div class="space-y-4">
+                                 <div class="form-card p-6">
+                                    <label class="flex items-start cursor-pointer">
+                                        <input type="checkbox" id="express_delivery" name="addons" class="form-checkbox-dark">
+                                        <div class="ml-4 flex-1">
+                                            <h3 class="text-xl font-bold text-white">Entrega Express (48-72hs)</h3>
+                                            <p class="text-gray-300 mt-1">Tu proyecto recibe la máxima prioridad. El costo varía según la complejidad y funcionalidad de tu pedido.</p>
+                                            <p class="price-display text-lg font-bold text-white/80 mt-2" data-price-chf="0" data-is-dynamic="true"></p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-card p-6">
+                                    <label class="flex items-start cursor-pointer">
+                                        <input type="checkbox" id="large_format" name="addons" class="form-checkbox-dark" data-price-chf="95">
+                                        <div class="ml-4 flex-1">
+                                            <h3 class="text-xl font-bold text-white">Certificación para Gigantografía</h3>
+                                            <p class="text-gray-300 mt-1">Aseguramos la legibilidad del QR en formatos grandes. El costo base se ajusta por la cantidad de versiones a certificar.</p>
+                                            <p class="price-display text-lg font-bold text-white/80 mt-2" data-price-chf="95" data-is-dynamic="true"></p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+    
+                         <!-- PASO 5 -->
+                        <section id="printing-service">
+                            <h2 class="text-3xl font-bold text-white/90 border-b-2 border-white/10 pb-4 mb-6 uppercase tracking-wider pl-6" style="font-family: var(--font-display);">Paso 5: Servicio de Impresión</h2>
+                             <div class="form-card p-6">
+                                <label class="flex items-start cursor-pointer">
+                                    <input type="checkbox" id="print_stickers" name="print_stickers" class="form-checkbox-dark">
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-xl font-bold text-white">Imprimir QR como Stickers</h3>
+                                        <p class="text-gray-300 mt-1">Recibí tu diseño listo para usar. Gestionamos la impresión y el control de calidad por vos.</p>
+                                    </div>
+                                </label>
+                                <div id="printing_options" class="hidden mt-6 space-y-6 pt-6 border-t border-white/20">
+                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <label for="sticker_quantity" class="form-label text-base">Cantidad por cada versión</label>
+                                            <input type="number" id="sticker_quantity" name="sticker_quantity" value="50" min="1" max="1000" class="form-input-dark">
+                                        </div>
+                                        <div>
+                                            <label for="sticker_size" class="form-label text-base">Tamaño (aprox.)</label>
+                                            <select id="sticker_size" name="sticker_size" class="form-select-dark"></select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" id="cut_stickers" name="cut_stickers" class="form-checkbox-dark !h-5 !w-5 !m-0">
+                                            <span class="font-semibold text-white/80">Solicitar QR recortados individualmente (+60% del costo de impresión)</span>
+                                        </label>
+                                        <div id="cut_options_container" class="hidden mt-4">
+                                            <label for="sticker_cut_shape" class="form-label text-base">Forma del recorte</label>
+                                            <select id="sticker_cut_shape" name="sticker_cut_shape" class="form-select-dark"></select>
+                                        </div>
+                                    </div>
+                                    <p class="text-right text-lg font-bold text-white/80 mt-4">Costo Total de Impresión: <span id="printing_cost_display"></span></p>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+    
+                    <!-- ASIDE -->
+                    <aside class="lg:col-span-1">
+                        <div id="contact" class="sticky-summary bg-black/30 backdrop-blur-md rounded-2xl shadow-lg border border-white/10 p-6">
+                            <h3 class="text-2xl font-bold text-center text-white mb-6 uppercase tracking-wider" style="font-family: var(--font-display);">Resumen del Pedido</h3>
+                            <div class="space-y-3 mb-6" id="summary_items"></div>
+                            <div class="border-t-2 border-dashed border-white/20 pt-4 mb-6">
+                                <div class="flex justify-between items-center text-lg">
+                                    <span class="font-semibold text-white/90 text-lg whitespace-nowrap">Total (Pago Único):</span>
+                                    <span id="total_price" class="text-3xl font-bold" style="color: var(--c-yellow);"></span>
+                                </div>
+                                 <div class="flex justify-between items-center text-sm mt-2">
+                                    <span class="font-semibold text-gray-300">Renovación Anual:</span>
+                                    <span id="renewal_price" class="font-bold text-gray-300"></span>
+                                </div>
+                            </div>
+                            <div class="relative w-full h-[250px] mx-auto mb-6">
+                                <canvas id="priceChart"></canvas>
+                            </div>
+                            <button id="open_modal_button" type="button" class="w-full btn-premium">
+                                <span>Encargar mi QR</span>
+                            </button>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        
+            <!-- MODAL -->
+            <div id="quote_modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+                <div class="modal-content">
+                    <div id="modal_form_section" class="flex flex-col h-full">
+                        <div class="p-4 sm:p-6 flex-shrink-0">
+                            <h2 class="text-2xl font-bold text-center gradient-title">Confirmar Solicitud</h2>
+                            <p class="text-center text-gray-300 mt-2 text-sm">Completá tus datos para recibir la cotización formal.</p>
+                        </div>
+                        
+                        <div class="flex-grow overflow-y-auto px-4 sm:px-6 space-y-4">
+                            <div class="bg-black/20 p-4 rounded-lg">
+                                <h3 class="font-semibold text-white/90 mb-2">Resumen de tu pedido:</h3>
+                                <div id="modal_summary" class="space-y-2 text-sm max-h-32 overflow-y-auto pr-2"></div>
+                                <div class="flex justify-between items-center text-lg mt-3 pt-3 border-t border-dashed border-white/20">
+                                    <span class="font-semibold text-white/90">Total (Pago Único):</span>
+                                    <span id="modal_total_price" class="text-2xl font-bold" style="color: var(--c-yellow);"></span>
+                                </div>
+                            </div>
+    
+                            <div class="space-y-3">
+                                <div>
+                                    <label for="name_modal" class="form-label !text-sm !mb-1">Nombre y Apellido</label>
+                                    <input type="text" name="name_modal" id="name_modal" required class="form-input-dark !py-2 !text-sm">
+                                </div>
+                                <div>
+                                    <label for="email_modal" class="form-label !text-sm !mb-1">Correo para confirmación</label>
+                                    <input type="email" name="email_modal" id="email_modal" required class="form-input-dark !py-2 !text-sm" placeholder="tu_correo@ejemplo.com">
+                                </div>
+                                <div>
+                                    <label for="phone_modal" class="form-label !text-sm !mb-1">Número de Teléfono</label>
+                                    <input type="tel" name="phone_modal" id="phone_modal" required class="form-input-dark !py-2 !text-sm" placeholder="Ej: 11 2345 6789">
+                                </div>
+                                <div>
+                                    <label class="form-label !text-sm !mb-1">Vía de contacto preferida</label>
+                                    <div id="contact_method_container" class="flex items-stretch gap-3">
+                                        <!-- Contact buttons will be populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="p-4 bg-black/20 rounded-lg text-xs text-gray-300/80 space-y-3">
+                                <p>Al confirmar, recibirás una cotización formal. Nuestro modelo de pago es por hitos: 30% para iniciar el diseño, 40% al aprobar el concepto visual y 30% contra entrega final de los archivos. Los servicios de renovación anual se abonan por adelantado.</p>
+                                <div>
+                                    <label for="accept_policies" class="flex items-start gap-2 cursor-pointer">
+                                        <input type="checkbox" name="accept_policies" id="accept_policies" required class="form-checkbox-dark !h-5 !w-5 mt-0.5">
+                                        <span>He leído y acepto los <a href="#" class="underline hover:text-white">Términos y Condiciones</a> y la <a href="#" class="underline hover:text-white">Política de Privacidad</a>.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 px-6 pb-6 flex-shrink-0 flex flex-col-reverse sm:flex-row-reverse gap-3">
+                             <button type="submit" id="confirm_and_send_button" class="w-full sm:w-auto btn-premium !py-3 !px-6 !text-base" disabled>Confirmar y Enviar</button>
+                            <button type="button" id="cancel_button" class="w-full sm:w-auto inline-flex justify-center rounded-full border-2 border-white/20 bg-transparent py-3 px-6 text-base font-medium text-white hover:bg-white/10">Cancelar</button>
+                        </div>
+                    </div>
+                    <div id="modal_confirmation_section" class="hidden p-6 sm:p-12 text-center">
+                         <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 border-2 border-green-400">
+                            <svg class="h-10 w-10 text-green-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                         </div>
+                         <h2 class="mt-6 text-3xl font-bold gradient-title">¡Solicitud Enviada!</h2>
+                         <p class="mt-2 text-gray-300">Gracias. Te enviaremos la cotización formal a tu correo a la brevedad.</p>
+                         <button id="close_confirmation_button" class="mt-8 w-full sm:w-auto inline-flex justify-center rounded-full px-6 py-3 text-base font-bold text-black" style="background: var(--c-yellow);">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <footer class="w-full text-center p-6 mt-auto text-xs text-gray-400/80">
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="#" class="hover:text-white transition-colors">Botón de Arrepentimiento</a>
+            <span class="hidden sm:inline">|</span>
+            <a href="#" class="hover:text-white transition-colors">Derecho de Baja de Servicios</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            
+            const SELLER_KEYWORD_API = "https://script.google.com/macros/s/AKfycbw_Cbs4HbPkWvV24GOKlEPXmcxbXTCVCdrOYyUZEI3LxHYGKK4aSmnoPO2y2JKCfTu1/exec";
+            
+            // --- STATE & CONFIGURATION --- //
+            const appState = {
+                currentCurrency: 'ARS',
+                exchangeRates: { ARS: 1, USD: 1 },
+                pricesInChf: {
+                    design_complexity: { basic: 40, standard: 62, premium: 110 },
+                    additional_versions: [{ max: 5, price: 4.50 }, { max: 15, price: 3.50 }, { max: 30, price: 2.50 }],
+                    dynamic_url: {
+                        starter: { price: 35, renewal: 15, limit: 3 },
+                        business: { price: 95, renewal: 45, limit: 12 },
+                        scale: { price: 225, renewal: 95, limit: 30 }
+                    },
+                    addons: {
+                        express_delivery: {
+                            base: {
+                                basic:    { none: 30, starter: 40, business: 50, scale: 50 },
+                                standard: { none: 45, starter: 55, business: 65, scale: 65 },
+                                premium:  { none: 60, starter: 70, business: 80, scale: 80 }
+                            },
+                            per_version: { min: 2.5, max: 4.0, count_max: 30 }
+                        },
+                        large_format: { base: 15, per_version: 5 },
+                        printing: {
+                            '5x5':   { total_at_1: 4.5, total_at_1000: 300 },
+                            '8x8':   { total_at_1: 7.0, total_at_1000: 450 },
+                            '10x10': { total_at_1: 9.0, total_at_1000: 600 },
+                            cut_multiplier: 1.6
+                        }
+                    },
+                    design_services: { integration: 13, complex: 98 }
+                },
+                sellerDiscount: {
+                    active: false,
+                    percentage: 0.10,
+                    status: 'idle', // 'idle', 'validating', 'valid', 'invalid'
+                    debounceTimer: null
+                },
+                fontList: [ "Roboto", "Open Sans", "Lato", "Montserrat", "Oswald", "Raleway", "Merriweather", "Poppins", "Nunito", "Playfair Display", "Lora", "Inter", "Barlow Condensed", "Alfa Slab One", "Bebas Neue", "Caveat", "Dancing Script", "Source Sans Pro", "Ubuntu", "PT Sans", "Slabo 27px", "Josefin Sans", "Arimo", "Fjalla One", "Anton", "Righteous", "Pacifico", "Vollkorn", "Abril Fatface", "Patua One", "Crimson Text", "Quicksand", "Fira Sans", "Domine", "Bitter", "Yanone Kaffeesatz", "Lobster", "Comfortaa", "Archivo Narrow", "Bree Serif", "Cormorant Garamond", "Great Vibes", "Amatic SC", "Teko", "Exo 2", "Signika", "Acme", "Jura", "Asap", "Questrial", "Shadows Into Light", "Permanent Marker", "Rokkitt", "Carter One", "Satisfy", "Handlee", "Philosopher", "Cinzel", "Courgette", "Orbitron", "Sacramento", "Unica One", "Advent Pro", "Ruda", "Play", "Kanit", "Amiri", "Prata", "Poiret One", "Economica", "Julius Sans One", "Dosis", "Oxygen", "Cabin", "Varela Round", "Maven Pro", "Electrolize", "Didact Gothic", "Syncopate", "Gudea", "Share Tech Mono", "Cutive Mono", "Inconsolata", "VT323", "Press Start 2P", "Audiowide", "Geo", "Megrim", "Monoton", "Wallpoet", "Special Elite", "Bungee", "Ewert", "Faster One", "Frijole", "Nosifier", "Trade Winds", "Emilys Candy", "Creepster", "Butcherman", "Metal Mania", "Sancreek", "UnifrakturMaguntia", "Knewave", "Gravitas One", "Old Standard TT", "Cardo", "Quattrocento", "Gentium Book Basic", "Stardos Stencil", "IM Fell English SC", "Allura", "Alex Brush", "Pinyon Script", "Mr De Haviland", "Mrs Saint Delafield", "Rochester", "Tangerine", "Yellowtail", "Italianno", "Meddon", "Aguafina Script" ],
+                fontPreviewPhrases: [ "El río es un camino de agua y de sol.", "Sauces llorones besan la mansa orilla.", "El junco se mece en un verde susurro.", "La canoa duerme, espera la alborada.", "Un ceibo en flor es sangre en el paisaje.", "El agua borra huellas y viejos ecos.", "La isla respira un aire de misterio.", "Sol de la siesta, chicharra y letargo.", "El pescador regresa con la luna nueva.", "Casas de madera, de tiempo y de río.", "La bruma esconde el alma del arroyo.", "El silencio habla en voz de calandria." ],
+                destinationTypes: [ { value: 'url_static', text: 'URL (Estática)' }, { value: 'vcard', text: 'Info de Contacto (vCard)' }, { value: 'wifi', text: 'Conexión a Red Wi-Fi' }, { value: 'text', text: 'Texto Simple' }, { value: 'payment', text: 'Pagos Móviles (MercadoPago, etc.)' }, { value: 'geo', text: 'Geolocalización (Lat/Lon)' } ]
+            };
+
+            // --- DOM ELEMENTS --- //
+            const form = document.getElementById('main_form');
+            const linksContainer = document.getElementById('links_container');
+            const addLinkButton = document.getElementById('add_link_button');
+            const fontSelectorsContainer = document.getElementById('font_selectors_container');
+            const addFontButton = document.getElementById('add_font_button');
+            const colorPickerContainer = document.getElementById('color_picker_container');
+            const confirmButton = document.getElementById('confirm_and_send_button');
+            const acceptPoliciesCheckbox = document.getElementById('accept_policies');
+            const printingOptions = document.getElementById('printing_options');
+            const cutOptions = document.getElementById('cut_options_container');
+            let linkEntryTemplate; 
+            let priceChart;
+            
+            // --- EVENT LISTENERS --- //
+            function setupEventListeners() {
+                form.addEventListener('submit', submitForm);
+
+                form.addEventListener('input', (e) => { 
+                    if (e.target.id === 'seller_keyword') {
+                        handleKeywordValidation(e.target.value);
+                    } else {
+                        updateAndDisplayAllPrices();
+                    }
+                });
+                
+                document.getElementById('design_complexity_container').addEventListener('change', updateColorPickerUI);
+                
+                document.getElementById('design_service_container').addEventListener('change', (e) => {
+                    if (e.target.name === 'design_service') {
+                        handleDesignServiceChange(e.target.value);
+                        updateFontSelectorUI();
+                    }
+                });
+                document.querySelectorAll('input[name="color_mode"]').forEach(radio => radio.addEventListener('change', handleColorModeChange));
+                
+                document.getElementById('logo_upload').addEventListener('change', (e) => handleFileInputChange(e.target, document.getElementById('logo_file_name'), 'logo_preview'));
+                document.getElementById('color_ref_image').addEventListener('change', (e) => handleFileInputChange(e.target, document.getElementById('color_ref_file_name'), 'color_ref_preview'));
+
+                document.getElementById('open_modal_button').addEventListener('click', showModal);
+                document.getElementById('cancel_button').addEventListener('click', hideModal);
+                document.getElementById('close_confirmation_button').addEventListener('click', hideModal);
+                document.getElementById('quote_modal').addEventListener('click', (e) => { if(e.target === e.currentTarget) hideModal() });
+                
+                document.getElementById('contact_method_container').addEventListener('click', (e) => {
+                    const button = e.target.closest('.contact-method-btn');
+                    if (button) setupContactMethodSwitcher(button);
+                });
+
+                document.querySelectorAll('input[name="currency"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        appState.currentCurrency = e.target.value;
+                        document.getElementById('currency-marker').style.transform = (e.target.id === 'currency_usd') ? 'translateX(calc(100% + 0.75rem))' : 'translateX(0)';
+                        updateAndDisplayAllPrices();
+                    });
+                });
+                
+                document.getElementById('dynamic_url_section').addEventListener('change', updateDynamicUrlCheckboxesState);
+
+                addLinkButton.addEventListener('click', addLinkEntry);
+                linksContainer.addEventListener('click', (e) => {
+                    const removeBtn = e.target.closest('.remove-link-btn');
+                    if(removeBtn) removeLinkEntry(removeBtn);
+                });
+                linksContainer.addEventListener('change', (e) => { 
+                    if (e.target.matches('.link-type-selector')) handleLinkTypeChange(e.target); 
+                    if (e.target.matches('.link-extra-text-toggle')) handleExtraTextToggle(e.target);
+                    if (e.target.matches('.link-dynamic-url-toggle')) handleDynamicUrlToggle(e.target);
+                });
+                linksContainer.addEventListener('input', (e) => {
+                    const counter = e.target.nextElementSibling;
+                    if (counter && counter.matches('.link-notes-counter, .link-extra-text-counter')) counter.textContent = `${e.target.value.length}/${e.target.maxLength}`;
+                });
+
+                fontSelectorsContainer.addEventListener('click', (e) => {
+                     const removeFontBtn = e.target.closest('.remove-font-btn');
+                    if(removeFontBtn) removeFontSelector(removeFontBtn);
+                });
+                addFontButton.addEventListener('click', addFontSelector);
+                
+                document.getElementById('print_stickers').addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        document.getElementById('sticker_quantity').value = 3;
+                        document.getElementById('sticker_size').value = '8x8';
+                        updateAndDisplayAllPrices();
+                    }
+                });
+
+                document.getElementById('cut_stickers').addEventListener('change', (e) => {
+                    cutOptions.classList.toggle('hidden', !e.target.checked);
+                });
+
+                acceptPoliciesCheckbox.addEventListener('change', validateModalForm);
+                document.getElementById('modal_form_section').addEventListener('input', validateModalForm);
+            }
+
+            // --- UI & VISUALS --- //
+            function getTypographyLimit() {
+                const designServiceValue = document.querySelector('input[name="design_service"]:checked')?.value || 'none';
+                switch (designServiceValue) {
+                    case 'integration': return 2;
+                    case 'complex': return 3;
+                    default: return 1;
+                }
+            }
+
+            function setupCharacterCounters() {
+                const textareas = [
+                    { id: 'brand_info', counter: 'brand_info_counter', limit: 1200 },
+                    { id: 'design_complex_instructions', containerId: 'design_complex_details', limit: 1200 }
+                ];
+
+                textareas.forEach(item => {
+                    const container = document.getElementById(item.containerId) || document;
+                    const textarea = container.querySelector(`[name="${item.id}"]`) || document.getElementById(item.id);
+                    if (textarea) {
+                        let counterEl;
+                        if (item.counter) { counterEl = document.getElementById(item.counter); } 
+                        else {
+                            counterEl = document.createElement('div');
+                            counterEl.className = 'text-right text-sm pr-2 text-white/50';
+                            textarea.parentNode.appendChild(counterEl);
+                        }
+                        
+                        textarea.maxLength = item.limit;
+                        const update = () => { counterEl.textContent = `${textarea.value.length}/${item.limit}`; };
+                        textarea.addEventListener('input', update);
+                        update();
+                    }
+                });
+            }
+            
+            function addFontSelector() {
+                const limit = getTypographyLimit();
+                if (fontSelectorsContainer.querySelectorAll('.font-selector-wrapper').length >= limit) return;
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'font-selector-wrapper flex items-center gap-2';
+                const selectDiv = document.createElement('div');
+                selectDiv.className = 'flex-grow form-input-dark h-14 flex items-center relative p-0';
+                const select = document.createElement('select');
+                select.className = 'font-selector w-full h-full bg-transparent border-0 focus:ring-0 appearance-none cursor-pointer pl-5 pr-10';
+                
+                appState.fontList.sort().forEach(font => {
+                    const option = new Option(font, font);
+                    select.add(option);
+                    option.style.fontFamily = font;
+                });
+                select.value = 'VT323';
+                select.style.color = 'white';
+                
+                const preview = document.createElement('div');
+                preview.className = 'font-preview text-lg p-3 bg-black/30 rounded-lg text-center transition-all duration-300 h-14 w-2/5 flex items-center justify-center';
+                
+                const setPreviewSize = () => {
+                    const text = appState.fontPreviewPhrases[Math.floor(Math.random() * appState.fontPreviewPhrases.length)];
+                    preview.textContent = text;
+                    preview.style.fontFamily = `'${select.value}', sans-serif`;
+                    let fontSize = 18;
+                    preview.style.fontSize = fontSize + 'px';
+                    while ((preview.scrollHeight > preview.clientHeight || preview.scrollWidth > preview.clientWidth) && fontSize > 8) {
+                        fontSize--;
+                        preview.style.fontSize = fontSize + 'px';
+                    }
+                }
+                select.addEventListener('change', () => {
+                    select.style.color = 'white';
+                    setPreviewSize();
+                });
+
+                const arrow = document.createElement('div');
+                arrow.className = "absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none";
+                arrow.innerHTML = `<svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/></svg>`;
+                selectDiv.append(select, arrow);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'remove-font-btn p-2 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500/40 hover:text-red-300 transition-colors';
+                removeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>`;
+                
+                select.addEventListener('change', setPreviewSize);
+                wrapper.append(selectDiv, preview, removeBtn);
+                fontSelectorsContainer.appendChild(wrapper);
+                updateFontSelectorUI();
+                setPreviewSize();
+            }
+            
+            function removeFontSelector(button) {
+                 button.closest('.font-selector-wrapper').remove();
+                 updateFontSelectorUI();
+            }
+            
+            function updateFontSelectorUI() {
+                const limit = getTypographyLimit();
+                let currentCount = fontSelectorsContainer.querySelectorAll('.font-selector-wrapper').length;
+                
+                while (currentCount > limit) {
+                    const lastSelector = fontSelectorsContainer.lastElementChild;
+                    if(lastSelector && lastSelector.matches('.font-selector-wrapper')) {
+                        lastSelector.remove();
+                        currentCount--;
+                    } else {
+                        break;
+                    }
+                }
+
+                addFontButton.style.display = currentCount < limit ? 'inline-flex' : 'none';
+            }
+
+            function updateColorPickerUI() {
+                const designLevel = document.querySelector('input[name="design_complexity"]:checked')?.value || 'standard';
+                let maxColors;
+                switch(designLevel) { case 'basic': maxColors = 3; break; case 'standard': maxColors = 5; break; case 'premium': maxColors = 7; break; default: maxColors = 5; }
+                document.getElementById('color_picker_message').textContent = `El plan ${designLevel.charAt(0).toUpperCase() + designLevel.slice(1)} permite hasta ${maxColors} colores.`;
+                colorPickerContainer.innerHTML = ''; 
+                const defaultColors = ["#26AEFB", "#A0E9FF", "#FFFFFF", "#F7DF4E", "#0A0A0F", "#f87171", "#a78bfa"];
+                for (let i = 0; i < maxColors; i++) {
+                    const picker = document.createElement('input');
+                    picker.type = 'color'; picker.name = `color_${i + 1}`; picker.className = 'color-picker-input'; picker.value = defaultColors[i % defaultColors.length];
+                    colorPickerContainer.appendChild(picker);
+                }
+            }
+
+            function handleKeywordValidation(keyword) {
+                clearTimeout(appState.sellerDiscount.debounceTimer);
+                appState.sellerDiscount.debounceTimer = setTimeout(() => {
+                    performKeywordValidation(keyword);
+                }, 500);
+            }
+
+            async function performKeywordValidation(keyword) {
+                const statusEl = document.getElementById('keyword_status');
+                const cleanKeyword = keyword.trim();
+
+                if (cleanKeyword === "") {
+                    appState.sellerDiscount.active = false;
+                    appState.sellerDiscount.status = 'idle';
+                    statusEl.textContent = '';
+                    updateAndDisplayAllPrices();
+                    return;
+                }
+
+                appState.sellerDiscount.status = 'validating';
+                statusEl.textContent = 'Validando clave...';
+                statusEl.className = 'mt-2 text-sm font-semibold h-5 pl-1 transition-colors duration-300 text-yellow-400';
+
+                try {
+                    const url = new URL(SELLER_KEYWORD_API);
+                    url.searchParams.append('keyword', cleanKeyword);
+                    
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error('Network response was not ok.');
+                    
+                    const data = await response.json();
+
+                    if (data.isValid) {
+                        appState.sellerDiscount.active = true;
+                        appState.sellerDiscount.status = 'valid';
+                        statusEl.textContent = '✓ ¡Clave válida! Descuento aplicado.';
+                        statusEl.className = 'mt-2 text-sm font-semibold h-5 pl-1 transition-colors duration-300 text-green-400';
+                    } else {
+                        appState.sellerDiscount.active = false;
+                        appState.sellerDiscount.status = 'invalid';
+                        statusEl.textContent = 'Clave de vendedor incorrecta.';
+                        statusEl.className = 'mt-2 text-sm font-semibold h-5 pl-1 transition-colors duration-300 text-red-400';
+                    }
+                } catch (error) {
+                    console.error("Error validating keyword:", error);
+                    appState.sellerDiscount.active = false;
+                    appState.sellerDiscount.status = 'invalid';
+                    statusEl.textContent = 'Error al validar. Inténtalo de nuevo.';
+                    statusEl.className = 'mt-2 text-sm font-semibold h-5 pl-1 transition-colors duration-300 text-red-400';
+                } finally {
+                    updateAndDisplayAllPrices();
+                    validateModalForm();
+                }
+            }
+
+            function createChart() {
+                const ctx = document.getElementById("priceChart")?.getContext("2d");
+                if (!ctx) return;
+                priceChart = new Chart(ctx, { type: "doughnut", data: { labels: ["Diseño", "Funcionalidad", "Adicionales", "Impresión"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: ["#26aefb", "#a0e9ff", "#f7df4e", "#f87171"], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: "70%", plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${formatCurrency(ctx.raw)}` } } } } });
+            }
+            
+            function handleFileInputChange(inputElement, fileNameSpan, previewId) {
+                const file = inputElement.files[0];
+                const previewImg = document.getElementById(previewId);
+                const previewContainer = document.getElementById(previewId + '_container');
+                const placeholder = previewContainer ? previewContainer.querySelector('.text-white\\/30') : null;
+
+                if (file && previewImg) {
+                    fileNameSpan.textContent = file.name;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImg.src = e.target.result;
+                        previewImg.classList.remove('hidden');
+                        if (placeholder) placeholder.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                } else if (previewImg) {
+                    fileNameSpan.textContent = 'Ningún archivo seleccionado';
+                    previewImg.classList.add('hidden');
+                    if (placeholder) placeholder.classList.remove('hidden');
+                    previewImg.src = '';
+                }
+            }
+            
+            function handleColorModeChange(event) {
+                document.getElementById('color_picker_section').classList.toggle('hidden', event.target.value === 'image');
+                document.getElementById('color_image_container').classList.toggle('hidden', event.target.value !== 'image');
+            }
+
+            function handleDesignServiceChange(value) {
+                document.getElementById('design_integration_details').classList.toggle('hidden', value !== 'integration');
+                document.getElementById('design_complex_details').classList.toggle('hidden', value !== 'complex');
+            }
+            
+            function handleLinkTypeChange(selector) {
+                const container = selector.closest('.link-entry').querySelector('.link-value-container');
+                const type = selector.value;
+                container.dataset.type = type;
+                let html = '';
+                const commonInputClasses = "!py-2 !px-4 !text-sm";
+                switch(type) {
+                    case 'url_static': html = `<div><label class="font-semibold text-sm mb-1 block text-white/80">URL de Destino</label><div class="url-input-wrapper h-10"><input type="url" placeholder="https://ejemplo.com" class="form-input-dark ${commonInputClasses} url-static-input w-full h-full" required></div></div>`; break;
+                    case 'vcard': html = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label class="font-semibold text-xs mb-1 block">Nombre</label><input type="text" placeholder="Juan Pérez" class="form-input-dark ${commonInputClasses}"></div><div><label class="font-semibold text-xs mb-1 block">Puesto</label><input type="text" placeholder="Diseñador" class="form-input-dark ${commonInputClasses}"></div><div><label class="font-semibold text-xs mb-1 block">Empresa</label><input type="text" placeholder="D3LTA" class="form-input-dark ${commonInputClasses}"></div><div><label class="font-semibold text-xs mb-1 block">Teléfono</label><input type="tel" placeholder="+54911..." class="form-input-dark ${commonInputClasses}"></div><div class="sm:col-span-2"><label class="font-semibold text-xs mb-1 block">Email</label><input type="email" placeholder="juan@d3lta.com" class="form-input-dark ${commonInputClasses}"></div><div class="sm:col-span-2"><label class="font-semibold text-xs mb-1 block">Sitio Web</label><input type="url" placeholder="https://d3lta.com" class="form-input-dark ${commonInputClasses}"></div></div>`; break;
+                    case 'wifi': html = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label class="font-semibold text-xs mb-1 block">Nombre de Red (SSID)</label><input type="text" placeholder="NombreDeTuWifi" class="form-input-dark ${commonInputClasses}"></div><div><label class="font-semibold text-xs mb-1 block">Contraseña</label><input type="password" placeholder="********" class="form-input-dark ${commonInputClasses}"></div></div>`; break;
+                    case 'text': html = `<div><label class="font-semibold text-sm mb-1 block">Texto a mostrar</label><textarea class="form-textarea-dark ${commonInputClasses}" placeholder="Escribe aquí tu mensaje..." maxlength="4296"></textarea></div>`; break;
+                    case 'payment': html = `<div><label class="font-semibold text-sm mb-1 block">Link de Pago o CBU/CVU</label><input type="text" placeholder="Enlace de MercadoPago o Alias/CBU" class="form-input-dark ${commonInputClasses}"></div>`; break;
+                    case 'geo': html = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label class="font-semibold text-xs mb-1 block">Latitud</label><input type="text" placeholder="-34.6037" class="form-input-dark ${commonInputClasses}"></div><div><label class="font-semibold text-xs mb-1 block">Longitud</label><input type="text" placeholder="-58.3816" class="form-input-dark ${commonInputClasses}"></div></div>`; break;
+                }
+                container.innerHTML = html;
+            }
+            
+            function handleExtraTextToggle(checkbox) { checkbox.closest('.link-entry').querySelector('.link-extra-text-container').classList.toggle('hidden', !checkbox.checked); }
+            function updateDeleteButtonVisibility() { linksContainer.querySelectorAll('.remove-link-btn').forEach(btn => { btn.style.display = linksContainer.querySelectorAll('.link-entry').length > 1 ? 'block' : 'none'; }); }
+            function renumberLinkEntries() { linksContainer.querySelectorAll('.link-entry').forEach((entry, index) => { entry.querySelector('.link-entry-title').textContent = `Versión #${index + 1}`; }); }
+            
+            function createLinkEntryHTML() {
+                const entry = document.createElement('div');
+                entry.className = 'link-entry';
+                entry.innerHTML = `<div class="flex justify-between items-start mb-2"><h4 class="link-entry-title font-semibold text-lg text-white/90">Versión #1</h4><button type="button" class="remove-link-btn p-1.5 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500/40 hover:text-red-300 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="font-semibold text-sm mb-1 block text-white/80">Título del Destino</label><input type="text" class="link-title-input form-input-dark !py-2 !px-4 !text-sm"></div><div><label class="font-semibold text-sm mb-1 block text-white/80">Tipo de Destino</label><div class="relative h-10"><select class="link-type-selector form-select-dark !py-2 !px-4 !text-sm w-full h-full"></select><div class="dynamic-url-display hidden absolute inset-0 px-4 flex items-center bg-blue-800/50 border-2 border-blue-600/50 rounded-lg pointer-events-none text-sm font-medium">URL (Dinámica)</div></div></div></div><div class="link-value-container space-y-3 mt-3"></div><div class="mt-6"><label class="font-semibold text-sm mb-1 block text-white/80">Notas Específicas (Opcional)</label><textarea class="link-notes-input form-textarea-dark !text-sm !min-h-[80px]" placeholder="Instrucciones particulares para esta versión..." maxlength="300"></textarea><div class="text-right text-xs pr-2 text-white/50 link-notes-counter">0/300</div></div><div class="pt-3 border-t border-white/10 flex flex-wrap gap-x-6 gap-y-2"><label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="link-extra-text-toggle form-checkbox-dark !h-5 !w-5 !m-0"><span class="font-semibold text-sm text-white/80">Añadir texto adicional</span></label><label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="link-dynamic-url-toggle form-checkbox-dark !h-5 !w-5 !m-0"><span class="font-semibold text-sm text-white/80">Convertir en URL Dinámica</span></label><div class="link-extra-text-container hidden mt-2 w-full"><input type="text" class="link-extra-text-input form-input-dark !py-2 !px-4 !text-sm" placeholder="Ej: ¡Escaneame!" maxlength="50"><div class="text-right text-xs pr-2 text-white/50 link-extra-text-counter">0/50</div></div></div>`;
+                return entry;
+            }
+            function addLinkEntry() { if (linksContainer.querySelectorAll('.link-entry').length >= 30) return; const newEntry = linkEntryTemplate.cloneNode(true); populateDestinationTypes(newEntry.querySelector('.link-type-selector')); handleLinkTypeChange(newEntry.querySelector('.link-type-selector')); handleExtraTextToggle(newEntry.querySelector('.link-extra-text-toggle')); linksContainer.appendChild(newEntry); renumberLinkEntries(); updateDeleteButtonVisibility(); updateAndDisplayAllPrices(); }
+            function removeLinkEntry(button) { if (linksContainer.querySelectorAll('.link-entry').length > 1) { button.closest('.link-entry').remove(); renumberLinkEntries(); updateDeleteButtonVisibility(); updateAndDisplayAllPrices(); } }
+            function populateDestinationTypes(selectElement) { selectElement.innerHTML = ''; appState.destinationTypes.forEach(type => { selectElement.add(new Option(type.text, type.value)); }); }
+            function handleDynamicUrlToggle(checkbox) { const entry = checkbox.closest('.link-entry'); const typeSelector = entry.querySelector('.link-type-selector'); const dynamicDisplay = entry.querySelector('.dynamic-url-display'); const valueContainer = entry.querySelector('.link-value-container'); if (checkbox.checked) { if (!typeSelector.dataset.originalValue) { typeSelector.dataset.originalValue = typeSelector.value; } typeSelector.classList.add('invisible'); dynamicDisplay.classList.remove('hidden'); typeSelector.disabled = true; if (typeSelector.dataset.originalValue === 'url_static') { const wrapper = valueContainer.querySelector('.url-input-wrapper'); if (wrapper) { if (!wrapper.dataset.originalInput) { wrapper.dataset.originalInput = wrapper.innerHTML; } wrapper.innerHTML = `<div class="h-full flex items-center p-3 bg-blue-900/30 rounded-lg text-sm text-blue-200/80">Este destino será una URL Dinámica. Te entregaremos el link correspondiente una vez configurado.</div>`; } } else { if (!valueContainer.dataset.originalHtml) { valueContainer.dataset.originalHtml = valueContainer.innerHTML; } valueContainer.innerHTML = `<div class="h-10 flex items-center p-3 bg-blue-900/30 rounded-lg text-sm text-blue-200/80">Este destino será una URL Dinámica. Te entregaremos el link correspondiente una vez configurado.</div>`; } } else { typeSelector.classList.remove('invisible'); dynamicDisplay.classList.add('hidden'); typeSelector.disabled = false; if (typeSelector.dataset.originalValue) { typeSelector.value = typeSelector.dataset.originalValue; } handleLinkTypeChange(typeSelector); typeSelector.removeAttribute('data-original-value'); } updateDynamicUrlCheckboxesState(); }
+            function updateDynamicUrlCheckboxesState() { const tier = document.querySelector('input[name="dynamic_url_tier"]:checked').value; const limit = appState.pricesInChf.dynamic_url[tier]?.limit || 0; let checkedToggles = document.querySelectorAll('.link-dynamic-url-toggle:checked'); if (checkedToggles.length > limit) { const toUncheck = Array.from(checkedToggles).slice(limit); toUncheck.forEach(chk => { chk.checked = false; handleDynamicUrlToggle(chk); }); } const checkedCount = document.querySelectorAll('.link-dynamic-url-toggle:checked').length; const available = checkedCount < limit; document.querySelectorAll('.link-dynamic-url-toggle').forEach(chk => { if (chk.checked) return; const label = chk.closest('label'); const textSpan = label.querySelector('span'); const isDisabled = !available || tier === 'none'; chk.disabled = isDisabled; label.title = isDisabled ? `Límite de ${limit} URLs dinámicas alcanzado para tu plan.` : ''; textSpan.classList.toggle('text-gray-500', isDisabled); textSpan.classList.toggle('text-white/80', !isDisabled); }); }
+
+            // --- PRICING ENGINE --- //
+            function getAdditionalVersionsCostChf(count) { if (count <= 1) return 0; let cost = 0, remaining = count - 1, lastMax = 0; for (const tier of appState.pricesInChf.additional_versions) { const inThisTier = Math.min(remaining, tier.max - lastMax); if (inThisTier > 0) { cost += inThisTier * tier.price; remaining -= inThisTier; lastMax = tier.max; } if (remaining <= 0) break; } if (remaining > 0) { cost += remaining * appState.pricesInChf.additional_versions.slice(-1)[0].price; } return cost; }
+            function getStickerPricePerUnit(quantity, size) { const config = appState.pricesInChf.addons.printing[size]; if (!config || quantity <= 0) return 0; const { total_at_1, total_at_1000 } = config; if (quantity <= 1) return total_at_1; if (quantity >= 1000) return total_at_1000 / 1000; const totalCost = total_at_1 + ((total_at_1000 - total_at_1) / (999)) * (quantity - 1); return totalCost / quantity; }
+            function getPrintingCostChf(numVersions) { if (!document.getElementById('print_stickers').checked) return 0; const quantityPerVersion = parseInt(document.getElementById('sticker_quantity').value) || 0; if (quantityPerVersion <= 0 || numVersions <= 0) return 0; const size = document.getElementById('sticker_size').value; const pricePerUnit = getStickerPricePerUnit(quantityPerVersion, size); let totalPrintingCost = pricePerUnit * quantityPerVersion * numVersions; if (document.getElementById('cut_stickers').checked) { totalPrintingCost *= appState.pricesInChf.addons.printing.cut_multiplier; } return totalPrintingCost; }
+            function getExpressDeliveryCostChf(designTier, urlTier, versionCount) { if (versionCount <= 0) return 0; if (!appState.pricesInChf.addons.express_delivery.base[designTier]) return 0; let urlTierKey = urlTier !== 'none' && appState.pricesInChf.addons.express_delivery.base[designTier][urlTier] ? urlTier : 'none'; let baseCost = appState.pricesInChf.addons.express_delivery.base[designTier][urlTierKey]; const { min, max, count_max } = appState.pricesInChf.addons.express_delivery.per_version; let perVersionCost = 0; if (versionCount > 0) { if (versionCount === 1) { perVersionCost = max; } else if (versionCount >= count_max) { perVersionCost = min; } else { const scale = (versionCount - 1) / (count_max - 1); perVersionCost = max - scale * (max - min); } } return baseCost + (perVersionCost * versionCount); }
+            
+            function calculateCosts() {
+                const costs = { creativeFee: 0, functionalityFee: 0, addonsFee: 0, printingCost: 0, renewalFee: 0 };
+                const designTier = document.querySelector('input[name="design_complexity"]:checked').value;
+                const baseDesignCost = appState.pricesInChf.design_complexity[designTier] || 0;
+
+                const allLinkEntries = document.querySelectorAll('.link-entry');
+                const totalLinkCount = allLinkEntries.length; // Use total number of link entries for addons
+                const completeLinkCount = Array.from(allLinkEntries).filter(isLinkEntryComplete).length; // Use completed links for version charges
+                
+                // Creative fee is based on *completed* versions
+                const additionalVersionsCost = getAdditionalVersionsCostChf(completeLinkCount);
+                costs.creativeFee = baseDesignCost + additionalVersionsCost;
+                
+                const dynamicUrlTier = document.querySelector('input[name="dynamic_url_tier"]:checked').value;
+                if (appState.pricesInChf.dynamic_url[dynamicUrlTier]) {
+                    costs.functionalityFee = appState.pricesInChf.dynamic_url[dynamicUrlTier].price;
+                    costs.renewalFee += appState.pricesInChf.dynamic_url[dynamicUrlTier].renewal;
+                }
+                
+                let expressCost = 0;
+                if (document.getElementById('express_delivery').checked) {
+                    // Use totalLinkCount for immediate price feedback
+                    expressCost = getExpressDeliveryCostChf(designTier, dynamicUrlTier, totalLinkCount);
+                    costs.addonsFee += expressCost;
+                }
+                
+                let largeFormatCost = 0;
+                if (document.getElementById('large_format').checked) {
+                    const { base, per_version } = appState.pricesInChf.addons.large_format;
+                    // Use totalLinkCount for immediate price feedback
+                    largeFormatCost = base + (per_version * totalLinkCount);
+                    costs.addonsFee += largeFormatCost;
+                }
+                
+                const designService = document.querySelector('input[name="design_service"]:checked').value;
+                if (appState.pricesInChf.design_services[designService]) costs.addonsFee += appState.pricesInChf.design_services[designService];
+                
+                // Printing cost is based on *all intended* versions
+                costs.printingCost = getPrintingCostChf(totalLinkCount);
+                
+                let totalCHF = costs.creativeFee + costs.functionalityFee + costs.addonsFee + costs.printingCost;
+                if (appState.sellerDiscount.active) totalCHF *= (1 - appState.sellerDiscount.percentage);
+                
+                return { 
+                    total: totalCHF, 
+                    renewal: costs.renewalFee, 
+                    breakdown: { 
+                        baseDesign: baseDesignCost, 
+                        additionalVersions: additionalVersionsCost, 
+                        functionality: costs.functionalityFee, 
+                        addons: costs.addonsFee, 
+                        printing: costs.printingCost, 
+                        express: expressCost, 
+                        largeFormat: largeFormatCost,
+                        completeVersionsCount: completeLinkCount
+                    } 
+                };
+            }
+
+            // --- DISPLAY & UPDATES --- //
+            function updateUIAvailability() { const linkCount = linksContainer.querySelectorAll('.link-entry').length; addLinkButton.disabled = linkCount >= 30; document.getElementById('corporate_quote_prompt').classList.toggle('hidden', linkCount < 30); printingOptions.classList.toggle('hidden', !document.getElementById('print_stickers').checked); }
+            function updateAndDisplayAllPrices() { updateUIAvailability(); updateDynamicUrlCheckboxesState(); const costs = calculateCosts(); document.getElementById('total_price').textContent = formatCurrency(convert(costs.total)); document.getElementById('renewal_price').textContent = costs.renewal > 0 ? formatCurrency(convert(costs.renewal)) : 'N/A'; document.getElementById('modal_total_price').textContent = formatCurrency(convert(costs.total)); document.getElementById('printing_cost_display').textContent = costs.breakdown.printing > 0 ? formatCurrency(convert(costs.breakdown.printing)) : 'N/A'; updateSummary(costs); if(priceChart) { priceChart.data.datasets[0].data = [ convert(costs.breakdown.baseDesign + costs.breakdown.additionalVersions), convert(costs.breakdown.functionality), convert(costs.breakdown.addons), convert(costs.breakdown.printing) ]; priceChart.update(); } document.querySelectorAll('.price-display').forEach(el => { const isAddon = el.closest('label')?.querySelector('input[type=checkbox], input[type=radio]'); const prefix = (isAddon && (isAddon.checked || isAddon.type === 'radio') && isAddon.value !== 'none' && isAddon.name !== 'design_complexity') ? '+ ' : ''; let priceChf = 0; if(el.dataset.isDynamic === "true") { if (el.closest('label').querySelector('#express_delivery')) { priceChf = costs.breakdown.express; } else if (el.closest('label').querySelector('#large_format')) { priceChf = costs.breakdown.largeFormat; } } else if (el.dataset.priceChf) { priceChf = parseFloat(el.dataset.priceChf); } el.textContent = priceChf > 0 ? `${prefix}${formatCurrency(convert(priceChf))}` : (prefix ? `${prefix}N/A` : ''); }); document.querySelectorAll('.renewal-display').forEach(el => { if(el.dataset.renewalChf) el.textContent = `Renovación: ${formatCurrency(convert(parseFloat(el.dataset.renewalChf)))}/año`; }); validateMainFormButton(); }
+            
+            function updateSummary(costs) {
+                const completeVersionsCount = costs.breakdown.completeVersionsCount;
+                const designTierName = document.querySelector('input[name="design_complexity"]:checked').closest('label').querySelector('strong').textContent.split('(')[0].trim();
+                let html = `<div class="flex justify-between items-center text-gray-300 py-2 border-b border-dashed border-white/10"><span>Diseño ${designTierName}</span><span class="font-semibold text-white whitespace-nowrap">${formatCurrency(convert(costs.breakdown.baseDesign))}</span></div>`;
+                
+                if (costs.breakdown.additionalVersions > 0) {
+                    const additionalCompleteCount = completeVersionsCount - 1;
+                    html += `<div class="flex justify-between items-center text-gray-300 py-2 border-b border-dashed border-white/10"><span>Versiones Adicionales Completas (x${additionalCompleteCount})</span><span class="font-semibold text-white whitespace-nowrap">+ ${formatCurrency(convert(costs.breakdown.additionalVersions))}</span></div>`;
+                }
+
+                if (costs.breakdown.functionality > 0) {
+                    const tierName = document.querySelector('input[name="dynamic_url_tier"]:checked').closest('label').querySelector('strong').textContent;
+                    html += `<div class="flex justify-between items-center text-gray-300 py-2 border-b border-dashed border-white/10"><span>${tierName}</span><span class="font-semibold text-white whitespace-nowrap">+ ${formatCurrency(convert(costs.breakdown.functionality))}</span></div>`;
+                }
+                
+                if (costs.breakdown.addons > 0) {
+                    html += `<div class="flex justify-between items-center text-gray-300 py-2 border-b border-dashed border-white/10"><span>Adicionales y Servicios</span><span class="font-semibold text-white whitespace-nowrap">+ ${formatCurrency(convert(costs.breakdown.addons))}</span></div>`;
+                }
+                
+                if (costs.breakdown.printing > 0) {
+                    html += `<div class="flex justify-between items-center text-gray-300 py-2 border-b border-dashed border-white/10"><span>Impresión</span><span class="font-semibold text-white whitespace-nowrap">+ ${formatCurrency(convert(costs.breakdown.printing))}</span></div>`;
+                }
+                
+                if (appState.sellerDiscount.active) {
+                    const discountValue = (costs.total / (1 - appState.sellerDiscount.percentage)) * appState.sellerDiscount.percentage;
+                    html += `<div class="flex justify-between items-center text-green-400 py-2"><span>Descuento Vendedor (10%)</span><span class="font-semibold whitespace-nowrap">- ${formatCurrency(convert(discountValue))}</span></div>`;
+                }
+                
+                document.getElementById('summary_items').innerHTML = html;
+                document.getElementById('modal_summary').innerHTML = html;
+            }
+
+
+            // --- HELPERS & UTILITIES --- //
+            async function fetchExchangeRates() { try { const response = await fetch("https://open.er-api.com/v6/latest/CHF"); if (!response.ok) throw new Error('API failed'); const data = await response.json(); appState.exchangeRates = { ARS: data.rates.ARS, USD: data.rates.USD, CHF: 1 }; } catch (error) { console.error("Could not fetch exchange rates, using fallback.", error); appState.exchangeRates = { ARS: 1250, USD: 1.1, CHF: 1 }; } }
+            function convert(valueInChf) { return valueInChf * appState.exchangeRates[appState.currentCurrency]; }
+            function formatCurrency(value) { const options = { style: "currency", currency: appState.currentCurrency, minimumFractionDigits: 0, maximumFractionDigits: 0 }; let roundedValue = (appState.currentCurrency === "ARS") ? Math.round(value / 1000) * 1000 : Math.round(value); return new Intl.NumberFormat("es-AR", options).format(roundedValue); }
+            function showModal() { updateAndDisplayAllPrices(); validateModalForm(); document.getElementById('modal_form_section').classList.remove('hidden'); document.getElementById('modal_confirmation_section').classList.add('hidden'); document.getElementById('quote_modal').classList.remove('hidden'); }
+            function hideModal() { document.getElementById('quote_modal').classList.add('hidden'); }
+            function setupContactMethodSwitcher(button) { document.querySelectorAll('.contact-method-btn').forEach(btn => btn.classList.remove('active')); button.classList.add('active'); }
+            
+            function isLinkEntryComplete(entry) {
+                const isDynamic = entry.querySelector('.link-dynamic-url-toggle')?.checked;
+                if (isDynamic) return true;
+
+                const type = entry.querySelector('.link-type-selector')?.value;
+                const valueContainer = entry.querySelector('.link-value-container');
+                if (!type || !valueContainer) return false;
+
+                switch (type) {
+                    case 'url_static':
+                        const urlInput = valueContainer.querySelector('.url-static-input');
+                        return urlInput && urlInput.value.trim() !== '';
+                    case 'vcard':
+                        return true; // Se considera completo al seleccionarlo.
+                    case 'wifi':
+                        const ssidInput = valueContainer.querySelector('input[placeholder="NombreDeTuWifi"]');
+                        const passwordInput = valueContainer.querySelector('input[placeholder="********"]');
+                        return ssidInput && ssidInput.value.trim() !== '' && passwordInput && passwordInput.value.trim() !== '';
+                    case 'text':
+                        const textArea = valueContainer.querySelector('textarea');
+                        return textArea && textArea.value.trim() !== '';
+                    case 'payment':
+                        const paymentInput = valueContainer.querySelector('input[placeholder="Enlace de MercadoPago o Alias/CBU"]');
+                        return paymentInput && paymentInput.value.trim() !== '';
+                    case 'geo':
+                        const latInput = valueContainer.querySelector('input[placeholder="-34.6037"]');
+                        const lonInput = valueContainer.querySelector('input[placeholder="-58.3816"]');
+                        return latInput && latInput.value.trim() !== '' && lonInput && lonInput.value.trim() !== '';
+                    default:
+                        return false;
+                }
+            }
+
+            function validateMainFormButton() {
+                const openModalButton = document.getElementById('open_modal_button');
+                const isBrandInfoComplete = document.getElementById('brand_info').value.trim() !== '';
+                const linkEntries = document.querySelectorAll('.link-entry');
+                const isAtLeastOneLinkComplete = Array.from(linkEntries).some(isLinkEntryComplete);
+                
+                let isComplexDesignInfoComplete = true; 
+                const complexDesignRadio = document.querySelector('input[name="design_service"][value="complex"]');
+                if (complexDesignRadio && complexDesignRadio.checked) {
+                    const complexInstructionsTextarea = document.querySelector('textarea[name="design_complex_instructions"]');
+                    isComplexDesignInfoComplete = complexInstructionsTextarea && complexInstructionsTextarea.value.trim() !== '';
+                }
+                
+                const isDisabled = !(isBrandInfoComplete && isAtLeastOneLinkComplete && isComplexDesignInfoComplete);
+                
+                openModalButton.disabled = isDisabled;
+                openModalButton.classList.toggle('btn-disabled-visual', isDisabled);
+            }
+
+            function validateModalForm() {
+                const name = document.getElementById('name_modal'), email = document.getElementById('email_modal'), phone = document.getElementById('phone_modal'), policies = document.getElementById('accept_policies');
+                const isKeywordStateValid = appState.sellerDiscount.status !== 'invalid' && appState.sellerDiscount.status !== 'validating';
+                let isValid = policies.checked && name.value.trim() && email.value.trim() && phone.value.trim() && isKeywordStateValid;
+                [name, email, phone].forEach(input => input.classList.toggle('invalid', !input.value.trim()));
+                confirmButton.disabled = !isValid;
+                return isValid;
+            }
+            function submitForm(e) { e.preventDefault(); if (!validateModalForm()) return; const formData = new FormData(form); const orderData = { metadata: { date: new Date().toISOString(), currency: appState.currentCurrency }, contact: { name: formData.get('name_modal'), email: formData.get('email_modal'), phone: formData.get('phone_modal'), preferred_method: document.querySelector('.contact-method-btn.active').dataset.method }, project_details: { style_description: formData.get('brand_info'), visual_identity: { logo_file: formData.get('logo_upload').name || 'No subido', suggested_fonts: Array.from(document.querySelectorAll('.font-selector')).map(s => s.value), color_mode: formData.get('color_mode'), manual_colors: Array.from(document.querySelectorAll('#color_picker_container input')).map(c => c.value), color_ref_image: formData.get('color_ref_image').name || 'No subido' }, seller_keyword: formData.get('seller_keyword'), }, service_selection: { design_complexity: formData.get('design_complexity'), dynamic_url_plan: formData.get('dynamic_url_tier') }, destinations: Array.from(document.querySelectorAll('.link-entry')).map((entry, index) => ({ version: index + 1, title: entry.querySelector('.link-title-input').value, type: entry.querySelector('.link-type-selector').value, notes: entry.querySelector('.link-notes-input').value, has_extra_text: entry.querySelector('.link-extra-text-toggle').checked, extra_text: entry.querySelector('.link-extra-text-input').value, is_dynamic: entry.querySelector('.link-dynamic-url-toggle').checked })), addons: {}, printing: {}, pricing: calculateCosts(), }; form.querySelectorAll('input[name="addons"]:checked').forEach(addon => { orderData.addons[addon.id] = true; }); orderData.addons.extended_design_service = formData.get('design_service'); if (formData.get('design_service') === 'complex') orderData.addons.extended_design_instructions = formData.get('design_complex_instructions'); if (formData.get('print_stickers')) { orderData.printing = { enabled: true, quantity_per_version: formData.get('sticker_quantity'), size: formData.get('sticker_size'), cut: document.getElementById('cut_stickers').checked, cut_shape: formData.get('sticker_cut_shape') }; } console.log("--- PEDIDO SIMULADO ---"); console.log(JSON.stringify(orderData, null, 2)); document.getElementById('modal_form_section').classList.add('hidden'); document.getElementById('modal_confirmation_section').classList.remove('hidden'); }
+            
+            function setupInitialUI() {
+                linkEntryTemplate = createLinkEntryHTML();
+                addLinkEntry();
+                updateFontSelectorUI();
+                updateColorPickerUI();
+                const sizeSelect = document.getElementById('sticker_size');
+                ['5x5', '8x8', '10x10'].forEach(s => sizeSelect.add(new Option(s + ' cm', s)));
+                const cutSelect = document.getElementById('sticker_cut_shape');
+                ['Circular', 'Cuadrado', 'Cuadrado con bordes redondeados', 'Hexágono'].forEach(s => cutSelect.add(new Option(s, s.toLowerCase().replace(/ /g, '_'))));
+                const container = document.getElementById('contact_method_container');
+                const methods = [
+                    { method: 'whatsapp', name: 'WhatsApp', svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.996 0-3.933-.52-5.687-1.475L.057 24zm6.597-3.807c1.676.995 3.64 1.524 5.643 1.525 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.17.69 4.223 1.942 5.918l-1.24 4.545 4.644-1.238z"/></svg>` },
+                    { method: 'telegram', name: 'Telegram', svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0c-6.626 0-11.944 5.317-11.944 11.942 0 6.625 5.318 11.944 11.944 11.944 6.625 0 11.942-5.319 11.942-11.944 0-6.625-5.317-11.942-11.942-11.942zm4.145 7.442l-1.956 9.176c-.22 .974-1.042 1.233-1.82.784l-2.95-2.17-1.424 1.368c-.156.155-.36.194-.55.194l.202-3.033 5.43-4.902c.23-.207-.052-.322-.363-.113l-6.712 4.227-3.05-1.002c-.97-.323-.97-1.54.173-2.323l12.434-4.87c.78-.303 1.447.189 1.185 1.25z"/></svg>` },
+                    { method: 'sms', name: 'SMS', svg: `<svg fill="currentColor" viewBox="0 0 20 20"><path d="M18 0H2C.9 0 0 .9 0 2v18l4-4h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>` }
+                ];
+                methods.forEach((m, index) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.dataset.method = m.method;
+                    btn.className = 'contact-method-btn flex-1' + (index === 0 ? ' active' : '');
+                    btn.innerHTML = `${m.svg}<span>${m.name}</span>`;
+                    container.appendChild(btn);
+                });
+            }
+            
+            // --- INITIALIZATION --- //
+            async function init() {
+                createChart();
+                setupEventListeners();
+                setupCharacterCounters();
+                setupInitialUI();
+                await fetchExchangeRates();
+                updateAndDisplayAllPrices();
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>

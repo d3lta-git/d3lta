@@ -1,0 +1,45 @@
+El primer documento adjunto "Página de contratación" es el código HTML de una página web. La página en cuestión es un formulario interactivo para que mis potenciales clientes puedan contratar el servicio realizando un pedido altamente personalizado. El sistema debe calcular en tiempo real el valor de su encargo, permitiéndole ser consciente de cada cambio. Este HTML será nuestro punto de partida. 
+El segundo documento llamado "LISTA DE MODIFICACIONES" es una lista de posibles modificaciones que usarás como guía para reestructurar los mecanismos de tasación del servicio y rediseñar la página.
+Trabajaremos para ajustar y rediseñar el código. No olvides ninguna funcionalidad en el proceso. Cuando termines de procesar y comprender estas instrucciones iniciales dame una confirmación. Entonces comenzaremos un ciclo en el que trabajarás para mejorar el código dandome actualizaciones del código y yo supervisaré tu progreso. Si registro avances positivos en tu actualización te indicaré que continúes tu trabajo y deberás entregarme una nueva versión del código. Repetiremos esto hasta que eventualmente hayas aplicado todas las modificaciones de la "LISTA DE MODIFICACIONES" y ya no encuentres nada en lo que el código pueda mejorar. El objetivo es que todos los aspectos del sitio funcionen, asegurate de evaluar antes de entregar una actualización que todas las implementaciones sean funcionales.
+
+La lista detallada a continuación es el historial de modificaciones que pedí durante el proceso de diseño y programación del sitio web. Gran parte de estos cambios ya fueron ejecutados. Debes asegurarte de que estos cambios se hayan efectuado correctamente y debes concretar (de manera absolutamente funcional) los aún no se hayan realizado:
+
+
+Agreguemos las siguientes modificaciones a la lista:
+
+• Arregla los botones de "Seleccionar archivo | Ningún archivo seleccionado" dentro de la sección "Logo" (en " Identidad Visual") y dentro de "Extraer de Imagen" (en "Paleta de Colores").
+• Sugerencia de Tipografías: Por defecto, incluye solo una (el cliente puede agregar o quitar dentro del rango de 1 a 3)
+• Quitemos la opción "Autenticación de dos factores" dentro de "Tipo de Destino" (en "Versiones de Destino").
+
+Seguí trabajando.
+
+Revisalas y resuélvelas una a una, tomate tu tiempo. No olvides ninguna funcionalidad en el proceso. Te daré repetidas oportunidades de avanzar con tu trabajo. Cuando termines de procesar y comprender estas instrucciones comenzá tu tarea, yo supervisaré tu progreso.
+
+• El color azul del botón "Añadir otra versión" debe ser ligeramente más oscuro.
+• Revisa la posición del texto "URL (Dinámica)" dentro de la opción "Tipo de Destino" de cada versión. Actualmente al activar la opción "Convertir en URL Dinámica" en una versión, su "Tipo de Destino" cambia a "URL (Dinámica)" lo cual es correcto. Sin embargo el texto se desplaza (y no debería desplazarse). Además se genera un recuadro azul que es un buen detalle pero sus proporciones no coinciden con el alto que debería tener. Debe medir tanto como el cuadro de texto que está al lado (el que muestra el texto "Ej: Visitar Sitio Web").
+• Cuando la opción "Convertir en URL Dinámica" esté en estado "bloqueado" quiero que el texto también cambie de color a gris.
+
+• Añadamos una burbuja de texto que al clickear la checkbox "Convertir en URL Dinámica" en su estado "bloqueado".
+
+
+-------------------------------------------------------------------------
+
+El primer documento adjunto "Página de contratación" es el código HTML de una página web. La página en cuestión es un formulario interactivo para que mis potenciales clientes puedan contratar el servicio realizando un pedido altamente personalizado. El sistema debe calcular en tiempo real el valor de su encargo, permitiéndole ser consciente de cada cambio. Este HTML será nuestro punto de partida. 
+
+El segundo documento llamado "Características de la Página de Contratación" es un análisis funcional del sitio en cuestión. Lo usarás como referencia para no dañar los mecanismos del sitio durante el proceso de rediseño y reestructuración del sitio.
+
+Ajustaremos el código sin olvidar ninguna funcionalidad en el proceso. Cuando termines de procesar y comprender estas instrucciones iniciales dame una confirmación. Entonces comenzaremos un ciclo en el que trabajarás para mejorar el código dándome actualizaciones del código y yo supervisaré tu progreso. Si registro avances positivos en tu actualización te indicaré que continúes tu trabajo y deberás entregarme una nueva versión del código. Repetiremos esto hasta que eventualmente hayas aplicado cada modificación de manera correcta y ya no encuentres nada en lo que el código pueda mejorar. El objetivo es que todos los aspectos del sitio funcionen, asegúrate de evaluar antes de entregar una actualización que cada implementación sean funcional.
+
+Comenzá tu labor.
+
+Continúa tu trabajo.
+
+
+----------------------------------------------------------------
+
+Te faltó concretar algunas modificaciones. A continuación te menciono cuales: 
+
+• La ventana de "Confirmar Solicitud" debe ocupar menos ancho en pantalla.
+• Cada opción de "Vía de contacto preferida" debe tener un efecto que la destaque al ser seleccionada. Actualmente los botones no parecen funcionar.
+
+Ajusta el código sin olvidar ninguna funcionalidad en el proceso. El objetivo es que todos los aspectos del sitio funcionen, asegúrate de evaluar antes de entregar tu próxima actualización que cada implementación sea funcional. Comenzá tu labor.

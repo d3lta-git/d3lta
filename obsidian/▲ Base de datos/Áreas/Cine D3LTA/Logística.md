@@ -1,0 +1,3 @@
+- **Locacionista**: Busca y asegura locaciones adecuadas para el rodaje.
+- **Equipo de Utilería**: Proporciona y gestiona los objetos necesarios en las escenas.
+- Iluminacion

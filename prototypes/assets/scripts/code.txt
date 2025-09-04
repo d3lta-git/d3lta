@@ -1,0 +1,138 @@
+<!-- Esto va dentro de la etiqueta <script> al final de tu archivo HTML -->
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve({ name: file.name, base64: reader.result });
+        reader.onerror = error => reject(error);
+    });
+}
+
+async function submitForm(e) {
+    e.preventDefault();
+    if (!validateModalForm()) return;
+
+    const confirmButton = document.getElementById('confirm_and_send_button');
+    confirmButton.disabled = true;
+    confirmButton.innerHTML = '<span>Enviando...</span>';
+
+    try {
+        const form = document.getElementById('main_form');
+        const formData = new FormData(form);
+
+        // Recopilar datos de forma estructurada según el Plan Maestro
+        const orderData = {
+            metadata: {
+                date: new Date().toISOString(),
+                currency: document.querySelector('input[name="currency"]:checked').value
+            },
+            contact: {
+                name: formData.get('name_modal'),
+                email: formData.get('email_modal'),
+                phone: formData.get('phone_modal'),
+                preferred_method: document.querySelector('.contact-method-btn.active').dataset.method
+            },
+            project_details: {
+                style_description: formData.get('brand_info'),
+                policies_accepted: formData.get('accept_policies') === 'on',
+                seller_keyword: formData.get('seller_keyword'),
+                visual_identity: {
+                    logo_file: { name: formData.get('logo_upload')?.name || '' },
+                    color_ref_image: { name: formData.get('color_ref_image')?.name || '' },
+                    suggested_fonts: Array.from(document.querySelectorAll('.font-selector')).map(s => s.value),
+                    manual_colors: Array.from(document.querySelectorAll('#color_picker_container input')).map(c => c.value)
+                }
+            },
+            service_selection: {
+                design_complexity: formData.get('design_complexity'),
+                dynamic_url_plan: formData.get('dynamic_url_tier')
+            },
+            destinations: Array.from(document.querySelectorAll('.link-entry')).map((entry, index) => {
+                const type = entry.querySelector('.link-type-selector').value;
+                const valueContainer = entry.querySelector('.link-value-container');
+                let values = {};
+                switch(type) {
+                     case 'url_static': values.url = valueContainer.querySelector('input[type="url"]')?.value; break;
+                     case 'text': values.text = valueContainer.querySelector('textarea')?.value; break;
+                     // ... y así para cada tipo de destino
+                }
+                return {
+                    version: index + 1,
+                    title: entry.querySelector('.link-title-input').value,
+                    type: type,
+                    is_dynamic: entry.querySelector('.link-dynamic-url-toggle').checked,
+                    notes: entry.querySelector('.link-notes-input').value,
+                    has_extra_text: entry.querySelector('.link-extra-text-toggle').checked,
+                    extra_text: entry.querySelector('.link-extra-text-input').value,
+                    values: values
+                };
+            }),
+            addons: {
+                express_delivery: formData.get('express_delivery') === 'on',
+                large_format: formData.get('large_format') === 'on',
+                extended_design_service: formData.get('design_service'),
+                extended_design_instructions: formData.get('design_complex_instructions'),
+                extended_design_file: { name: formData.get('design_integration_file')?.name || '' }
+            },
+            printing: {
+                enabled: formData.get('print_stickers') === 'on',
+                quantity_per_version: formData.get('sticker_quantity'),
+                size: formData.get('sticker_size'),
+                cut: document.getElementById('cut_stickers').checked,
+                cut_shape: formData.get('sticker_cut_shape')
+            },
+            pricing: {} // Se recalculará en el backend, pero enviamos los datos
+        };
+
+        // Capturar precios y datos calculados
+        const costs = calculateCosts(); // Asumiendo que esta función existe en tu JS
+        orderData.pricing = {
+            ...costs,
+            total_local: convert(costs.total),
+            renewal_local: convert(costs.renewal),
+            total_chf: costs.total,
+            renewal_chf: costs.renewal,
+            seller_discount_applied: appState.sellerDiscount.active,
+            seller_discount_amount_chf: appState.sellerDiscount.active ? (costs.total / (1 - appState.sellerDiscount.percentage) - costs.total) : 0
+        };
+
+        // Convertir archivos a Base64
+        if (formData.get('logo_upload')?.size > 0) {
+            const fileData = await fileToBase64(formData.get('logo_upload'));
+            orderData.project_details.visual_identity.logo_file_base64 = fileData.base64;
+        }
+        if (formData.get('color_ref_image')?.size > 0) {
+            const fileData = await fileToBase64(formData.get('color_ref_image'));
+            orderData.project_details.visual_identity.color_ref_image_base64 = fileData.base64;
+        }
+        if (formData.get('design_integration_file')?.size > 0) {
+            const fileData = await fileToBase64(formData.get('design_integration_file'));
+            orderData.addons.extended_design_file_base64 = fileData.base64;
+        }
+
+        // URL de tu Web App de Google Apps Script
+        const WEB_APP_URL = "AQUÍ_VA_LA_URL_DE_TU_IMPLEMENTACIÓN";
+
+        const response = await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Importante para evitar errores de CORS con GAS
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+
+        // Mostrar confirmación al usuario
+        document.getElementById('modal_form_section').classList.add('hidden');
+        document.getElementById('modal_confirmation_section').classList.remove('hidden');
+
+    } catch (error) {
+        console.error("Error al enviar el formulario:", error);
+        alert("Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.");
+        confirmButton.disabled = false;
+        confirmButton.innerHTML = '<span>Confirmar y Enviar</span>';
+    }
+}
+
+// Asegúrate de que el event listener del formulario llame a esta nueva función:
+// form.addEventListener('submit', submitForm);

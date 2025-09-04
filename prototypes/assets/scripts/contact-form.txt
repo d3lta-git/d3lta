@@ -1,0 +1,130 @@
+/**
+ * Este script maneja los datos enviados desde un formulario HTML,
+ * envía una notificación por correo y Telegram al administrador,
+ * y un correo de confirmación al cliente.
+ */
+
+// ---- CONFIGURACIÓN GLOBAL ----
+// Correo donde recibirás las notificaciones.
+var adminEmail = "vicentebarbagelata@gmail.com"; 
+
+// ---- CONFIGURACIÓN DE TELEGRAM ----
+// Pega aquí las credenciales que obtuviste del Bot de Telegram.
+var telegramBotToken = "7258221830:AAHkfMewUyLOjv4mpGu1y61Tc8rDZTWeEzU"; // <-- ¡IMPORTANTE! Pega el token de BotFather aquí.
+var telegramChatId = "1775930437";   // <-- ¡IMPORTANTE! Pega tu Chat ID aquí.
+// ------------------------------------
+
+
+/**
+ * Función principal que se ejecuta cuando el formulario envía datos (POST).
+ * @param {Object} e - El objeto del evento que contiene los datos del formulario.
+ */
+function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+
+    // 1. Enviar notificación al administrador por correo
+    sendAdminNotificationEmail(data);
+    
+    // 2. Enviar correo de confirmación al cliente
+    sendCustomerConfirmationEmail(data);
+
+    // 3. Enviar notificación por Telegram si las credenciales están configuradas
+    if (telegramBotToken !== "AQUI_VA_TU_BOT_TOKEN" && telegramChatId !== "AQUI_VA_TU_CHAT_ID") {
+      var telegramMessage = "💎 **Nueva Solicitud de D3LTA** 💎\n\n" +
+                            "**Cliente:** " + data.name + "\n" +
+                            "**Empresa:** " + data.org_name + "\n" +
+                            "**Total Estimado:** " + data.total_price;
+      sendTelegramNotification(telegramMessage);
+    }
+
+    // Devuelve una respuesta de éxito al formulario
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    // En caso de error, lo registra y devuelve un mensaje de error.
+    Logger.log("Error en doPost: " + error.toString());
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+
+/**
+ * Envía el correo de notificación al administrador.
+ * @param {Object} data - Los datos del formulario.
+ */
+function sendAdminNotificationEmail(data) {
+  var subject = "Joyería D3LTA • " + data.name + " solicitó nuestros servicios de diseño gráfico";
+  var body = "<h3>¡Nueva solicitud de cotización recibida!</h3>" +
+             "<p><strong>Nombre de la Empresa:</strong> " + data.org_name + "</p>" +
+             "<p><strong>Nombre de Contacto:</strong> " + data.name + "</p>" +
+             "<p><strong>Email de Contacto:</strong> " + data.email + "</p>" +
+             "<hr>" +
+             "<h4>Detalles del Pedido:</h4>" +
+             "<ul>" + data.summary_html.replace(/class="[^"]*"/g, '').replace(/<div/g, '<li').replace(/<\/div/g, '</li>') + "</ul>" +
+             "<p><strong>Total Estimado: " + data.total_price + "</strong></p>" +
+             "<hr>" +
+             "<h4>Información Adicional del Cliente:</h4>" +
+             "<p><strong>URL de Destino:</strong> " + data.qr_destination + "</p>" +
+             "<p><strong>Detalles de la Marca:</strong> " + data.brand_info + "</p>" +
+             "<p><strong>Identidad Visual:</strong> " + data.visual_identity + "</p>" +
+             "<p><strong>Vigencia del QR:</strong> " + data.qr_lifespan + "</p>" +
+             "<p><strong>Condiciones de Escaneo:</strong> " + data.scan_conditions + "</p>" +
+             "<p><strong>Texto Adicional:</strong> " + data.extra_text + "</p>";
+
+  MailApp.sendEmail({
+    to: adminEmail,
+    subject: subject,
+    htmlBody: body,
+    replyTo: data.email
+  });
+}
+
+
+/**
+ * Envía el correo de confirmación al cliente.
+ * @param {Object} data - Los datos del formulario.
+ */
+function sendCustomerConfirmationEmail(data) {
+  var subject = "Hemos recibido tu solicitud de cotización - Joyería D3LTA";
+  var body = "<h3>¡Hola, " + data.name + "!</h3>" +
+             "<p>Gracias por tu interés en los servicios de diseño de Joyería D3LTA.</p>" +
+             "<p>Hemos recibido tu solicitud de cotización y nuestro equipo la revisará a la brevedad. Nos pondremos en contacto contigo muy pronto para confirmar los detalles.</p>" +
+             "<p>Este es un resumen de tu pedido:</p>" +
+             "<ul>" + data.summary_html.replace(/class="[^"]*"/g, '').replace(/<div/g, '<li').replace(/<\/div/g, '</li>') + "</ul>" +
+             "<p><strong>Total Estimado: " + data.total_price + "</strong></p>" +
+             "<br>" +
+             "<p>Saludos cordiales,<br>El equipo de D3LTA</p>";
+
+  MailApp.sendEmail({
+    to: data.email,
+    subject: subject,
+    htmlBody: body
+  });
+}
+
+
+/**
+ * Envía un mensaje a un chat de Telegram.
+ * @param {string} text - El mensaje a enviar.
+ */
+function sendTelegramNotification(text) {
+  var url = "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage";
+  var payload = {
+    'method': 'post',
+    'payload': {
+      'chat_id': String(telegramChatId),
+      'text': text,
+      'parse_mode': 'Markdown'
+    }
+  };
+  try {
+    UrlFetchApp.fetch(url, payload);
+  } catch (error) {
+    Logger.log("Error en sendTelegramNotification: " + error.toString());
+  }
+}

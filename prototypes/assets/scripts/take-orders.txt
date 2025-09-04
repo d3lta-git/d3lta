@@ -1,0 +1,303 @@
+/**
+ * SCRIPT DE REGISTRO DE PEDIDOS v33.0 (Modelo de Precios Granular)
+ *
+ * - **LÓGICA DE NEGOCIO ACTUALIZADA**: El script ahora entiende y procesa pedidos de lotes de QR.
+ * - **MANEJO DE MÚLTIPLES URLS**: La función doPost recibe un listado de URLs, las une
+ * con saltos de línea y las guarda en una única celda para mantener la integridad de la fila.
+ * - **ARQUITECTURA MANTENIDA**: Se conserva el sistema de cola asíncrono y el guardado de
+ * archivos en Drive mediante Base64, que ya está funcionando correctamente.
+ */
+
+// --- CONFIGURACIÓN GLOBAL ---
+const ss = SpreadsheetApp.getActiveSpreadsheet();
+const mainSheet = ss.getSheetByName("Pedidos");
+const queueSheetName = "Notificaciones";
+const ROOT_FOLDER_NAME = "D3LTA - Pedidos QR";
+const TIMEZONE = "America/Argentina/Buenos_Aires";
+const OWNER_EMAIL = "vicentebarbagelata@gmail.com";
+const TELEGRAM_BOT_TOKEN = "7258221830:AAHkfMewUyLOjv4mpGu1y61Tc8rDZTWeEzU";
+const TELEGRAM_CHAT_ID = "1775930437";
+
+// ===================================================================================
+// FUNCIÓN DE CONFIGURACIÓN INICIAL (No es necesario volver a ejecutar si ya existe)
+// ===================================================================================
+function setup() {
+  let queueSheet = ss.getSheetByName(queueSheetName);
+  if (!queueSheet) {
+    queueSheet = ss.insertSheet(queueSheetName);
+    queueSheet.appendRow(["Row Number", "Status", "Timestamp"]);
+  }
+
+  const folders = DriveApp.getFoldersByName(ROOT_FOLDER_NAME);
+  if (!folders.hasNext()) {
+    DriveApp.createFolder(ROOT_FOLDER_NAME);
+  }
+
+  const triggers = ScriptApp.getProjectTriggers();
+  for (const trigger of triggers) {
+    if (trigger.getHandlerFunction() === 'processNotificationQueue') {
+      ScriptApp.deleteTrigger(trigger);
+    }
+  }
+  
+  ScriptApp.newTrigger('processNotificationQueue')
+      .timeBased()
+      .everyMinutes(5)
+      .create();
+      
+  Logger.log("¡Configuración completada!");
+}
+
+
+// ===================================================================================
+// FUNCIÓN PRINCIPAL QUE RECIBE LOS DATOS DEL FORMULARIO
+// ===================================================================================
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    Logger.log("doPost iniciado para el cliente: " + data.name);
+    
+    const timestamp = new Date();
+    const formattedTimestamp = Utilities.formatDate(timestamp, TIMEZONE, "dd/MM/yyyy HH:mm:ss");
+
+    const rootFolders = DriveApp.getFoldersByName(ROOT_FOLDER_NAME);
+    if (!rootFolders.hasNext()) {
+      throw new Error(`La carpeta raíz "${ROOT_FOLDER_NAME}" no existe. Por favor, ejecute la función setup().`);
+    }
+    const rootFolder = rootFolders.next();
+    const orderFolderName = `Pedido_${formattedTimestamp.replace(/[:\s/]/g, '-')}_${data.name.replace(/\s/g, '_')}`;
+    const orderFolder = rootFolder.createFolder(orderFolderName);
+    const orderFolderUrl = orderFolder.getUrl();
+    Logger.log(`Carpeta creada: ${orderFolderUrl}`);
+
+    saveBase64File(data.logo_base64, data.logo_filename, orderFolder);
+    saveBase64File(data.color_ref_image_base64, data.color_ref_image_filename, orderFolder);
+    saveBase64File(data.design_integration_image_base64, data.design_integration_image_filename, orderFolder);
+    
+    const urlsAsString = Array.isArray(data.qr_destinations) ? data.qr_destinations.join('\n') : data.qr_destinations;
+
+    const newRow = [
+      formattedTimestamp, data.name, data.email, data.contact_method,
+      data.contact_info, data.org_name, 
+      urlsAsString, // Guardar todas las URLs en una celda
+      data.quantity, // Nueva columna para la cantidad
+      data.seller_keyword,
+      data.brand_info, data.extra_text, data.currency, data.total_price, data.renewal_price,
+      data.summary_html, data.color_mode, data.colors, data.font,
+      data.logo_filename, data.color_ref_image_filename,
+      data.dynamic_qr, data.large_format, data.multiple_formats, data.non_standard_file,
+      data.qr_lifespan, data.campaign_end_date, data.scan_conditions,
+      data.design_service, data.design_simple_details, data.design_complex_details,
+      data.design_integration_image_filename, data.print_stickers,
+      data.sticker_quantity, data.sticker_size,
+      orderFolderUrl
+    ];
+    mainSheet.appendRow(newRow);
+    const newRowNumber = mainSheet.getLastRow();
+    Logger.log(`Fila agregada a "Pedidos" en la fila número ${newRowNumber}.`);
+
+    const queueSheet = ss.getSheetByName(queueSheetName);
+    queueSheet.appendRow([newRowNumber, "PENDING", formattedTimestamp]);
+    Logger.log(`Tarea añadida a "${queueSheetName}".`);
+
+    SpreadsheetApp.flush();
+
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    Logger.log("Error CRÍTICO en doPost: " + error.toString() + "\nStack: " + error.stack);
+    return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: error.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function saveBase64File(base64Data, fileName, folder) {
+  if (!base64Data || !fileName || !base64Data.includes('base64,')) return;
+  try {
+    const splitData = base64Data.split(',');
+    const contentType = splitData[0].match(/:(.*?);/)[1] || 'application/octet-stream';
+    const decodedData = Utilities.base64Decode(splitData[1]);
+    const blob = Utilities.newBlob(decodedData, contentType, fileName);
+    const file = folder.createFile(blob);
+    Logger.log(`Archivo guardado: ${file.getName()}`);
+  } catch (err) {
+    Logger.log(`Error al guardar archivo ${fileName}: ${err.toString()}`);
+  }
+}
+
+function processNotificationQueue() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(30000)) { return; }
+  
+  try {
+    const queueSheet = ss.getSheetByName(queueSheetName);
+    if (!queueSheet) { return; }
+    
+    const dataRange = queueSheet.getDataRange();
+    const values = dataRange.getValues();
+    
+    for (let i = 1; i < values.length; i++) {
+      if (values[i][1] === "PENDING") {
+        const mainSheetRowNumber = values[i][0];
+        const queueSheetRowIndex = i + 1;
+        
+        try {
+          queueSheet.getRange(queueSheetRowIndex, 2).setValue("PROCESSING");
+          const mainSheetData = mainSheet.getRange(mainSheetRowNumber, 1, 1, mainSheet.getLastColumn()).getValues()[0];
+          const data = mapRowToDataObject(mainSheetData);
+          sendNotifications(data.data, data.timestamp);
+          queueSheet.getRange(queueSheetRowIndex, 2).setValue("SENT");
+        } catch (error) {
+          Logger.log(`Error al procesar fila ${mainSheetRowNumber}: ${error.toString()}`);
+          queueSheet.getRange(queueSheetRowIndex, 2).setValue("ERROR");
+        }
+        break; 
+      }
+    }
+  } catch(e) {
+    Logger.log("Error en processNotificationQueue: " + e.toString());
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function mapRowToDataObject(rowArray) {
+    return { 
+      data: {
+        name: rowArray[1], email: rowArray[2], contact_method: rowArray[3], contact_info: rowArray[4],
+        org_name: rowArray[5], 
+        qr_destinations: rowArray[6], // Múltiples URLs
+        quantity: rowArray[7], // Cantidad
+        seller_keyword: rowArray[8],
+        brand_info: rowArray[9], extra_text: rowArray[10], currency: rowArray[11], total_price: rowArray[12], renewal_price: rowArray[13],
+        summary_html: rowArray[14], color_mode: rowArray[15], colors: rowArray[16], font: rowArray[17],
+        logo_filename: rowArray[18], color_ref_image_filename: rowArray[19],
+        dynamic_qr: rowArray[20], large_format: rowArray[21], multiple_formats: rowArray[22], non_standard_file: rowArray[23],
+        qr_lifespan: rowArray[24], campaign_end_date: rowArray[25], scan_conditions: rowArray[26],
+        design_service: rowArray[27], design_simple_details: rowArray[28], design_complex_details: rowArray[29],
+        design_integration_image_filename: rowArray[30], print_stickers: rowArray[31],
+        sticker_quantity: rowArray[32], sticker_size: rowArray[33], driveFolderUrl: rowArray[34]
+      },
+      timestamp: rowArray[0]
+    };
+}
+
+function sendNotifications(data, timestamp) {
+  try {
+    MailApp.sendEmail({
+      to: OWNER_EMAIL,
+      subject: `Nuevo Pedido de Lote QR - ${data.org_name || data.name} (${data.quantity} códigos)`,
+      htmlBody: createOwnerEmailBody(data, timestamp)
+    });
+    MailApp.sendEmail({
+      to: data.email,
+      subject: `Confirmación de tu pedido en D3LTA`,
+      htmlBody: createClientEmailBody(data, timestamp)
+    });
+    
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const payload = {
+      method: "post",
+      payload: {
+        chat_id: String(TELEGRAM_CHAT_ID),
+        text: createTelegramMessage(data, timestamp),
+        parse_mode: "Markdown"
+      }
+    };
+    UrlFetchApp.fetch(url, payload);
+
+  } catch (error) {
+    Logger.log("Error CRÍTICO en sendNotifications: " + error.toString());
+    throw error;
+  }
+}
+
+function createTableRow(label, value) {
+    if (!value || value === 'N/A' || value === 'false') return '';
+    return `<tr><td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">${label}</td><td style="padding: 8px; border: 1px solid #ddd;">${String(value).replace(/\n/g, '<br>')}</td></tr>`;
+}
+
+function createSectionTitle(title) {
+    return `<tr><td colspan="2" style="padding: 10px; background-color: #4a5568; color: white; font-size: 16px; text-align: center;">${title}</td></tr>`;
+}
+
+function createOwnerEmailBody(data, timestamp) {
+    return `
+        <h2 style="color: #26aefb;">¡Nuevo pedido de LOTE recibido! (${data.quantity} códigos)</h2>
+        <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+            ${createSectionTitle('Información Principal')}
+            ${createTableRow('Fecha', timestamp)} ${createTableRow('Cliente', data.name)}
+            ${createTableRow('Email Cliente', data.email)}
+            ${createTableRow('Contacto Preferido', `${data.contact_method}: ${data.contact_info}`)}
+            ${createTableRow('Organización', data.org_name)}
+            ${createTableRow('URLs de Destino', data.qr_destinations)}
+            ${createTableRow('Cantidad de Códigos', data.quantity)}
+            ${createTableRow('Palabra Clave Vendedor', data.seller_keyword)}
+            ${createTableRow('Moneda', data.currency)} ${createTableRow('Total Año 1', data.total_price)}
+            ${createTableRow('Renovación Anual', data.renewal_price)}
+            
+            ${createSectionTitle('Detalles del Proyecto')}
+            ${createTableRow('Descripción de la Marca', data.brand_info)}
+            ${createTableRow('Texto Adicional QR', data.extra_text)}
+            ${createTableRow('Condiciones de Escaneo', data.scan_conditions)}
+
+            ${createSectionTitle('Identidad Visual y Archivos')}
+            ${createTableRow('Modo de Color', data.color_mode)} ${createTableRow('Paleta de Colores', data.colors)}
+            ${createTableRow('Tipografía', data.font)}
+            ${data.driveFolderUrl ? `<tr><td colspan="2" style="padding: 12px; border: 1px solid #ddd; text-align: center; background-color: #e2e8f0;"><b>Archivos Subidos (Logo, Referencias, etc.):</b><br><a href="${data.driveFolderUrl}" style="display: inline-block; margin-top: 10px; padding: 10px 15px; background-color: #26aefb; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Ver Archivos en Drive</a></td></tr>` : createTableRow('Archivos Subidos', 'No se subieron archivos.')}
+
+            ${createSectionTitle('Requerimientos Técnicos')}
+            ${createTableRow('QR Dinámico', data.dynamic_qr)}
+            ${createTableRow('Preparación Gigantografía', data.large_format)}
+            ${createTableRow('Múltiples Formatos', data.multiple_formats)}
+            ${createTableRow('Archivo No Estándar', data.non_standard_file)}
+            ${createTableRow('Vigencia', data.qr_lifespan === 'campaign' ? `Campaña (hasta ${data.campaign_end_date})` : 'Permanente')}
+
+            ${createSectionTitle('Diseño Gráfico Extendido')}
+            ${createTableRow('Servicio Contratado', data.design_service)}
+            ${createTableRow('Detalles Diseño Simple', data.design_simple_details)}
+            ${createTableRow('Detalles Diseño Complejo', data.design_complex_details)}
+
+            ${createSectionTitle('Servicio de Impresión')}
+            ${createTableRow('Solicita Impresión', data.print_stickers)}
+            ${createTableRow('Cantidad de Stickers', data.sticker_quantity)}
+            ${createTableRow('Tamaño de Stickers', `${data.sticker_size}x${data.sticker_size} cm`)}
+        </table>
+    `;
+}
+
+function createClientEmailBody(data, timestamp) {
+    return `
+        <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+            <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h2 style="color: #26aefb;">¡Hola ${data.name}!</h2>
+                <p>Hemos recibido tu solicitud de pedido para un lote de <strong>${data.quantity} códigos QR</strong>, con fecha <strong>${timestamp}</strong>. ¡Gracias por elegir D3LTA!</p>
+                <p>Nos pondremos en contacto contigo a la brevedad a través de tu método preferido: <strong>${data.contact_method}</strong>.</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <h3 style="color: #4a5568;">Resumen de tu Pedido</h3>
+                <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                  ${data.summary_html}
+                </div>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <p>Si tienes alguna consulta, no dudes en responder a este correo.</p>
+                <p>Saludos,<br><strong>El equipo de D3LTA</strong></p>
+            </div>
+        </body>
+    `;
+}
+
+function createTelegramMessage(data, timestamp) {
+    const details = [
+      { l: 'Cliente', v: data.name }, { l: 'Organización', v: data.org_name },
+      { l: 'Cantidad', v: `*${data.quantity} códigos*` },
+      { l: 'Contacto', v: `${data.contact_method}: ${data.contact_info}` },
+      { l: 'Total Año 1', v: `*${data.total_price} ${data.currency}*` },
+      { l: 'Renovación Anual', v: `*${data.renewal_price} ${data.currency}*` },
+      { l: 'Vendedor', v: data.seller_keyword },
+      { l: 'Archivos', v: data.driveFolderUrl ? `[Ver en Drive](${data.driveFolderUrl})` : 'No hay' }
+    ]
+    .filter(item => item.v && item.v !== 'N/A')
+    .map(item => `*${item.l}:* ${item.v}`)
+    .join('\n');
+
+    return `🔔 *¡Nuevo Pedido de LOTE!* 🔔\n\n${details}`;
+}

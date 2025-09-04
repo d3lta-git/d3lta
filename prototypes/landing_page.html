@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3LTA - Diseño de Códigos QR Artísticos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+        Menú de Inicio (v43) para D3LTA
+        - Ajustado el espaciado de la sección del portafolio.
+    -->
+    <style>
+        :root {
+            --c-white: #ffffff;
+            --c-yellow: #f7df4e;
+            --c-lightblue: #a0e9ff; 
+            --c-blue: #26aefb;
+            --gradient-primary: linear-gradient(135deg, var(--c-blue) 0%, var(--c-white) 100%);
+            --font-display: 'Barlow Condensed', sans-serif; 
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://i.ibb.co/tMkP7rHz/D3-LTA-Fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            backdrop-filter: blur(6px);
+            z-index: -1;
+            background-color: rgba(10, 10, 15, 0.9);
+        }
+
+        body { 
+            font-family: var(--font-body); 
+            color: var(--c-white); 
+            @apply antialiased; 
+        }
+        
+        .main-title { 
+            font-family: var(--font-display);
+            font-weight: 700; 
+            color: var(--c-white);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.15em; 
+            text-transform: uppercase;
+            line-height: 1.1; 
+        }
+
+        .gradient-title {
+            font-family: var(--font-display);
+            font-weight: 700; 
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            text-shadow: 0 2px 20px rgba(38, 174, 251, 0.3);
+            letter-spacing: 0.08em;
+            text-transform: uppercase; 
+        }
+
+        .subtitle { 
+            font-family: var(--font-body);
+            color: var(--c-white);
+            border-right: .15em solid var(--c-lightblue);
+            white-space: nowrap;
+            overflow: hidden;
+            letter-spacing: .1em;
+        }
+        
+        .btn-premium {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem; 
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            color: #111; 
+            background: var(--c-yellow);
+            border: none;
+            border-radius: 100px;
+            padding: 1rem 3rem;
+            box-shadow: 0px 8px 0px 0px #c5ab3a;
+            transition: all 0.15s ease-in-out;
+            position: relative;
+            overflow: hidden; 
+            transform: translateY(0);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(4px) scale(1.05);
+            box-shadow: 0px 4px 0px 0px #c5ab3a;
+        }
+
+        .btn-premium:active {
+            transform: translateY(8px);
+            box-shadow: none;
+        }
+
+        .btn-premium::after {
+            content: "";
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 75px;
+            height: 400%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transform: rotate(25deg);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .btn-premium:hover::after {
+            transform: translateX(500px) rotate(25deg);
+        }
+        
+        .portfolio-card { 
+            @apply bg-white/5 border-2 border-transparent rounded-2xl transition-all duration-300 backdrop-blur-lg relative overflow-hidden;
+            transform-style: preserve-3d;
+        }
+        .portfolio-card:hover { 
+            border-color: rgba(160, 233, 255, 0.5);
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.4);
+        }
+        
+        .filter-button { 
+            @apply px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 border-2 border-transparent bg-white/5;
+        }
+        .filter-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        .filter-button.active { 
+            background: var(--gradient-primary);
+            color: black;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(38, 174, 251, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        
+        .image-placeholder {
+            @apply bg-black/20 animate-pulse;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--c-lightblue); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .scroll-down-indicator {
+            animation: bounce 2s infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen flex flex-col text-center p-4 overflow-hidden">
+        <main class="w-full max-w-5xl mx-auto flex flex-col items-center justify-center flex-grow">
+            
+            <div class="animate-fadeInUp" style="animation-delay: 100ms;">
+                <img src="https://i.ibb.co/C3fmdLYc/D3-LTA-Isologo.png" alt="Isologo de D3LTA" class="h-auto w-full max-w-sm sm:max-w-xl mx-auto">
+            </div>
+
+            <h1 class="main-title text-3xl sm:text-5xl lg:text-6xl animate-fadeInUp mt-4" style="animation-delay: 300ms;">
+                Diseño gráfico de<br>Códigos QR Artísticos
+            </h1>
+
+            <p id="animated-subtitle" class="mt-4 text-sm sm:text-lg max-w-2xl mx-auto subtitle animate-fadeInUp" style="animation-delay: 500ms;"></p>
+
+            <div class="-mt-4 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeInUp" style="animation-delay: 700ms;">
+                <a href="https://sites.google.com/view/d3lta-app/contratar-el-servicio" id="encargar-qr-btn" class="btn-premium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <span>Encargar mi QR</span>
+                </a>
+            </div>
+        </main>
+        
+        <div class="w-full animate-fadeInUp" style="animation-delay: 900ms;">
+            <div class="inline-block pb-4">
+                <div class="text-lg font-display tracking-widest uppercase mb-2">
+                    PORTAFOLIO DE EJEMPLOS
+                </div>
+                <div class="scroll-down-indicator">
+                    <svg class="w-6 h-6 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-12 sm:pb-24">
+        <section id="portfolio" class="mb-20 text-center">
+            
+            <div id="portfolio-filters" class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="filter-button active" data-filter="all">Todos</button>
+                <button class="filter-button" data-filter="municipios">Municipios</button>
+                <button class="filter-button" data-filter="artistas">Artistas</button>
+            </div>
+            
+            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            </div>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-700/70 text-center">
+            <div class="flex flex-col items-center gap-4">
+                <img src="https://i.ibb.co/4wKMJyyk/D3-LTA-Logo.png" alt="Logo de D3LTA" class="h-44">
+                <div class="text-sm text-gray-400">
+                    <p>◃ D3LTA ▵ 2025 ▹</p>
+                    <p>Delta del Paraná, Argentina</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const portfolioItems = [
+            { id: 1, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/fGTqmTLW/Mapainteractivo.png' },
+            { id: 2, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/n8brSjx1/Cartelera-cultural.png' },
+            { id: 3, category: ['static', 'artistas'], imageUrl: 'https://i.ibb.co/xqrX2Pg9/VIC3N1.png' },
+            { id: 4, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/JwvRn6xV/Guiaderesiduos.png' },
+            { id: 5, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/p6SkzWB7/Centrosdesalud.png' },
+            { id: 6, category: ['static', 'artistas'], imageUrl: 'https://i.ibb.co/LhPqyD6t/VIC3N4.png' },
+            { id: 7, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/N2C1BGHn/Transportepublico.png' },
+            { id: 8, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/ns6f5XKy/Sugerenciasyreclamos.png' },
+            { id: 9, category: ['static', 'artistas'], imageUrl: 'https://i.ibb.co/LXWSjW8y/VIC3N2.png' },
+            { id: 10, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/S4KB8cr1/Portal-de-pagos.png' },
+            { id: 11, category: ['static', 'municipios'], imageUrl: 'https://i.ibb.co/7NSwspt6/Guiadetramites.png' },
+            { id: 12, category: ['static', 'artistas'], imageUrl: 'https://i.ibb.co/wh7M9FTH/VIC3N3.png' }
+        ];
+
+        const portfolioGrid = document.getElementById('portfolio-grid');
+        const portfolioFilters = document.getElementById('portfolio-filters');
+
+        function renderPortfolio(filter = 'all') {
+            portfolioGrid.innerHTML = '';
+            const filteredItems = portfolioItems.filter(item => 
+                filter === 'all' || item.category.includes(filter)
+            );
+
+            filteredItems.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card animate-fadeInUp aspect-square';
+                card.style.animationDelay = `${100 + index * 100}ms`;
+                
+                card.innerHTML = `
+                    <img src="${item.imageUrl}" alt="Ejemplo de QR artístico ${item.id}" class="w-full h-full object-cover transition-transform duration-300 image-placeholder" loading="lazy" onload="this.classList.remove('image-placeholder')" style="transform: translateZ(20px);">
+                `;
+                portfolioGrid.appendChild(card);
+            });
+        }
+        
+        portfolioFilters.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                portfolioFilters.querySelector('.filter-button.active')?.classList.remove('active');
+                e.target.classList.add('active');
+                renderPortfolio(e.target.dataset.filter);
+            }
+        });
+
+        document.getElementById('portfolio-grid').addEventListener('mousemove', e => {
+            const card = e.target.closest('.portfolio-card');
+            if (card) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const { width, height } = rect;
+                const rotateX = (y - height / 2) / (height / 2) * -5;
+                const rotateY = (x - width / 2) / (width / 2) * 5;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            }
+        });
+
+        document.getElementById('portfolio-grid').addEventListener('mouseleave', e => {
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
+        });
+
+        const subtitle = document.getElementById('animated-subtitle');
+        const text = "Transformamos ideas en Códigos QR Artísticos que capturan la esencia de tu marca, conectando el mundo físico con el digital de una forma increíble.";
+        
+        subtitle.style.animation = 'none';
+        subtitle.offsetHeight; 
+        subtitle.style.animation = `typing 3.5s steps(${text.length}, end), blink-caret .75s step-end infinite`;
+        subtitle.textContent = text;
+        
+        renderPortfolio('all');
+        
+    });
+    </script>
+</body>
+</html>

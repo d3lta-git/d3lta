@@ -1,0 +1,90 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Flutter
+**/*.mode1v3
+**/*.mode2v3
+**/*.moved-aside
+**/*.pbxuser
+**/*.perspectivev3
+**/*sync/
+.packages
+.pub/
+build/
+flutter_*.png
+flutter_*.plist
+.coverage
+.pub-cache/
+.pubspec.lock
+
+# Android
+*.apk
+*.aar
+*.dex
+*.class
+*/gen/
+*/.gradle/
+*/.idea/
+/*local.properties
+/build/
+/*flutter/ephemeral/
+
+# iOS
+*.out
+*.pbxproj
+*.moved-aside
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+!default.profraw
+*.dSYM.zip
+*.dSYM
+
+# Exceptions to above rules
+!**/ios/**/default.profraw
+!**/ios/**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Generated coverage report
+coverage/
+
+# VS Code
+.vscode/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Dart Tool
+.dart_tool/
+
+# Logs
+*.log
+
+# Temp directory
+tmp/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Firebase
+firebase-debug.log
+.firebase/
+
+# Build outputs
+dist/
+out/

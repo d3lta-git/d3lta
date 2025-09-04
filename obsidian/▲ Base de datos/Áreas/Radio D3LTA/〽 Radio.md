@@ -1,0 +1,7 @@
+# ![[Áreas/Radio D3LTA/🔶 Dirección de área]]
+# ![[Áreas/Radio D3LTA/🔸 Relaciones públicas]]
+# ![[🔹 Locución]]
+# ![[Áreas/Radio D3LTA/Diseño gráfico]]
+# ![[Áreas/Radio D3LTA/Distribución]]
+# ![[Áreas/Radio D3LTA/Producción]]
+# ![[Programador]]

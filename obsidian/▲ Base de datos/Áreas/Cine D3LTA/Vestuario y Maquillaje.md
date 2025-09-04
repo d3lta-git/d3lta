@@ -1,0 +1,1 @@
+- Diseña y aplica vestimenta y maquillaje acorde a los personajes y contexto.

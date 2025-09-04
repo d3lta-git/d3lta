@@ -1,0 +1,4 @@
+actores
+bailarines
+musicos
+extras

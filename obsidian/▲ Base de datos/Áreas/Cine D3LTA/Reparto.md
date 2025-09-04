@@ -1,0 +1,3 @@
+actores
+performers
+extras

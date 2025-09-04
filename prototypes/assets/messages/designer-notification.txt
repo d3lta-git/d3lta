@@ -1,0 +1,14 @@
+🎨 ¡Buenas! Entró un nuevo proyecto de diseño.
+
+Aquí te paso un resumen rápido:
+
+*ID del Pedido:* `{{PedidoID}}`
+*Cliente:* `{{NombreContacto}}`
+*Complejidad:* `{{ComplejidadDiseño}}`
+*Cantidad de Versiones:* `{{TotalVersiones}}`
+
+{{#if TieneEntregaExpress}}
+⚠️ *¡OJO! Este pedido tiene entrega Express.*
+{{/if}}
+
+Ya tenés en tu mail el brief completo con todos los detalles, archivos adjuntos e instrucciones.

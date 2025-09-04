@@ -1,0 +1,7 @@
+# ![[🔶 Dirección (editorial)]]
+# ![[🔸 Relaciones públicas (editorial)]]
+# ![[Áreas/Editorial D3LTA/Distribución]]
+# ![[Áreas/Editorial D3LTA/Edición]]
+# ![[🔹 Autoría (editorial)]]
+# ![[Ilustración]]
+# ![[Áreas/Editorial D3LTA/Impresión]]
