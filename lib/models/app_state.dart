@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'pricing_model.dart';
+import '../services/seller_validation_service.dart';
 
 class AppState extends ChangeNotifier {
   // Variables de estado
@@ -162,11 +163,14 @@ class AppState extends ChangeNotifier {
 
   // Method to validate seller keyword
   Future<bool> validateSellerKeyword(String keyword) async {
-    // In a real implementation, this would call an API to validate the keyword
-    // For now, we'll use a more realistic simulation
-    // Valid keywords could be VENDEDOR01, VENDEDOR02, etc. or DESCUENTO10
-    final validKeywords = ['descuento10', 'vendedor01', 'vendedor02', 'vendedor03'];
-    return validKeywords.contains(keyword.trim().toLowerCase());
+    // If the keyword is empty, it's not valid
+    if (keyword.trim().isEmpty) {
+      return false;
+    }
+    
+    // Call the seller validation service
+    final isValid = await SellerValidationService.validateSellerKeyword(keyword);
+    return isValid;
   }
 
   void setLinkEntries(List<LinkEntry> entries) {

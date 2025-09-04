@@ -671,7 +671,7 @@ class _ProjectInfoSectionState extends State<ProjectInfoSection> {
         withData: true, // Para obtener los bytes de la imagen
       );
 
-      if (result != null) {
+      if (result != null && mounted) {
         PlatformFile file = result.files.first;
         setState(() {
           _logoFileName = file.name;
@@ -691,7 +691,7 @@ class _ProjectInfoSectionState extends State<ProjectInfoSection> {
         withData: true, // Para obtener los bytes de la imagen
       );
 
-      if (result != null) {
+      if (result != null && mounted) {
         PlatformFile file = result.files.first;
         setState(() {
           _colorImageFileName = file.name;
@@ -1164,11 +1164,9 @@ class _ProjectInfoSectionState extends State<ProjectInfoSection> {
 class ColorPickerItem extends StatefulWidget {
   final Color color;
   final Function(Color) onChanged;
-  @override
-  final Key? key;
 
   const ColorPickerItem({
-    this.key,
+    Key? key,
     required this.color,
     required this.onChanged,
   }) : super(key: key);
@@ -1354,13 +1352,13 @@ class LinkEntryWidget extends StatefulWidget {
   final VoidCallback? onRemove;
 
   const LinkEntryWidget({
-    super.key,
+    Key? key,
     required this.index,
     required this.entry,
     required this.destinationTypes,
     required this.onUpdate,
     this.onRemove,
-  });
+  }) : super(key: key);
 
   @override
   State<LinkEntryWidget> createState() => _LinkEntryWidgetState();
@@ -2894,7 +2892,7 @@ class _DesignComplexDetailsState extends State<DesignComplexDetails> {
         withData: true, // Para obtener los bytes del archivo
       );
 
-      if (result != null) {
+      if (result != null && mounted) {
         PlatformFile file = result.files.first;
         setState(() {
           _fileName = file.name;

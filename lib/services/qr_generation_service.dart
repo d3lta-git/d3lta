@@ -39,8 +39,16 @@ class QRGenerationService {
         data: data,
         version: QrVersions.auto,
         gapless: false,
-        color: const Color(0xFF000000), // Black
-        emptyColor: const Color(0xFFFFFFFF), // White
+        // Updated to use eyeStyle and dataModuleStyle instead of deprecated color parameters
+        eyeStyle: const QrEyeStyle(
+          eyeShape: QrEyeShape.square,
+          color: Color(0xFF000000), // Black
+        ),
+        dataModuleStyle: const QrDataModuleStyle(
+          dataModuleShape: QrDataModuleShape.square,
+          color: Color(0xFF000000), // Black
+        ),
+        // The background color should be handled by the container widget
       );
       
       // Draw the QR code

@@ -1,3 +1,4 @@
+// lib/widgets/font_selector_with_preview.dart
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -59,7 +60,16 @@ class _FontSelectorWithPreviewState extends State<FontSelectorWithPreview> {
             height: 60,
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.1),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFffffff),
+                  Color(0xFFA0E9FF),
+                  Color(0xFF26AEFB),
+                ],
+                stops: [0.0, 0.5, 1.0],
+              ),
               borderRadius: BorderRadius.circular(12),
             ),
             child: DropdownButtonHideUnderline(
@@ -72,7 +82,7 @@ class _FontSelectorWithPreviewState extends State<FontSelectorWithPreview> {
                             font,
                             style: TextStyle(
                               fontFamily: _getFontFamily(font),
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ))
@@ -90,7 +100,7 @@ class _FontSelectorWithPreviewState extends State<FontSelectorWithPreview> {
                   }
                 },
                 dropdownColor: const Color(0xFF101018),
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           ),
