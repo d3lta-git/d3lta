@@ -1,4 +1,5 @@
 // lib/main.dart
+// Configuración de dominio personalizado para d3lta.app
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // Importar la nueva pantalla
