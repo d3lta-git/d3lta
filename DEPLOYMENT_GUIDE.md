@@ -61,6 +61,31 @@ scripts\deploy.bat
 .\scripts\deploy.ps1
 ```
 
+### Option 3: Automated PowerShell Deployment (Recommended for Windows)
+
+For Windows users, we've created an automated PowerShell deployment script that handles the entire process:
+
+```bash
+# On Windows (PowerShell)
+.\scripts\auto-deploy.ps1
+```
+
+This script will:
+1. Run tests
+2. Check for analyzer issues
+3. Build the application
+4. Deploy to GitHub Pages
+5. Handle custom domain configuration
+
+You can also pass parameters to the script:
+```bash
+# Skip tests and analyzer checks (not recommended for production)
+.\scripts\auto-deploy.ps1 -SkipTests -SkipAnalyze
+
+# Deploy with a custom domain
+.\scripts\auto-deploy.ps1 -CustomDomain "yourdomain.com"
+```
+
 Then deploy to GitHub Pages:
 ```bash
 npx gh-pages -d build/web
@@ -106,6 +131,12 @@ Follow the instructions in `BACKEND_SERVICES.md` to set up Firebase or your pref
 2. Check for analyzer issues with `flutter analyze`
 3. Ensure all dependencies are installed with `flutter pub get`
 
+### PowerShell Script Issues
+
+1. Ensure you have the gh-pages npm package installed globally: `npm install -g gh-pages`
+2. Check that your Git repository is properly configured
+3. Verify you have the necessary permissions to push to the repository
+
 ## Maintenance
 
 1. Regularly update dependencies
@@ -120,6 +151,7 @@ Follow the instructions in `BACKEND_SERVICES.md` to set up Firebase or your pref
 3. Check for analyzer issues: `flutter analyze`
 4. Commit and push to main branch
 5. GitHub Actions will automatically deploy the updated app
+6. Alternatively, run the PowerShell deployment script for immediate deployment
 
 ## Cost Considerations
 
