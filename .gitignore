@@ -88,3 +88,6 @@ firebase-debug.log
 # Build outputs
 dist/
 out/
+
+# Qwen
+.qwen/
